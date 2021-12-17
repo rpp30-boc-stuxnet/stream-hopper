@@ -28,7 +28,6 @@ class TestComponent extends React.Component {
     return (
       <div>
         <p>{this.state.testString}</p>
-        <p>New Paragraph</p>
       </div>
     )
   }

@@ -14,13 +14,11 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.get('/', cors(), ((req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  // res.send('This is working')
 }))
 
 
 app.get('/testroute', cors(), ((req, res) => {
   res.send('Successful GET call to /testroute express route');
-  // res.send('This is working')
 }))
 
 app.listen(port, () => {
