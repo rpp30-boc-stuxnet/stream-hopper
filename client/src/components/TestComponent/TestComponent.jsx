@@ -5,16 +5,17 @@ class TestComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      testString: 'Hello'
+      firstMovieTitle: 'Hello'
     }
   }
 
   componentDidMount() {
-    axios.get('/testroute')
+    axios.get('/testDbData')
     .then(
       (response) => {
+        console.dir(response)
         this.setState({
-          testString: response.data
+          firstMovieTitle: response.data[0].title
         })
       }
     )
@@ -27,7 +28,7 @@ class TestComponent extends React.Component {
   render() {
     return (
       <div>
-        <p>{this.state.testString}</p>
+        <p>{this.state.firstMovieTitle}</p>
       </div>
     )
   }
