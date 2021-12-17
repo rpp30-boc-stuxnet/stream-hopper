@@ -7,7 +7,8 @@
     "postinstall": "cd client && npm install",
     "react-test": "cd client && npm test",
     "start": "nodemon server/index.js",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "start-dev": "concurrently -n 'react compiler,node backend' -c 'bgBlue.bold,bgGreen.bold' 'cd client && npm run watch' 'npm start'"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,8 @@
     "express": "^4.17.1",
     "nodemon": "^2.0.15",
     "react-scripts": "^5.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0"
   }
 }
