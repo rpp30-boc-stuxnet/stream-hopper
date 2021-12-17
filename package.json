@@ -1,0 +1,30 @@
+{
+  "name": "stream-hopper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd client && npm install",
+    "react-test": "cd client && npm test",
+    "start": "nodemon server/index.js",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpp30-boc-stuxnet/stream-hopper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpp30-boc-stuxnet/stream-hopper/issues"
+  },
+  "homepage": "https://github.com/rpp30-boc-stuxnet/stream-hopper#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "react-scripts": "^5.0.0"
+  }
+}
