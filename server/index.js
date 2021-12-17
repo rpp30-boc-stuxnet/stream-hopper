@@ -16,6 +16,11 @@ app.get('/', cors(), ((req, res) => {
   // res.send('This is working')
 }))
 
+app.get('/testroute', cors(), ((req, res) => {
+  res.send('Successful call');
+  // res.send('This is working')
+}))
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })
