@@ -17,7 +17,7 @@ app.get('/', cors(), ((req, res) => {
 }))
 
 app.get('/testroute', cors(), ((req, res) => {
-  res.send('Successful call');
+  res.send('Successful GET call to /testroute express route');
   // res.send('This is working')
 }))
 
