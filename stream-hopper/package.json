@@ -6,6 +6,10 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.24.0",
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
@@ -16,7 +20,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+<<<<<<< HEAD
     "lint": "npx standard"
+=======
+    "server-dev": "nodemon server/index.js"
+>>>>>>> 6b53c06fcc5d0aee802e67f4998be47d722ac858
   },
   "eslintConfig": {
     "extends": [
