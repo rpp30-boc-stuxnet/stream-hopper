@@ -20,11 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-<<<<<<< HEAD
-    "lint": "npx standard"
-=======
-    "server-dev": "nodemon server/index.js"
->>>>>>> 6b53c06fcc5d0aee802e67f4998be47d722ac858
+    "server-dev": "nodemon server/index.js",
+    "lint": "standard"
   },
   "eslintConfig": {
     "extends": [
