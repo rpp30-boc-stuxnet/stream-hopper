@@ -28,7 +28,7 @@ class TestComponent extends React.Component {
   render() {
     return (
       <div>
-        <p>{this.state.firstMovieTitle}</p>
+        <p>Test DB call: {this.state.firstMovieTitle}</p>
       </div>
     )
   }
