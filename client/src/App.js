@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App" data-testid="main-app-div">
       <header className="App-header">
-        <p>Streamhopper</p>
+        <p>Stream Hopper</p>
         <img src={logo} className="App-logo" alt="logo" />
         <TestComponent />
       </header>
