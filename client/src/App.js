@@ -11,6 +11,7 @@ function App() {
         <p>Stream Hopper</p>
         <img src={logo} className="App-logo" alt="logo" />
         <TestComponent />
+        <p>Created by Stuxnet</p>
       </header>
     </div>
   );
