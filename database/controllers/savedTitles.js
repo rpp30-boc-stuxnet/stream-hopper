@@ -12,8 +12,6 @@ const findSavedTitles = async (req, res) => {
 }
 
 const addSavedTitle = async (req, res) => {
-  console.log(req.body.type)
-  console.log(req.body.tmdb_id);
   let posterPath;
 
   await axios.get(`https://api.themoviedb.org/3/${req.body.type}/${req.body.tmdb_id}`, {

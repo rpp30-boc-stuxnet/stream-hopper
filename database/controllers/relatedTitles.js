@@ -68,7 +68,6 @@ const findRelatedTitles = async (req, res) => {
     })
       .then((response) => {
         for (var i = 0; i < response.data.results.slice(0,5).length; i++) {
-          console.dir(response.data.results[i])
           let currentRecommendation = {
             type: response.data.results[i].media_type,
             tmdb_id: response.data.results[i].id,
