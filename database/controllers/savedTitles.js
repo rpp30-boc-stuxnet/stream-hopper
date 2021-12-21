@@ -32,8 +32,12 @@ const addSavedTitle = async (req, res) => {
 
 const deleteSavedTitle = async (req, res) => {
   Saved_Title.findOneAndDelete({user_id: req.body.user_id, imdb_id: req.body.imdb_id})
-    .then(() => {
-      res.status(200).send('Title deleted successfully');
+    .then((response) => {
+      if (response === null) {
+        res.status(200).send('Title was not found in list')
+      } else {
+        res.status(200).send('Title deleted successfully');
+      }
     })
     .catch((error) => {
       res.status(400).send(error)
