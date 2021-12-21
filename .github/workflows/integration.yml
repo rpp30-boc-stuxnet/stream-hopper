@@ -12,6 +12,5 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 17
-      - run: npm ci
       - run: npm run react-test
       - run: npm run build
