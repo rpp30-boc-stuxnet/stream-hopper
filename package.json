@@ -6,11 +6,11 @@
   "scripts": {
     "postinstall": "cd client && npm install",
     "react-test": "cd client && npm test",
-    "start": "node server/index.js",
+    "start": "pm2 start server/index.js",
     "build": "cd client && npm run build",
     "front-dev": "cd client && npm run watch",
     "back-dev": "nodemon server/index.js",
-    "fullstack-dev": "concurrently -n 'react compiler,node backend' -c 'bgBlue.bold,bgGreen.bold' 'cd client && npm run watch' 'npm start'"
+    "fullstack-dev": "concurrently -n 'react compiler,node backend' -c 'bgBlue.bold,bgGreen.bold' 'cd client && npm run watch' 'npm run back-dev'"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "express": "^4.17.1",
     "mongoose": "^6.1.2",
     "nodemon": "^2.0.15",
+    "pm2": "^5.1.2",
     "react-scripts": "^5.0.0"
   },
   "devDependencies": {

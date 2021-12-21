@@ -6,6 +6,8 @@ const connectDB = require("../database/index.js");
 const cors = require('cors');
 
 const testRoutes = require('./routes/testRoutes.js');
+const savedTitlesRoutes = require('./routes/savedTitlesRoutes.js');
+const relatedTitlesRoutes = require('./routes/relatedTitlesRoutes.js');
 
 connectDB();
 
@@ -17,6 +19,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use('/testDbData', testRoutes);
+app.use('/savedTitles', savedTitlesRoutes);
+app.use('/relatedTitles', relatedTitlesRoutes);
 
 app.get('/', cors(), ((req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
