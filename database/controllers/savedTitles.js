@@ -1,3 +1,4 @@
+const axios = require('axios').default;
 const Saved_Title = require('../models/savedTitle.js');
 
 const findSavedTitles = async (req, res) => {
@@ -11,12 +12,27 @@ const findSavedTitles = async (req, res) => {
 }
 
 const addSavedTitle = async (req, res) => {
+  let posterPath;
+  let tmdbId;
+  await axios.get(`https://api.themoviedb.org/3/movie/${req.body.imdb_id}`, {
+      params: {
+        api_key: process.env.TMDB_API_KEY
+      }
+    })
+      .then((result) => {
+        posterPath = 'https://image.tmdb.org/t/p/w500' + result.data.poster_path;
+        tmdbId = result.data.id;
+      })
+      .catch((error) => {
+        res.status(400).send('Error while fetching tmdb id from tmdb\'s API: ' + error)
+      })
+
   Saved_Title.find({user_id: req.body.user_id, imdb_id: req.body.imdb_id})
     .then((savedTitles) => {
       if (savedTitles.length > 0) {
         res.status(400).send('Movie already exists in user\'s list')
       } else {
-        Saved_Title.create({user_id: req.body.user_id, imdb_id: req.body.imdb_id})
+        Saved_Title.create({user_id: req.body.user_id, imdb_id: req.body.imdb_id, tmdb_id: tmdbId, poster_path: posterPath})
           .then(() => {
             res.status(201).send('Title added successfully');
           })
@@ -26,7 +42,7 @@ const addSavedTitle = async (req, res) => {
       }
     })
     .catch((error) => {
-      res.status(400).send(error)
+      res.status(400).send('Error inside Saved_Title.find function: ' + error)
     })
 }
 
