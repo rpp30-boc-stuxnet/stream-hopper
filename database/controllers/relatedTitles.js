@@ -50,7 +50,7 @@ const findRelatedTitles = async (req, res) => {
     .then((savedTitles) => {
       savedTitles = savedTitles.slice(-3);
       for (var i = 0; i < savedTitles.length; i++) {
-        threeMostRecent.push(savedTitles[i].tmdb_id)
+        threeMostRecent.push({type: savedTitles[i].type, tmdb_id: savedTitles[i].tmdb_id})
       }
     })
     .catch((error) => {
@@ -61,22 +61,24 @@ const findRelatedTitles = async (req, res) => {
   let finalResults = [];
   let orderModified = false;
   for (var i = 0; i < threeMostRecent.length; i++) {
-    await axios.get(`https://api.themoviedb.org/3/movie/${threeMostRecent[i]}/recommendations`, {
+    await axios.get(`https://api.themoviedb.org/3/${threeMostRecent[i].type}/${threeMostRecent[i].tmdb_id}/recommendations`, {
       params: {
         api_key: process.env.TMDB_API_KEY
       }
     })
-      .then((result) => {
-        for (var i = 0; i < result.data.results.slice(0,5).length; i++) {
-          if (!relatedTmdbIds.includes(result.data.results[i].id)) {
-            result.data.results[i].poster_path = 'https://image.tmdb.org/t/p/w500' + result.data.results[i].poster_path;
-            if (priorityMovies[JSON.stringify(result.data.results[i].id)] && !orderModified) {
-              relatedTmdbIds.unshift(result.data.results[i].id);
-              finalResults.unshift(result.data.results[i]);
-            } else {
-              relatedTmdbIds.push(result.data.results[i].id);
-              finalResults.push(result.data.results[i]);
-            }
+      .then((response) => {
+        for (var i = 0; i < response.data.results.slice(0,5).length; i++) {
+          console.dir(response.data.results[i])
+          let currentRecommendation = {
+            type: response.data.results[i].media_type,
+            tmdb_id: response.data.results[i].id,
+            poster_path: 'https://image.tmdb.org/t/p/w500' + response.data.results[i].poster_path
+          }
+          if (priorityMovies[JSON.stringify(response.data.results[i].id)] && !orderModified) {
+            finalResults.unshift(currentRecommendation);
+            orderModified = true;
+          } else {
+            finalResults.push(currentRecommendation);
           }
         }
       })
