@@ -8,9 +8,9 @@
     "react-test": "cd client && npm test",
     "start": "node server/index.js",
     "build": "cd client && npm run build",
-    "front-dev": "cd client && npm run watch",
+    "front-dev": "cd client && npm start",
     "back-dev": "nodemon server/index.js",
-    "fullstack-dev": "concurrently -n 'react compiler,node backend' -c 'bgBlue.bold,bgGreen.bold' 'cd client && npm run watch' 'npm run back-dev'"
+    "fullstack-dev": "concurrently -n 'react compiler,node backend' -c 'bgBlue.bold,bgGreen.bold' 'cd client && npm start' 'npm run back-dev'"
   },
   "repository": {
     "type": "git",

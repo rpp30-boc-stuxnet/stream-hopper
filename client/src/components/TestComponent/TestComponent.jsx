@@ -5,17 +5,16 @@ class TestComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstMovieTitle: 'Hello'
+      testResult: 'Hello'
     }
   }
 
   componentDidMount() {
-    axios.get('/testDbData')
+    axios.get('/api/testDbData')
     .then(
       (response) => {
-        console.dir(response)
         this.setState({
-          firstMovieTitle: response.data[0].title
+          testResult: JSON.stringify(response.data)
         })
       }
     )
@@ -28,7 +27,7 @@ class TestComponent extends React.Component {
   render() {
     return (
       <div>
-        <p>Test DB call: {this.state.firstMovieTitle}</p>
+        <p>Test DB call: {this.state.testResult}</p>
       </div>
     )
   }
