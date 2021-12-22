@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "cd client && npm install",
     "react-test": "cd client && npm test",
-    "start": "node server/index.js",
+    "start": "pm2 start server/index.js",
     "build": "cd client && npm run build",
     "front-dev": "cd client && npm run watch",
     "back-dev": "nodemon server/index.js",
