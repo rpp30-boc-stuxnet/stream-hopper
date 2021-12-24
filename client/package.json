@@ -24,7 +24,7 @@
     }
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "BROWSER=none PORT=4000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "watch": "npm-watch",
