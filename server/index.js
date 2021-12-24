@@ -9,6 +9,7 @@ const testRoutes = require('./routes/testRoutes.js');
 const savedTitlesRoutes = require('./routes/savedTitlesRoutes.js');
 const relatedTitlesRoutes = require('./routes/relatedTitlesRoutes.js');
 const titleDetailsRoutes = require('./routes/titleDetailsRoutes.js');
+const searchRoutes = require('./routes/searchRoutes.js');
 
 connectDB();
 
@@ -23,6 +24,7 @@ app.use('/testDbData', testRoutes);
 app.use('/savedTitles', savedTitlesRoutes);
 app.use('/relatedTitles', relatedTitlesRoutes);
 app.use('/titleDetails', titleDetailsRoutes);
+app.use('/search', searchRoutes);
 
 app.get('/', cors(), ((req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
