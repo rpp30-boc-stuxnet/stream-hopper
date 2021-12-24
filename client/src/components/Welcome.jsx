@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Login from './Login.jsx';
-import Signup from './Signup.jsx';
+import LoginOrSignup from './LoginOrSignup.jsx';
 
 const Welcome = () => {
 
@@ -48,11 +47,11 @@ const Welcome = () => {
     )
   } else if (accountState.isLoginActive) {
     return (
-      <Login protocol={'Login'} />
+      <LoginOrSignup protocol={'Login'} handleXOutClick={handleXOutClick}/>
     )
   } else if (accountState.isSignupActive) {
     return (
-      <Signup protocol={'Signup'} handleXOutClick={handleXOutClick}/>
+      <LoginOrSignup protocol={'Signup'} handleXOutClick={handleXOutClick}/>
     )
   } else {
     console.log('[Welcome Component] this shouldn not happen. isActiveState = ' + accountState.isLoginActive + 'isSignupActive = ' + accountState.isSignupActive)

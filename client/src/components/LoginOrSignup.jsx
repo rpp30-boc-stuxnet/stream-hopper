@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Signup = (props) => {
+const LoginOrSignup = (props) => {
 
   return (
     <div>
@@ -21,16 +21,11 @@ const Signup = (props) => {
             <label for='password'>Password</label>
             <input type='text' name='password' placeholder='Enter password'/>
           </div>
-
         </form>
-        <p>Username</p>
-
-        <p>Password</p>
-        <textarea placeholder='Enter password'></textarea>
+        <button>{props.protocol}</button>
       </div>
-      <button>Sumbit</button>
     </div>
   )
 }
 
-export default Signup;
+export default LoginOrSignup;
