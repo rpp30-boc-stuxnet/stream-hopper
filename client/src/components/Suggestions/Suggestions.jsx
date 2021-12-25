@@ -1,8 +1,6 @@
 import React from 'react';
-import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow } from "./MyMovies.styles.js";
-export default function MyMovies({ title, movies }) {
-
-
+import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow } from "../MyMovies/MyMovies.styles.js";
+export default function Suggestions({ title, movies }) {
   return (
     <>
       <MoviesContainer>
