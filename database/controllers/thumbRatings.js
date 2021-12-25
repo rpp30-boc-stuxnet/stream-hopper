@@ -5,6 +5,7 @@ const Overall_Thumb_Rating = require('../models/overallThumbRating.js');
 const findThumbRatings = async (req, res) => {
   await User_Thumb_Rating.findOne({user_id: req.query.user_id, tmdb_id: req.query.tmdb_id})
     .then(async (userThumbRating) => {
+      console.dir(userThumbRating);
       let user_thumb_rating = userThumbRating.thumb_rating || null;
       await Overall_Thumb_Rating.findOne({tmdb_id: req.query.tmdb_id})
         .then((overallThumbRating) => {
@@ -22,6 +23,12 @@ const findThumbRatings = async (req, res) => {
     .catch((error) => {
       res.status(400).send('Error fetching thumb ratings: ' + error)
     })
+}
+
+const saveThumbRating = async (req, res) => {
+  // req.body: {tmdb_id, user_id, prevThumbRating, newThumbRating}
+    // prevThumbRating and newThumbRating can be null, 'up', or 'down'
+  console.log('inside saveThumbRating')
 }
 
 // const addSavedTitle = async (req, res) => {
@@ -73,5 +80,6 @@ const findThumbRatings = async (req, res) => {
 // }
 
 module.exports.findThumbRatings = findThumbRatings;
+module.exports.saveThumbRating = saveThumbRating;
 // module.exports.addSavedTitle = addSavedTitle;
 // module.exports.deleteSavedTitle = deleteSavedTitle;
