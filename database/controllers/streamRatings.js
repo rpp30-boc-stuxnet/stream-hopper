@@ -20,7 +20,7 @@ const findStreamRatings = async (req, res) => {
       let user_video_quality_rating = userSourceRating.video_quality_rating || null;
       let user_stream_reliability_rating = userSourceRating.stream_reliability_rating || null;
 
-      await Overall_Stream_Rating.findOne(
+      Overall_Stream_Rating.findOne(
         {
           tmdb_id: req.query.tmdb_id,
           source_company_id: req.query.source_company_id,
@@ -41,9 +41,9 @@ const findStreamRatings = async (req, res) => {
             user_audio_quality_rating: user_audio_quality_rating,
             user_video_quality_rating: user_video_quality_rating,
             user_stream_reliability_rating: user_stream_reliability_rating,
-            audio_average_rating: overallStreamRating.audio_total_stars / overallStreamRating.count_of_reviews || 0,
-            video_average_rating: overallStreamRating.video_total_stars / overallStreamRating.count_of_reviews || 0,
-            reliability_average_rating: overallStreamRating.reliability_total_stars / overallStreamRating.count_of_reviews || 0,
+            audio_average_rating: parseFloat((overallStreamRating.audio_total_stars / overallStreamRating.count_of_reviews).toFixed(2) || 0),
+            video_average_rating: parseFloat((overallStreamRating.video_total_stars / overallStreamRating.count_of_reviews).toFixed(2) || 0),
+            reliability_average_rating: parseFloat((overallStreamRating.reliability_total_stars / overallStreamRating.count_of_reviews).toFixed(2) || 0),
             count_of_reviews: overallStreamRating.count_of_reviews || 0
           })
         })
@@ -53,84 +53,160 @@ const findStreamRatings = async (req, res) => {
     })
 }
 
-// const saveThumbRating = async (req, res) => {
-//   // req.body: {tmdb_id, user_id, prev_thumb_rating, new_thumb_rating}
-//     // prev_thumb_rating and new_thumb_rating can be null, 'up', or 'down'
+const saveStreamRating = async (req, res) => {
+  await User_Stream_Rating.findOne({
+      user_id: req.body.user_id,
+      tmdb_id: req.body.tmdb_id,
+      source_company_id: req.body.source_company_id,
+      stream_type: req.body.stream_type,
+      stream_format: req.body.stream_format
+  })
+    .then(async (userStreamRatingResult) => {
+      //if userStreamRating result is null
+      if (userStreamRatingResult === null) {
+        // save new User_Stream_Rating
+        User_Stream_Rating.create(
+          {
+            user_id: req.body.user_id,
+            tmdb_id: req.body.tmdb_id,
+            source_company_id: req.body.source_company_id,
+            stream_type: req.body.stream_type,
+            stream_format: req.body.stream_format,
+            audio_quality_rating: req.body.user_audio_quality_rating,
+            video_quality_rating: req.body.user_video_quality_rating,
+            stream_reliability_rating: req.body.user_stream_reliability_rating
+          },
+          (async (err, response) => {
+          if (err) {
+            res.status(400).send('Error saving new User_Stream_Rating to db: ' + err);
+            return;
+          } else {
+            // find related overallStreamRating
+            await Overall_Stream_Rating.findOne({
+              tmdb_id: req.body.tmdb_id,
+              source_company_id: req.body.source_company_id,
+              stream_type: req.body.stream_type,
+              stream_format: req.body.stream_format
+            })
+              .then(async (overallStreamRatingResult) => {
+                // if overallStreamRatingResult is null
+                if (overallStreamRatingResult === null) {
+                  // create new overallStreamRating using count of 1 and user's rating for each characteristic
+                  Overall_Stream_Rating.create({
+                    tmdb_id: req.body.tmdb_id,
+                    source_company_id: req.body.source_company_id,
+                    stream_type: req.body.stream_type,
+                    stream_format: req.body.stream_format,
+                    audio_total_stars: req.body.user_audio_quality_rating,
+                    video_total_stars: req.body.user_video_quality_rating,
+                    reliability_total_stars: req.body.user_stream_reliability_rating,
+                    count_of_reviews: 1
+                  },
+                  (err, response) => {
+                    if (err) {
+                      res.status(400).send('Error saving Overall_Stream_Ratng to db: ' + err);
+                      return;
+                    } else {
+                      res.status(201).send('Stream rating saved successfully');
+                      return;
+                    }
+                  })
+                // else overallStreamRatingResult is not null
+                } else {
+                  // update overallStreamRating by incrementing each rating by user's rating, and incrementing count by 1
+                  Overall_Stream_Rating.findOneAndUpdate(
+                    {
+                      tmdb_id: req.body.tmdb_id,
+                      source_company_id: req.body.source_company_id,
+                      stream_type: req.body.stream_type,
+                      stream_format: req.body.stream_format
+                    },
+                    {
+                      $inc: {
+                        'audio_total_stars': req.body.user_audio_quality_rating,
+                        'video_total_stars': req.body.user_video_quality_rating,
+                        'reliability_total_stars': req.body.user_stream_reliability_rating,
+                        'count_of_reviews': 1
+                      }
+                    },
+                    {new: true, upsert: true, useFindAndModify: false },
+                    async (err, response) => {
+                      if (err) {
+                        res.status(400).send('Error updating Overall_Stream_Rating in db: ' + err);
+                        return;
+                      } else {
+                        res.status(201).send('Stream rating saved successfully');
+                        return;
+                      }
+                    }
+                  )
+                }
+              })
+          }
+        }))
+      // if userStreamRating result is not null
+      } else {
+        // find increments for each rating
+        let audioDiff = req.body.user_audio_quality_rating - userStreamRatingResult._doc.audio_quality_rating;
+        let videoDiff = req.body.user_video_quality_rating - userStreamRatingResult._doc.video_quality_rating;
+        let reliabilityDiff = req.body.user_stream_reliability_rating - userStreamRatingResult._doc.stream_reliability_rating;
 
-//   if (req.body.prev_thumb_rating === req.body.new_thumb_rating) {
-//     res.status(200).send('No changes made.  Previous and new thumb ratings were the same');
-//     return;
-//   }
+        // update User_Stream_Rating
+        User_Stream_Rating.findOneAndUpdate(
+          {
+            user_id: req.body.user_id,
+            tmdb_id: req.body.tmdb_id,
+            source_company_id: req.body.source_company_id,
+            stream_type: req.body.stream_type,
+            stream_format: req.body.stream_format
+          },
+          {
+            'audio_quality_rating': req.body.user_audio_quality_rating,
+            'video_quality_rating': req.body.user_video_quality_rating,
+            'stream_reliability_rating': req.body.user_stream_reliability_rating
+          },
+          {new: true, upsert: true, useFindAndModify: false },
+          async (err, response) => {
+            if (err) {
+              res.status(400).send('Error updating User_Stream_Rating in db: ' + err);
+              return;
+            } else {
+              // update overallStreamRating by incrementing each characteristic by the relevant value (diff in new - old)
+              Overall_Stream_Rating.findOneAndUpdate(
+                {
+                  tmdb_id: req.body.tmdb_id,
+                  source_company_id: req.body.source_company_id,
+                  stream_type: req.body.stream_type,
+                  stream_format: req.body.stream_format
+                },
+                {
+                  $inc: {
+                    'audio_total_stars': audioDiff,
+                    'video_total_stars': videoDiff,
+                    'reliability_total_stars': reliabilityDiff
+                  }
+                },
+                {new: true, upsert: true, useFindAndModify: false },
+                async (err, responseponse) => {
+                  if (err) {
+                    res.status(400).send('Error updating Overall_Stream_Rating in db: ' + err);
+                    return;
+                  } else {
+                    res.status(201).send('Stream rating saved successfully');
+                    return;
+                  }
+                }
+              )
+            }
+          }
+        )
 
-//   User_Thumb_Rating.findOneAndUpdate(
-//     { user_id: req.body.user_id, tmdb_id: req.body.tmdb_id },
-//     { thumb_rating: req.body.new_thumb_rating },
-//     {new: true, upsert: true, useFindAndModify: false },
-//     async (error, response) => {
-//       if (error) {
-//         res.status(400).send('Error during findOneAndUpdate User_Thumb_Rating: ' + error);
-//         return;
-//       } else {
-//         // findOne to see if movie has thumb ratings
-//         await Overall_Thumb_Rating.find({ tmdb_id: req.body.tmdb_id })
-//           .then(async (results) => {
-//             // if movie doesn't have any existing thumb ratings
-//             if (results.length === 0) {
-//               let thumbsUps = 0;
-//               let thumbsDowns = 0;
-
-//               if (req.body.new_thumb_rating === 'up') {
-//                 thumbsUps = 1;
-//               } else if (req.body.new_thumb_rating === 'down') {
-//                 thumbsDowns = 1;
-//               }
-
-//               await Overall_Thumb_Rating.create({tmdb_id: req.body.tmdb_id, thumbs_ups: thumbsUps, thumbs_downs: thumbsDowns})
-//                 .then(() => {
-//                   res.status(201).send('Thumb rating saved successfully');
-//                   return;
-//                 })
-//                 .catch((error) => {
-//                   res.status(400).send(error)
-//                   return;
-//                 })
-//             } else {
-//               // update existing one
-//               let thumbsUpChange = 0;
-//               let thumbsDownChange = 0;
-
-//               if (req.body.prev_thumb_rating === 'up') {
-//                 thumbsUpChange += -1;
-//               } else if (req.body.prev_thumb_rating === 'down') {
-//                 thumbsDownChange += -1;
-//               }
-
-//               if (req.body.new_thumb_rating === 'up') {
-//                 thumbsUpChange += 1;
-//               } else if (req.body.new_thumb_rating === 'down') {
-//                 thumbsDownChange += 1;
-//               }
-
-//               results[0].updateOne(
-//                 { $inc: {'thumbs_ups': thumbsUpChange, 'thumbs_downs': thumbsDownChange } },
-//                 // {new: true, upsert: true, useFindAndModify: false },
-//                 async (error, response) => {
-//                   if (error) {
-//                     res.status(400).send('Error during findOneAndUpdate User_Thumb_Rating: ' + error);
-//                     return;
-//                   } else {
-//                     res.status(201).send('Thumb rating saved successfully');
-//                     return;
-//                   }
-//                 }
-//               )
-//             }
-//           })
-//       }
-//     }
-//   )
-
-// }
+      }
+    })
+    .catch((error) => {
+      res.status(200).send('Error saving stream rating: ' + error)
+    })
+}
 
 module.exports.findStreamRatings = findStreamRatings;
-// module.exports.saveThumbRating = saveThumbRating;
+module.exports.saveStreamRating = saveStreamRating;
