@@ -27,7 +27,10 @@ const LoginOrSignup = (props) => {
         // The signed-in user info.
         const user = result.user;
         window.sessionStorage.setItem('userUID',result.user.uid);
-        //send the user up to the server
+        //send the user up to the server\
+
+        //send user to their homepage
+        props.handleSuccessfulLogin();
 
       }).catch((error) => {
         // Handle Errors here.

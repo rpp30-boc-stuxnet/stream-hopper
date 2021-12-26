@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LoginOrSignup from './LoginOrSignup.jsx';
 
-const Welcome = () => {
+const Welcome = (props) => {
 
   const [accountState, setAccountState] = useState({
     isLoginActive: 0,
@@ -47,11 +47,11 @@ const Welcome = () => {
     )
   } else if (accountState.isLoginActive) {
     return (
-      <LoginOrSignup protocol={'Login'} handleXOutClick={handleXOutClick}/>
+      <LoginOrSignup protocol={'Login'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
     )
   } else if (accountState.isSignupActive) {
     return (
-      <LoginOrSignup protocol={'Signup'} handleXOutClick={handleXOutClick}/>
+      <LoginOrSignup protocol={'Signup'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
     )
   } else {
     console.log('[Welcome Component] this shouldn not happen. isActiveState = ' + accountState.isLoginActive + 'isSignupActive = ' + accountState.isSignupActive)
