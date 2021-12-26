@@ -1,6 +1,5 @@
 import logo from './logo.svg';
-import Welcome from './components/Welcome.jsx';
-
+import AppRouter from './components/AppRouter.jsx';
 import './App.css';
 
 
@@ -10,7 +9,7 @@ function App() {
       <header className="App-header">
         <p>Stream Hopper</p>
         <img src={logo} className="App-logo" alt="logo" />
-        <Welcome />
+        <AppRouter />
       </header>
     </div>
   );
