@@ -12,6 +12,7 @@ const titleDetailsRoutes = require('./routes/titleDetailsRoutes.js');
 const searchRoutes = require('./routes/searchRoutes.js');
 const thumbRatings = require('./routes/thumbRatings.js');
 const streamSources = require('./routes/streamSources.js');
+const streamRatings = require('./routes/streamRatings.js');
 
 connectDB();
 
@@ -29,6 +30,7 @@ app.use('/titleDetails', titleDetailsRoutes);
 app.use('/search', searchRoutes);
 app.use('/thumbRatings', thumbRatings);
 app.use('/streamSources', streamSources);
+app.use('/streamRatings', streamRatings);
 
 app.get('/', cors(), ((req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
