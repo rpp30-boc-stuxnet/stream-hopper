@@ -8,7 +8,6 @@ const TestHomePage = (props) => {
     <div>
       <p>Welcome to the user homepage of user: {auth.currentUser.uid}</p>
       <button onClick={props.handleLogout}>Logout</button>
-      <button onClick={props.handleUserVerification}>Verify user session</button>
     </div>
   )
 }

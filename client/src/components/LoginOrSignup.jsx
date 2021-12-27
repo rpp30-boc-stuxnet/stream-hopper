@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 import { auth } from '../firebase/firebaseConfig.js';
-import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, linkWithCredential }  from 'firebase/auth';
+import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, linkWithCredential, EmailAuthProvider, fetchSignInMethodsForEmail, signInWithEmailAndPassword, createUserWithEmailAndPassword }  from 'firebase/auth';
 
 
 const LoginOrSignup = (props) => {
 
-  const [loginError, setLoginError] = useState(0);
+  const [loginError, setLoginError] = useState({
+    loginError: 0,
+    errorCode: '',
+  });
 
+  const [promptManualEntry, setPromptManualEntry] = useState({
+    showPrompt: 0,
+    credential: ''
+  });
 
-  const firebaseLogin = (e) => {
-    let provider = e.target.id === 'google-login' ? new GoogleAuthProvider() : new FacebookAuthProvider()
+  const [userEmail, setUserEmail] = useState('')
+  const [userPassword, setUserPassword] = useState('')
+
+  const handleFacebookLogin = (e) => {
+    let provider = new FacebookAuthProvider();
 
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -18,65 +28,249 @@ const LoginOrSignup = (props) => {
 
       }).catch((error) => {
         if (error.code === 'auth/account-exists-with-different-credential') {
-          //if the google login fails, it means we need to authroize with facebook first and then link the google cred to the uid in firebase that facebook already is linked to
-          //if facebook login failed, then it means we need to authorize with google and link the facebook credential to the google uid so the user will be combined under one
-          const newProvider = e.target.id === 'google-login' ? new FacebookAuthProvider() : new GoogleAuthProvider();
-          const credential = e.target.id === 'google-login' ? error.credential : FacebookAuthProvider.credentialFromError(error);
+          //if the facebook login fails, then we have to assume that google sign in is the next best option because there's no way to ask firebase for a recommendation without a user email (which FB does not give you)
+          linkAccounts('google', FacebookAuthProvider.credentialFromError(error));
+        } else {
+          setLoginError({
+            loginError: 1,
+            errorCode: error.code
+          });
+        }
+    });
+  }
 
-          signInWithPopup(auth, newProvider)
-          .then((result) => {
-            linkWithCredential(result.user, credential)
-            .then((res) => {
-              props.handleSuccessfulLogin();
-            })
-            .catch((err) => {
-              setLoginError(1);
-            })
+  const handleGoogleLogin = (e) => {
+    let provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+        props.handleSuccessfulLogin();
+
+      }).catch((error) => {
+        if (error.code === 'auth/account-exists-with-different-credential') {
+          //if the google login fails, then we need to check for what login method we should use for this user
+          fetchSignInMethodsForEmail(userEmail)
+          .then((signInMethods) => {
+            if(signInMethods[0] === 'facebook.com') {
+              linkAccounts('facebook', error.credential)
+            } else {
+              linkAccounts('password', error.credential);
+            }
+          }).catch((err) => {
+            setLoginError({
+              loginError: 1,
+              errorCode: err.code
+            });
+          })
+        } else {
+          setLoginError({
+            loginError: 1,
+            errorCode: error.code
+          });
+        }
+    });
+  }
+
+
+  const handleManualSignIn = (e) => {
+    if (e.target.textContent === 'Login') {
+      signInWithEmailAndPassword(auth, userEmail, userPassword)
+      .then((userCredential) => {
+        props.handleSuccessfulLogin();
+      })
+      .catch((err) => {
+        if (err.code === 'auth/email-already-in-use') {
+          //if the user is attempting to login with an email that is already linked in firebase to google or facebook,
+          //then we will link their manual creds to their other login methods for them.
+          const credential = EmailAuthProvider.credential(userEmail, userPassword);
+          fetchSignInMethodsForEmail(userEmail)
+          .then((signInMethods) => {
+            if (signInMethods[0] === 'facebook.com') {
+              linkAccounts('facebook', credential);
+            } else {
+              linkAccounts('google', credential);
+            }
           })
           .catch((err) => {
-            setLoginError(1) ;
+            setLoginError({
+              loginError: 1,
+              errorCode: err.code
+            });
           })
-
         } else {
-          setLoginError(1) ;
+          setLoginError({
+            loginError: 1,
+            errorCode: err.code
+          });
         }
+      })
+    } else {
+      createUserWithEmailAndPassword(auth, userEmail, userPassword)
+      .then((userCredential) => {
+        props.handleSuccessfulLogin();
+      })
+      .catch((err) => {
+        setLoginError({
+          loginError: 1,
+          errorCode: err.code
+        });
+      })
+    }
+  }
+
+  const linkAccounts =  (accountLinkProvider, initialCredential) => {
+    if (accountLinkProvider === 'facebook') {
+      let provider = new FacebookAuthProvider();
+      signInWithPopup(auth, provider)
+      .then((result) => {
+        linkWithCredential(result.user, initialCredential)
+        .then((res) => {
+          props.handleSuccessfulLogin();
+        })
+        .catch((err) => {
+          setLoginError({
+            loginError: 1,
+            errorCode: err.code
+          });
+        })
+      })
+      .catch((err) => {
+        setLoginError({
+          loginError: 1,
+          errorCode: err.code
+        });
+      })
+    } else if (accountLinkProvider === 'google') {
+      //we first try google and build in attempting with email in case google fails
+      //this is the only method that needs to try two methods because FB tries this method by default but it could be the wrong method.
+      let provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+      .then((result) => {
+        linkWithCredential(result.user, initialCredential)
+        .then((res) => {
+          props.handleSuccessfulLogin();
+        })
+        .catch((err) => {
+          setLoginError({
+            loginError: 1,
+            errorCode: err.code
+          });
+        })
+      })
+      .catch((err) => {
+        //if the sign in with google fails, then try with email ONLY if the error is still saying there's a duplicated account
+        if (err.code === 'auth/account-exists-with-different-credential') {
+          setPromptManualEntry({
+            showPrompt: 1,
+            credential: initialCredential
+          });
+        } else {
+          setLoginError({
+            loginError: 1,
+            errorCode: err.code
+          });
+        }
+      })
+    } else {
+      //if the requested method = email/password, then prompt the user for the email and password and then link the email/password account with the initially submitted credential.
+      setPromptManualEntry({
+        showPrompt: 1,
+        credential: initialCredential
       });
+    }
+  }
+
+  const handleManualLink = (e) => {
+    //sign in to the email/password and then link the accounts.
+    signInWithEmailAndPassword(auth, userEmail, userPassword)
+    .then((userCredential) => {
+      linkWithCredential(auth.currentUser, promptManualEntry.credential)
+      .then((usercred) => {
+        //link the logged in account to the initially attempted method
+        setPromptManualEntry({
+          showPrompt: 0,
+          credential: ''
+        });
+        props.handleSuccessfulLogin();
+      }).catch((error) => {
+        console.log("Account linking error", error);
+      });
+    })
+    .catch((error) => {
+      setLoginError({
+        loginError: 1,
+        errorCode: error.code
+      });
+    });
   }
 
   const handleErrorOk = (e) => {
-    setLoginError(0);
+    setLoginError({
+      loginError: 0,
+      errorCode: ''
+    });
   }
 
-  if (loginError) {
+  const handleInputChange = (e) => {
+    if (e.target.name === 'emailAddress') {
+      setUserEmail(e.target.value);
+    } else {
+      setUserPassword(e.target.value);
+    }
+  }
+
+  if (loginError.loginError) {
     return (
       <div>
         <p>There was an error while logging in to Streamhopper. Please try again or use a different method. </p>
+        <p>Error message: {loginError.errorCode}</p>
         <button onClick={handleErrorOk}>Ok</button>
+      </div>
+    )
+  } else if (promptManualEntry.showPrompt){
+    return(
+      <div>
+        <p>Please enter your email address and password to continue</p>
+        <div>
+          <button onClick={props.handleXOutClick}>X</button>
+        </div>
+        <form>
+          <div>
+            <label htmlFor='emailAddress'>Email Address</label>
+            <input type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
+          </div>
+          <div>
+            <label htmlFor='password'>Password</label>
+            <input type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
+          </div>
+        </form>
+        <button onClick={handleManualLink}>Continue</button>
       </div>
     )
   } else {
     return (
 
       <div>
-        <p>Streamhopper - {props.protocol}</p>
+        <p>{props.protocol} with Streamhopper</p>
         <div>
           <button onClick={props.handleXOutClick}>X</button>
         </div>
-        <button onClick={firebaseLogin} id="google-login">Google</button>
-        <button onClick={firebaseLogin} id="facebook-login">Facebook</button>
+        <button onClick={handleGoogleLogin} id="google-login">Google</button>
+        <button onClick={handleFacebookLogin} id="facebook-login">Facebook</button>
         <p>-OR-</p>
         <div>
           <form>
             <div>
-              <label htmlFor='username'>Username</label>
-              <input type='text' name='username' placeholder='Enter Username (max 50 chars)'/>
+              <label htmlFor='emailAddress'>Email Address</label>
+              <input type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
             </div>
             <div>
               <label htmlFor='password'>Password</label>
-              <input type='text' name='password' placeholder='Enter password'/>
+              <input type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
             </div>
           </form>
-          <button>{props.protocol}</button>
+          <button onClick={handleManualSignIn}>{props.protocol}</button>
         </div>
       </div>
     )
