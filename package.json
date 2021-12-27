@@ -10,6 +10,7 @@
     "build": "cd client && npm run build",
     "front-dev": "cd client && npm start",
     "back-dev": "nodemon server/index.js",
+    "https-front-dev": "cd client && npm run httpsStart",
     "fullstack-dev": "concurrently -n 'react compiler,node backend' -c 'bgBlue.bold,bgGreen.bold' 'cd client && npm run watch' 'npm run back-dev'"
   },
   "repository": {
