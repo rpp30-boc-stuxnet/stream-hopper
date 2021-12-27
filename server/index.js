@@ -2,7 +2,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const port = process.env.PORT || 4000
-const connectDB = require("../database/index.js");
+//const connectDB = require("../database/index.js");
 const cors = require('cors');
 
 const testRoutes = require('./routes/testRoutes.js');
@@ -14,11 +14,11 @@ const thumbRatings = require('./routes/thumbRatings.js');
 const streamSources = require('./routes/streamSources.js');
 const streamRatings = require('./routes/streamRatings.js');
 
-connectDB();
+//connectDB();
 
 const app = express();
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../client/build')));
