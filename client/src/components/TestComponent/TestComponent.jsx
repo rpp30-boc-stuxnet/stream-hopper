@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import logo from '../../logo.svg';
 
 class TestComponent extends React.Component {
   constructor(props) {
@@ -11,22 +12,24 @@ class TestComponent extends React.Component {
 
   componentDidMount() {
     axios.get('/testDbData')
-    .then(
-      (response) => {
-        this.setState({
-          testResult: JSON.stringify(response.data)
-        })
-      }
-    )
+      .then(
+        (response) => {
+          this.setState({
+            testResult: JSON.stringify(response.data)
+          })
+        }
+      )
 
-    .catch((error) => {
-      console.log(error);
-    })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   render() {
     return (
       <div>
+        <p>Stream Hopper</p>
+        <img src={logo} className="App-logo" alt="logo" />
         <p>Test DB call: {this.state.testResult}</p>
       </div>
     )
