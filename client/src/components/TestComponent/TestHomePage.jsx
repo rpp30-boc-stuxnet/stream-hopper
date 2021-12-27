@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../firebase/firebaseConfig.js';
+import { auth } from '../LoginComponents/firebase/firebaseConfig.js';
 
 
 const TestHomePage = (props) => {

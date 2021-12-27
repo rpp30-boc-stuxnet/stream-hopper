@@ -1,34 +1,36 @@
 import React from 'react';
 import axios from 'axios';
+import logo from '../../logo.svg';
 
 class TestComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstMovieTitle: 'Hello'
+      testResult: 'Hello'
     }
   }
 
   componentDidMount() {
-    axios.get('/testDbData')
-    .then(
-      (response) => {
-        console.dir(response)
-        this.setState({
-          firstMovieTitle: response.data[0].title
-        })
-      }
-    )
+    axios.get('/api/testDbData')
+      .then(
+        (response) => {
+          this.setState({
+            testResult: JSON.stringify(response.data)
+          })
+        }
+      )
 
-    .catch((error) => {
-      console.log(error);
-    })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   render() {
     return (
       <div>
-        <p>Test DB call: {this.state.firstMovieTitle}</p>
+        <p>Stream Hopper</p>
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>Test DB call: {this.state.testResult}</p>
       </div>
     )
   }

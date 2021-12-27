@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
-import Welcome from './Welcome.jsx';
-import TestHomePage from './TestHomePage.jsx'
-import { auth } from '../firebase/firebaseConfig.js';
+import Welcome from './LoginComponents/Welcome.jsx';
+import { auth } from './LoginComponents/firebase/firebaseConfig.js';
 import { signOut }  from 'firebase/auth';
+import Dashboard from './Dashboard.jsx';
 
 
 const AppRouter = () => {
@@ -12,12 +12,17 @@ const AppRouter = () => {
   useEffect(() => {}, [loggedIn])
 
   const handleSuccessfulLogin = () => {
+    //save userUID in localstorage. it can be accessed anywhere in the app for any axios requests that need to send it to the server to reference it in the DB
+    //it will also enable the App to remember the user so the login process is less painful
+    window.localStorage.setItem('userUID', auth.currentUser.uid)
     setLoggedIn(1);
   }
 
   const handleLogout = () => {
     signOut(auth)
     .then((result)=>{
+      //clear out localStorage if the user intentionally logs out
+      window.localStorage.clear();
       setLoggedIn(0);
     })
     .catch((err) => {
@@ -26,22 +31,11 @@ const AppRouter = () => {
     })
   }
 
-  const handleUserVerification = () => {
-    if (auth.currentUser) {
-      //there is a user logged into firebase. return the user's unique id so it can be sent to the server.
-      return auth.currentUser.uid;
-    } else {
-      //there is no user logged in. Force a logout of the app.
-      handleLogout();
-    }
-  }
-
-
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={loggedIn ? <Navigate to="/homePage" /> : <Welcome handleUserVerification={handleUserVerification} handleLogout={handleLogout} handleSuccessfulLogin={handleSuccessfulLogin} />}/>
-        <Route path='/homepage' element={loggedIn ? <TestHomePage handleUserVerification={handleUserVerification} handleLogout={handleLogout}/> : <Navigate to="/" />}/>
+        <Route exact path="/" element={loggedIn ? <Navigate to="/homePage" /> : <Welcome handleLogout={handleLogout} handleSuccessfulLogin={handleSuccessfulLogin} />}/>
+        <Route path='/homepage' element={loggedIn ? <Dashboard handleLogout={handleLogout}/> : <Navigate to="/" />}/>
       </Routes>
     </Router>
   );
