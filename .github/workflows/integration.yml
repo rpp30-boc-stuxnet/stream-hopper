@@ -14,4 +14,4 @@ jobs:
           node-version: 17
       - run: npm ci
       - run: npm run react-test
-      - run: npm run build
+      - run: CI=false npm run build
