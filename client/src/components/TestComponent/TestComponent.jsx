@@ -10,7 +10,7 @@ class TestComponent extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/testDbData')
+    axios.get('/api/testDbData')
     .then(
       (response) => {
         this.setState({
