@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import Welcome from './Welcome.jsx';
 import TestHomePage from './TestHomePage.jsx'
+import { auth } from '../firebase/firebaseConfig.js';
+import { signOut }  from 'firebase/auth';
 
 
 const AppRouter = () => {
@@ -16,14 +18,33 @@ const AppRouter = () => {
   }
 
   const handleLogout = () => {
-    window.sessionStorage.clear();
-    setLoggedIn(0);
+    console.log(auth);
+    signOut(auth)
+    .then((result)=>{
+      console.log('user signed out');
+      setLoggedIn(0);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
+
+  const handleUserVerification = () => {
+    if (auth.currentUser) {
+      //there is a user logged into firebase. return the user's unique id so it can be sent to the server.
+      return auth.currentUser.uid;
+    } else {
+      //there is no user logged in. Force a logout of the app.
+      handleLogout();
+    }
+  }
+
+
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={loggedIn ? <Navigate to="/homePage" /> : <Welcome handleSuccessfulLogin={handleSuccessfulLogin} />}/>
-        <Route path='/homepage' element={loggedIn ? <TestHomePage handleLogout={handleLogout}/> : <Navigate to="/" />}/>
+        <Route exact path="/" element={loggedIn ? <Navigate to="/homePage" /> : <Welcome handleUserVerification={handleUserVerification} handleLogout={handleLogout} handleSuccessfulLogin={handleSuccessfulLogin} />}/>
+        <Route path='/homepage' element={loggedIn ? <TestHomePage handleUserVerification={handleUserVerification} handleLogout={handleLogout}/> : <Navigate to="/" />}/>
       </Routes>
     </Router>
   );

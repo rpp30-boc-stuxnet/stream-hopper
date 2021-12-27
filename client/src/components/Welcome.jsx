@@ -42,6 +42,7 @@ const Welcome = (props) => {
         <div>
           <button onClick={handleAccountActionClick}>Login</button>
           <button onClick={handleAccountActionClick}>Signup</button>
+          <button onClick={props.handleUserVerification}>session Test Without User</button>
         </div>
       </div>
     )
