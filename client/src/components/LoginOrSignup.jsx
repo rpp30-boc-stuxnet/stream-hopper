@@ -23,7 +23,6 @@ const LoginOrSignup = (props) => {
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
         props.handleSuccessfulLogin();
 
       }).catch((error) => {
@@ -44,13 +43,12 @@ const LoginOrSignup = (props) => {
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
         props.handleSuccessfulLogin();
 
       }).catch((error) => {
         if (error.code === 'auth/account-exists-with-different-credential') {
           //if the google login fails, then we need to check for what login method we should use for this user
-          fetchSignInMethodsForEmail(userEmail)
+          fetchSignInMethodsForEmail(error.email)
           .then((signInMethods) => {
             if(signInMethods[0] === 'facebook.com') {
               linkAccounts('facebook', error.credential)
@@ -194,7 +192,7 @@ const LoginOrSignup = (props) => {
         });
         props.handleSuccessfulLogin();
       }).catch((error) => {
-        console.log("Account linking error", error);
+        console.log("Account linking error", error.code);
       });
     })
     .catch((error) => {

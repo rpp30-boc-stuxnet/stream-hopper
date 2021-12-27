@@ -25,7 +25,6 @@ const Welcome = (props) => {
   }
 
   const handleXOutClick = (event) => {
-    console.log('handling x out click....');
     let newAccountState = {
       isLoginActive: 0,
       isSignupActive: 0

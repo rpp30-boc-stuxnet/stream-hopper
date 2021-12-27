@@ -9,23 +9,20 @@ import { signOut }  from 'firebase/auth';
 const AppRouter = () => {
   const [loggedIn, setLoggedIn] = useState(0);
 
-  useEffect(() => {
-    console.log('running after state change of loggedIn! ')
-  }, [loggedIn])
+  useEffect(() => {}, [loggedIn])
 
   const handleSuccessfulLogin = () => {
     setLoggedIn(1);
   }
 
   const handleLogout = () => {
-    console.log(auth);
     signOut(auth)
     .then((result)=>{
-      console.log('user signed out');
       setLoggedIn(0);
     })
     .catch((err) => {
-      console.log(err);
+      console.log('[handleLogout] Error while logging the user out', err.code);
+      setLoggedIn(0);
     })
   }
 
