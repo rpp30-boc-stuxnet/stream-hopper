@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow } from "./MyMovies.styles.js";
+import MyMoviesList from './MyMoviesList.jsx';
 export default function MyMovies({ title, movies }) {
 
 
@@ -8,7 +9,8 @@ export default function MyMovies({ title, movies }) {
     <>
       <MoviesContainer>
         <MoviesTitle>{title}</MoviesTitle>
-        <MoviesRow>
+        {/* <MyMoviesList movies={movies} /> */}
+        <MoviesRow movies={movies} >
           {movies.map((movie) => (
             <MoviesPoster
               key={movie.id}
