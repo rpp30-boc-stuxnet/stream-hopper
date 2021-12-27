@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow } from "./MyMovies.styles.js";
 export default function MyMovies({ title, movies }) {
+
 
 
   return (

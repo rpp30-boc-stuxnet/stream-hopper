@@ -1,15 +1,5 @@
 import tw, { styled } from "twin.macro";
-export const YourStyledComponent = styled.div`
 
-  // Put your pure CSS here.
-
-  ${tw`
-
-    // Put the Tailwind CSS classes here.
-
-  `}
-
-`;
 
 export const MoviesContainer = styled.div`
   ${tw`

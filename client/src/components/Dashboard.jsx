@@ -1,7 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import MyMovies from './MyMovies/MyMovies.jsx';
 import Suggestions from './Suggestions/Suggestions.jsx';
+
+
+
 export default function Dashboard() {
+
+  const [userMovies, setMovies] = useState('No Movies Yet!');
+
+  const updateMyMovies = () => {
+    console.log('button was clicked')
+    axios.get('/savedTitles', {
+      params: {
+        user_id: 'user3'
+      }
+    })
+      .then((response) => {
+        console.log('success updating my movies: ', response);
+        setMovies(previousState => {
+          return { response }
+        });
+      })
+      .catch((error) => {
+        console.log('error updating my movies')
+      })
+  }
+
+  useEffect((prevMovieList) => {
+    let getUserMovies = () => {
+      axios.get('/savedTitles', {
+        params: {
+          user_id: 'user3'
+        }
+      })
+        .then((response) => {
+          console.log('success getting My Movies: ', response);
+          setMovies(response.data);
+        })
+        .catch((error) => {
+          console.log('error getting My Movies: ', error);
+        })
+      getUserMovies();
+    }
+  }, [])
+
   const dummyData = [
     {
       "_id": "61c218b65ccc68c0a27c1c0d",
@@ -125,6 +168,7 @@ export default function Dashboard() {
   return (
     <>
       <h1>User Dashboard</h1>
+      <button onClick={updateMyMovies}></button>
       <MyMovies title='My Movies' movies={dummyData} />
       <Suggestions title='Suggestions For You' movies={dummySuggestions} />
     </>
