@@ -1,6 +1,5 @@
 import logo from './logo.svg';
-import TestComponent from './components/TestComponent/TestComponent.jsx';
-
+import AppRouter from './components/AppRouter.jsx';
 import './App.css';
 
 
@@ -10,7 +9,7 @@ function App() {
       <header className="App-header">
         <p>Stream Hopper</p>
         <img src={logo} className="App-logo" alt="logo" />
-        <TestComponent />
+        <AppRouter />
       </header>
     </div>
   );
