@@ -1,10 +1,12 @@
-// import React from 'react';
-// import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js';
+import React, { useState } from 'react';
 import { auth } from '../firebase/firebaseConfig.js';
-import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider }  from 'firebase/auth';
-// import FacebookLogin from 'react-facebook-login';
+import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, linkWithCredential }  from 'firebase/auth';
+
 
 const LoginOrSignup = (props) => {
+
+  const [loginError, setLoginError] = useState(0);
+
 
   const firebaseLogin = (e) => {
     let provider = e.target.id === 'google-login' ? new GoogleAuthProvider() : new FacebookAuthProvider()
@@ -15,45 +17,70 @@ const LoginOrSignup = (props) => {
         props.handleSuccessfulLogin();
 
       }).catch((error) => {
-        // Handle Errors here.
+        if (error.code === 'auth/account-exists-with-different-credential') {
+          //if the google login fails, it means we need to authroize with facebook first and then link the google cred to the uid in firebase that facebook already is linked to
+          //if facebook login failed, then it means we need to authorize with google and link the facebook credential to the google uid so the user will be combined under one
+          const newProvider = e.target.id === 'google-login' ? new FacebookAuthProvider() : new GoogleAuthProvider();
+          const credential = e.target.id === 'google-login' ? error.credential : FacebookAuthProvider.credentialFromError(error);
 
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        //need to handle errors/inform the user of errors
+          signInWithPopup(auth, newProvider)
+          .then((result) => {
+            linkWithCredential(result.user, credential)
+            .then((res) => {
+              props.handleSuccessfulLogin();
+            })
+            .catch((err) => {
+              setLoginError(1);
+            })
+          })
+          .catch((err) => {
+            setLoginError(1) ;
+          })
+
+        } else {
+          setLoginError(1) ;
+        }
       });
   }
 
-  return (
-    <div>
-      <p>Streamhopper - {props.protocol}</p>
+  const handleErrorOk = (e) => {
+    setLoginError(0);
+  }
+
+  if (loginError) {
+    return (
       <div>
-        <button onClick={props.handleXOutClick}>X</button>
+        <p>There was an error while logging in to Streamhopper. Please try again or use a different method. </p>
+        <button onClick={handleErrorOk}>Ok</button>
       </div>
-      <button onClick={firebaseLogin} id="google-login">Google</button>
-      <button onClick={firebaseLogin} id="facebook-login">Facebook</button>
-      {/* <FacebookLogin
-        appId="258982786173295"
-        callback={responseFacebook}
-        render={renderProps => (
-          <button onClick={renderProps.onClick}>This is my custom FB button</button>
-        )}
-      /> */}
-      <p>-OR-</p>
+    )
+  } else {
+    return (
+
       <div>
-        <form>
-          <div>
-            <label htmlFor='username'>Username</label>
-            <input type='text' name='username' placeholder='Enter Username (max 50 chars)'/>
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input type='text' name='password' placeholder='Enter password'/>
-          </div>
-        </form>
-        <button>{props.protocol}</button>
+        <p>Streamhopper - {props.protocol}</p>
+        <div>
+          <button onClick={props.handleXOutClick}>X</button>
+        </div>
+        <button onClick={firebaseLogin} id="google-login">Google</button>
+        <button onClick={firebaseLogin} id="facebook-login">Facebook</button>
+        <p>-OR-</p>
+        <div>
+          <form>
+            <div>
+              <label htmlFor='username'>Username</label>
+              <input type='text' name='username' placeholder='Enter Username (max 50 chars)'/>
+            </div>
+            <div>
+              <label htmlFor='password'>Password</label>
+              <input type='text' name='password' placeholder='Enter password'/>
+            </div>
+          </form>
+          <button>{props.protocol}</button>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default LoginOrSignup;
