@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 export default function Navbar(props) {
 
   return (
-    <nav className={"navbar"} >
+    <nav className={'navbar'} >
       <span className={'navLogo'} >Stream Hopper</span>
+      {/** Search bar will go here */}
+      <span>Searchbar Here</span>
       <button
         className={'logoutBtn'}
         onClick={props.handleLogout} >
