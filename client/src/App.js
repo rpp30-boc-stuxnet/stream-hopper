@@ -7,8 +7,6 @@ function App() {
   return (
     <div className="App" data-testid="main-app-div">
       <header className="App-header">
-        <p>Stream Hopper</p>
-        <img src={logo} className="App-logo" alt="logo" />
         <AppRouter />
       </header>
     </div>

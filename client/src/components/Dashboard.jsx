@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 import MyMovies from './MyMovies/MyMovies.jsx';
 import Suggestions from './Suggestions/Suggestions.jsx';
+import Navbar from './Navbar/Navbar.jsx';
 
 let testData =
   [
@@ -328,7 +329,7 @@ export default function Dashboard(props) {
   // ]
   return (
     <>
-      <button onClick={props.handleLogout}>Logout</button>
+      <Navbar handleLogout={props.handleLogout} />
       <h1>User Dashboard</h1>
       <button></button>
       {userMovies ? <MyMovies title='My Movies' movies={userMovies} /> : <></>}
