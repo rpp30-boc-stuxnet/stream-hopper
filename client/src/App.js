@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import TestComponent from './components/TestComponent/TestComponent.jsx';
+import SearchBar from './components/SearchBar/SearchBar.jsx';
 
 import './App.css';
 
