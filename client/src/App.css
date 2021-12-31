@@ -31,3 +31,9 @@
 .App-link {
   color: #fbca61;
 }
+
+
+/* Review Buttons Styling */
+.voted {
+  color: green;
+}
