@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import StreamTile from './StreamTile.js';
+import './movieoverview.css';
 
 function MovieOverview (props) {
   //props hands me userId and movieId
@@ -10,6 +12,7 @@ function MovieOverview (props) {
     e.preventDefault()
     //make post request
   }
+  console.log(props, 'props passed into MovieOverview');
 
   return (
     <div id = "movieOverviewContainer">
@@ -25,9 +28,9 @@ function MovieOverview (props) {
       </div>
       <div id = "rightSide">
         <h2 id ="rightSideHeading"> Where to Watch</h2>
-        <StreamTile title = {"Stream"} options = {options.stream ? options.stream : null}/>
+        {/* <StreamTile title = {"Stream"} options = {options.stream ? options.stream : null}/>
         <StreamTile title = {"Rent"} options = {options.rent ? options.rent : null}/>
-        <StreamTile title = {"Buy"} options = {options.buy ? options.buy : null}/>
+        <StreamTile title = {"Buy"} options = {options.buy ? options.buy : null}/> */}
         <div>
           <h3 id ="synopsisHeading">Film Synopsis</h3>
           <textarea id ="synopsisContent">
@@ -42,4 +45,12 @@ function MovieOverview (props) {
 }
 
 export default MovieOverview;
+
+//list of props needed for component to work.
+//stream sources (hulu, amazon, netflix etc.)
+//film synopsis (description)
+//movie title
+// move poster url
+// needs to check if movie is part of "My Movies"
+// year, released, run time, rotten tomato score rating, stream hopper rating
 

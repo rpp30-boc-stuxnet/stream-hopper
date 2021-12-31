@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LoginOrSignup from './LoginOrSignup.jsx';
+import MovieOverview from '../MovieOverview/movieoverview.js';
 
 const Welcome = (props) => {
 
@@ -7,6 +8,18 @@ const Welcome = (props) => {
     isLoginActive: 0,
     isSignupActive: 0
   })
+  const [test, setTestState] = useState({isActive: false});
+  const handleShowTestMovieOverview = (event) =>{
+    console.log(event.target.textContent, ' text content')
+    if(event.target.textContent === 'Test') {
+
+      let newTestState = {
+        isActive: true
+      }
+      setTestState(newTestState);
+    }
+  }
+
 
   const handleAccountActionClick = (event) => {
     if (event.target.textContent === 'Signup') {
@@ -31,6 +44,12 @@ const Welcome = (props) => {
     }
     setAccountState(newAccountState);
   }
+  if (test.isActive) {
+    return(
+      <MovieOverview user_id = {'someUser'} type = {'movie'} tmdb = {634649}
+      poster_path = {'https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg'}/>
+    )
+  }
 
   if (!accountState.isLoginActive && !accountState.isSignupActive) {
     return (
@@ -41,6 +60,7 @@ const Welcome = (props) => {
         <div>
           <button onClick={handleAccountActionClick}>Login</button>
           <button onClick={handleAccountActionClick}>Signup</button>
+          <button onClick={handleShowTestMovieOverview}>Test</button>
         </div>
       </div>
     )
