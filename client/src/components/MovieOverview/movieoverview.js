@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StreamTile from './StreamTile.js';
 import './movieoverview.css';
 
@@ -7,17 +7,29 @@ function MovieOverview (props) {
   //const userId = props.userId;
   //const movieId = props.movieId;  << might be named something else
 
+  const [movieExistsInMyMovies, useMovieExistsInMyMovies] = useState(false);
+
+  // useEffect(() => {
+  //   if(movieExistsInMyMovies === true) {
+
+  //   }
+  // }, [])
+
 
   function handleAddMovies (e, movieId) {
     e.preventDefault()
-    //make post request
+    //make post request - Anna's function to add to movies
+  }
+  function handleRemoveMovies (e, movieId) {
+    e.preventDefault()
+    //make post request - Anna's function to add to movies
   }
   console.log(props, 'props passed into MovieOverview');
 
   return (
     <div id = "movieOverviewContainer">
       <div id = "leftSide">
-        <h1 id = "leftSideHeading">Movie Title</h1>
+        <h1 id = "leftSideHeading">{props.titleName}</h1>
         <div id ="moviePoster">
           <img src = {"https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_FMjpg_UX1000_.jpg"}/>
         </div>
