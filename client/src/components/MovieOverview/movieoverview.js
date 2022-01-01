@@ -62,7 +62,18 @@ function MovieOverview (props) {
           <img src = { movieDetails ? movieDetails.poster_path : null} alt ="movie_poster"/>
         </div>
         <div id= "movieDetails">
-         {/* may need to make a separate call*/}
+         <div id = "movieRatings">
+          { movieDetails ? 'imdb: ' + movieDetails.ratings[0].Value : null}
+         </div>
+         <div id = "moveReleaseDate">
+          { movieDetails ? movieDetails.release_date : null}
+         </div>
+         <div id = "director">
+          { movieDetails ? movieDetails.director : null}
+         </div>
+         <div id = "runTime">
+          { movieDetails ? 'Run Time: ' + movieDetails.run_time : null}
+         </div>
         </div>
         <button id ="addMovie" onClick = {handleAddMovies}> Add to My Movies </button>
       </div>
