@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow, MoviePosterContainer, RemoveMovieButton, LikeButton, DislikeButton } from "./MyMovies.styles.js";
+import ReviewButtons from '../ReviewButtons.jsx';
+import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow, MoviePosterContainer, RemoveMovieButton } from "./MyMovies.styles.js";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-export default function MyMovies({ title, movies }) {
+export default function MyMovies({ title, movies, getUserMovies, setMovies, removeFromMyMovies, handleUserRating }) {
 
   const [posterIndex, setCarousel] = useState(0);
 
@@ -16,54 +17,53 @@ export default function MyMovies({ title, movies }) {
     setCarousel(posterIndex + 1);
   }
 
-  const removeFromMyMovies = (event) => {
-    // let outfitIds = JSON.parse(localStorage.getItem("myOutfit"));
-    // let index = outfitIds.data.indexOf(this.props.id);
-    // outfitIds.data.splice(index, 1);
-    // localStorage.setItem("myOutfit", JSON.stringify(outfitIds));
-    // this.props.updateOutfitData(outfitIds);
-
-    // this.setState({
-    //   closeClicked: true
-    // })
-    console.log('this is just the event: ', event.target)
-    console.log('this is the event value: ', event.target.value);
-    console.log('this is the event name: ', event.target.name);
-    // axios.delete('/api/savedTitles', {
-    //   params: {
-    //     user_id: event.target.name,
-    //     tmdb_id: event.target.value
-    //   }
-    // })
-  }
-
   let transformStyle = { transform: `translateX(-${posterIndex * 500}px)` };
+
+  let chevronLeftStyle = {
+    position: 'absolute',
+    display: 'flex',
+    marginLeft: '10%',
+    alignSelf: 'center'
+  };
+  let chevronRightStyle = {
+    position: 'absolute',
+    display: 'flex',
+    marginLeft: '80%',
+    marginRight: '10%',
+    alignSelf: 'center',
+    zIndex: '1'
+  };
 
   return (
 
     <>
       <MoviesContainer>
         <MoviesTitle>{title}</MoviesTitle>
-        {posterIndex > 0 && <FaChevronLeft className="carouselArrow" onClick={transformLeft} />}
+        {posterIndex > 0 && <FaChevronLeft style={chevronLeftStyle} className="carouselArrow" onClick={transformLeft} />}
         <MoviesRow movies={movies} >
 
           {movies.map((movie, index) => (
             <MoviePosterContainer style={transformStyle}>
-              <MoviesPoster onClick={removeFromMyMovies}
-                key={movie._id}
-                name={movie.user_id}
+              <MoviesPoster
+                key={index}
                 src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
                 alt={movie.name}
-                value={movie.tmdb_id}
+                data-user={movie.user_id}
+                data-id={movie.tmdb_id}
               />
-              <RemoveMovieButton>Remove</RemoveMovieButton> <LikeButton>{index}</LikeButton>
+              <div className='buttonsContainer'>
+                <RemoveMovieButton onClick={removeFromMyMovies}
+                  data-user={movie.user_id}
+                  data-id={movie.tmdb_id}>Remove</RemoveMovieButton>
+                <ReviewButtons tmdb_id={movie.tmdb_id} />
+              </div>
             </MoviePosterContainer>
 
 
           ))}
 
         </MoviesRow>
-        {posterIndex < movies.length - 3 && <FaChevronRight onClick={transformRight} />}
+        {posterIndex < movies.length - 3 && <FaChevronRight style={chevronRightStyle} onClick={transformRight} />}
       </MoviesContainer>
     </>
   )
