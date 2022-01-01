@@ -1,19 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import StreamTile from './StreamTile.js';
 import './movieoverview.css';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function MovieOverview (props) {
   //props hands me userId and movieId
   //const userId = props.userId;
   //const movieId = props.movieId;  << might be named something else
 
-  const [movieExistsInMyMovies, useMovieExistsInMyMovies] = useState(false);
+  const [movieExistsInMyMovies, setMovieExistsInMyMovies] = useState(false);
+  const [movieDetails, setMovieDetails] = useState({});
+  let params = useParams();
+  let mediaId = params.id;
 
-  // useEffect(() => {
-  //   if(movieExistsInMyMovies === true) {
+  const searchDetails = () =>{
+    return new Promise((resolve, reject) =>{
+      axios.get('/api/titleDetails', {
+        params: {
+          user_id: window.localStorage.userUID,
+          tmdb_id: mediaId,
+          type: 'tv'
+        }
+      })
+        .then((response) => {
+          //console.log('success getting user suggestions: ', response);
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  }
 
-  //   }
-  // }, [])
+  useEffect(() => {
+    searchDetails()
+    .then((data)=>{
+      setMovieDetails(data);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+
+  }, [])
 
 
   function handleAddMovies (e, movieId) {
@@ -24,14 +53,13 @@ function MovieOverview (props) {
     e.preventDefault()
     //make post request - Anna's function to add to movies
   }
-  console.log(props, 'props passed into MovieOverview');
 
   return (
     <div id = "movieOverviewContainer">
       <div id = "leftSide">
-        <h1 id = "leftSideHeading">{props.titleName}</h1>
+        <h1 id = "leftSideHeading">{movieDetails ? movieDetails.title : 'Title Missing'}</h1>
         <div id ="moviePoster">
-          <img src = {"https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_FMjpg_UX1000_.jpg"}/>
+          <img src = { movieDetails ? movieDetails.poster_path : null} alt ="movie_poster"/>
         </div>
         <div id= "movieDetails">
          {/* may need to make a separate call*/}
@@ -45,9 +73,9 @@ function MovieOverview (props) {
         <StreamTile title = {"Buy"} options = {options.buy ? options.buy : null}/> */}
         <div>
           <h3 id ="synopsisHeading">Film Synopsis</h3>
-          <textarea id ="synopsisContent">
-            sdfnasodfnasodf {/* may need to use react hook state for content*/}
-          </textarea>
+          <div id ="synopsisContent">
+            {movieDetails ? movieDetails.synopsis : 'Synopsis not Available'}
+          </div>
         </div>
       </div>
 
