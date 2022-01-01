@@ -31,7 +31,7 @@ export default function ReviewButtons({ tmdb_id }) {
 
     })
       .then((response) => {
-        console.log('success rating this title: ', response.data);
+        //console.log('success rating this title: ', response.data);
         return getCurrentUserRating();
       })
       .catch((error) => {

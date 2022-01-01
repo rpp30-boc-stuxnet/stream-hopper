@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { auth } from './firebase/firebaseConfig.js';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, linkWithCredential, EmailAuthProvider, fetchSignInMethodsForEmail, signInWithEmailAndPassword, createUserWithEmailAndPassword }  from 'firebase/auth';
-
+import './LoginOrSignup.css';
 
 const LoginOrSignup = (props) => {
 
@@ -220,10 +220,10 @@ const LoginOrSignup = (props) => {
 
   if (loginError.loginError) {
     return (
-      <div>
-        <p>There was an error while logging in to Streamhopper. Please try again or use a different method. </p>
-        <p>Error message: {loginError.errorCode}</p>
-        <button onClick={handleErrorOk}>Ok</button>
+      <div className="loginErrorHolder">
+        <p className="loginErrorInfo">There was an error while logging in to Streamhopper. Please try again or use a different method. </p>
+        <p className="loginErrorInfo">Error message: {loginError.errorCode}</p>
+        <button className="submitBtn" onClick={handleErrorOk}>Ok</button>
       </div>
     )
   } else if (promptManualEntry.showPrompt){
@@ -249,27 +249,35 @@ const LoginOrSignup = (props) => {
   } else {
     return (
 
-      <div>
-        <p>{props.protocol} with Streamhopper</p>
-        <div>
-          <button onClick={props.handleXOutClick}>X</button>
+      <div className="loginFormHolder">
+        <div className="loginTitleHolder">
+          <button className="closeOutButton" onClick={props.handleXOutClick}>X</button>
         </div>
-        <button onClick={handleGoogleLogin} id="google-login">Google</button>
-        <button onClick={handleFacebookLogin} id="facebook-login">Facebook</button>
-        <p>-OR-</p>
+        <p className="loginTitle">{props.protocol} with Streamhopper</p>
         <div>
+          <button className="googleLogin" onClick={handleGoogleLogin} id="google-login">{props.protocol} with Google</button>
+        </div>
+        <div>
+          <button className="facebookLogin" onClick={handleFacebookLogin} id="facebook-login">{props.protocol} with Facebook</button>
+        </div>
+        <p className="loginSeparator">-OR-</p>
+        <div className="manualLoginHolder">
           <form>
-            <div>
-              <label htmlFor='emailAddress'>Email Address</label>
-              <input type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
+            <div className="manualEntryHolder">
+              <div>
+               <p className="manualEntryTitle">Email Address</p>
+              </div>
+              <input className="manualEntryInput" type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
             </div>
-            <div>
-              <label htmlFor='password'>Password</label>
-              <input type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
+            <div className="manualEntryHolder">
+              <div>
+                <p className="manualEntryTitle">Password</p>
+              </div>
+              <input className="manualEntryInput" type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
             </div>
           </form>
-          <button onClick={handleManualSignIn}>{props.protocol}</button>
         </div>
+        <button className="submitBtn" onClick={handleManualSignIn}>{props.protocol}</button>
       </div>
     )
   }
