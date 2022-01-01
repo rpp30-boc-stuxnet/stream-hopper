@@ -17,9 +17,9 @@ export const MoviesTitle = styled.h2`
 `;
 
 export const MoviesRow = styled.div`
-  ${tw`
+${tw`
       flex
-      overflow-x-auto
+      overflow-x-hidden
       mt-4
       p-4
     `}
@@ -40,4 +40,30 @@ export const MoviesPoster = styled.img`
   &:hover {
     transform: scale(1.09);
   }
+`;
+
+export const MoviePosterContainer = styled.div`
+${tw`
+  relative
+  m-2
+  w-40
+`}
+`;
+
+export const RemoveMovieButton = styled.button`
+${tw`
+  absolute
+`}
+`;
+
+export const LikeButton = styled.button`
+${tw`
+absolute
+`}
+`;
+
+export const DislikeButton = styled.button`
+${tw`
+absolute
+`}
 `;

@@ -35,7 +35,7 @@ const Welcome = (props) => {
   if (!accountState.isLoginActive && !accountState.isSignupActive) {
     return (
       <div>
-        <p>Welcome to Stremhopper</p>
+        <p>Welcome to Streamhopper</p>
         <p>Find the best streaming services for any movie or tv show in one place</p>
         <p>Click login or signup to get started</p>
         <div>
@@ -46,15 +46,15 @@ const Welcome = (props) => {
     )
   } else if (accountState.isLoginActive) {
     return (
-      <LoginOrSignup protocol={'Login'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
+      <LoginOrSignup protocol={'Login'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin} />
     )
   } else if (accountState.isSignupActive) {
     return (
-      <LoginOrSignup protocol={'Signup'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
+      <LoginOrSignup protocol={'Signup'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin} />
     )
   } else {
     console.log('[Welcome Component] this shouldn not happen. isActiveState = ' + accountState.isLoginActive + 'isSignupActive = ' + accountState.isSignupActive)
-    return(
+    return (
       <p>Welcome Component - This should not happen</p>
     )
   }
