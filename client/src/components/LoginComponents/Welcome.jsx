@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import LoginOrSignup from './LoginOrSignup.jsx';
-<<<<<<< HEAD
 import MovieOverview from '../MovieOverview/movieoverview.js';
-=======
 import './Welcome.css'
->>>>>>> ee28ca5ab4db3767eab9569bb2e35c944c22124e
 
 const Welcome = (props) => {
 
@@ -57,7 +54,6 @@ const Welcome = (props) => {
 
   if (!accountState.isLoginActive && !accountState.isSignupActive) {
     return (
-<<<<<<< HEAD
       <div>
         <p>Welcome to Streamhopper</p>
         <p>Find the best streaming services for any movie or tv show in one place</p>
@@ -66,15 +62,15 @@ const Welcome = (props) => {
           <button onClick={handleAccountActionClick}>Login</button>
           <button onClick={handleAccountActionClick}>Signup</button>
           <button onClick={handleShowTestMovieOverview}>Test</button>
-=======
-      <div className="WelcomeBox">
-        <p className="welcomeTitle" >Welcome to Streamhopper</p>
-        <p className="welcomeText" >Find the best streaming services for any movie or tv show in one place</p>
-        <p className="welcomeText">Click login or sign up to get started</p>
-        <div className="loginButtonHolder">
-          <button className="loginButton" onClick={handleAccountActionClick}>Login</button>
-          <button className="loginButton" onClick={handleAccountActionClick}>Sign up</button>
->>>>>>> ee28ca5ab4db3767eab9569bb2e35c944c22124e
+        </div>
+        <div className="WelcomeBox">
+          <p className="welcomeTitle" >Welcome to Streamhopper</p>
+          <p className="welcomeText" >Find the best streaming services for any movie or tv show in one place</p>
+          <p className="welcomeText">Click login or sign up to get started</p>
+          <div className="loginButtonHolder">
+            <button className="loginButton" onClick={handleAccountActionClick}>Login</button>
+            <button className="loginButton" onClick={handleAccountActionClick}>Sign up</button>
+          </div>
         </div>
       </div>
     )

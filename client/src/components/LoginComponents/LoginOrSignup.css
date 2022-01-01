@@ -1,8 +1,7 @@
 .loginFormHolder {
   width: 40%;
-  margin-left: 30%;
   background-color: white;
-  margin-top: 8%;
+  color: black;
 }
 
 .loginTitle {
@@ -75,7 +74,7 @@
 }
 
 .manualEntryInput {
-  width: 180%;
+  width: 205%;
   margin-left: 10px;
   margin-top: 2px;
   padding: 15px;
@@ -105,12 +104,11 @@
 .loginErrorHolder {
   background-color: white;
   width: 70%;
-  margin-left: 15%;
-  margin-top: 20%;
   padding: 10px;
 }
 
 .loginErrorInfo {
+  color: black;
   font-size: 20px;
   margin-top: 5px;
   margin-bottom: 0px;
