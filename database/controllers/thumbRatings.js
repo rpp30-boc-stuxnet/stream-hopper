@@ -41,8 +41,7 @@ const saveThumbRating = async (req, res) => {
     // prev_thumb_rating and new_thumb_rating can be null, 'up', or 'down'
 
   if (req.body.prev_thumb_rating === req.body.new_thumb_rating) {
-    res.status(200).send('No changes made.  Previous and new thumb ratings were the same');
-    return;
+    req.body.new_thumb_rating = null;
   }
 
   User_Thumb_Rating.findOneAndUpdate(
