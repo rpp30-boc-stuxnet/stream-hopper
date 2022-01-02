@@ -15,7 +15,6 @@ export default function ReviewButtons({ tmdb_id }) {
       }
     })
       .then((currentUserRating) => {
-        console.log('this is the current user rating: ', currentUserRating.data)
         setRating(currentUserRating.data)
       })
       .catch((error) => {
@@ -24,7 +23,6 @@ export default function ReviewButtons({ tmdb_id }) {
   }
 
   const handleUserRating = (event) => {
-    console.log('value on click: ', event.target.dataset.rating);
     axios.post('/api/thumbRatings', {
       user_id: window.localStorage.userUID,
       tmdb_id: tmdb_id,
@@ -44,14 +42,6 @@ export default function ReviewButtons({ tmdb_id }) {
   useEffect(() => {
     getCurrentUserRating();
   }, [])
-
-  //   {
-  //     "user_id": "User3",
-  //     "tmdb_id": 329,
-  //     "user_thumb_rating": "up",
-  //     "overall_thumbs_ups": 50,
-  //     "overall_thumbs_downs": 20
-  // }
 
   return (
     <>
@@ -79,8 +69,8 @@ export default function ReviewButtons({ tmdb_id }) {
         :
         <>
           <p>{currentRating?.overall_thumbs_ups || 0}</p>
-          <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
           <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
+          <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
           <p>{currentRating?.overall_thumbs_downs || 0}</p>
         </>
       }

@@ -18,6 +18,7 @@ export const MoviesTitle = styled.h2`
 `;
 
 export const MoviesRow = styled.div`
+  max-width: 700px;
 ${tw`
       flex
       overflow-x-hidden
@@ -56,7 +57,7 @@ ${tw`
 `}
 `;
 
-export const RemoveMovieButton = styled.button`
+export const AddRemoveMovieButton = styled.button`
 ${tw`
 
 `}
