@@ -61,7 +61,7 @@ export default function ReviewButtons({ tmdb_id }) {
             <p>{currentRating?.overall_thumbs_ups || 0}</p>
             <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
             <IconContext.Provider value={{ className: 'voted' }}>
-              <FaRegThumbsDown data-rating='up' onClick={handleUserRating} />
+              <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
             </IconContext.Provider>
             <p>{currentRating?.overall_thumbs_downs || 0}</p>
           </>
