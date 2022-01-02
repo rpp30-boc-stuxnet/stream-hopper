@@ -26,19 +26,20 @@ export default function Dashboard(props) {
   }
 
   const getUserSuggestions = () => {
-    axios.get('/api/relatedTitles', {
-      params: {
-        user_id: window.localStorage.userUID
-      }
+    return new Promise((resolve, reject) => {
+      axios.get('/api/relatedTitles', {
+        params: {
+          user_id: window.localStorage.userUID
+        }
+      })
+        .then((response) => {
+          //console.log('success getting user suggestions: ', response);
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error);
+        })
     })
-      .then((response) => {
-        //console.log('success getting user suggestions: ', response);
-        setSuggestions(response.data);
-      })
-      .catch((error) => {
-        console.log('error getting user suggestions: ', error);
-      })
-
   }
 
   const removeFromMyMovies = (event) => {
@@ -68,9 +69,15 @@ export default function Dashboard(props) {
         setMovies(data);
       })
       .catch((error) => {
-        console.log('error getting user movies in use effect: ', error);
+        console.log('error getting user movies on dashboard: ', error);
       })
-    // getUserSuggestions();
+    getUserSuggestions()
+      .then((data) => {
+        setSuggestions(data);
+      })
+      .catch((error) => {
+        console.log('error getting user suggestions on dashboard: ', error);
+      })
 
   }, [])
 

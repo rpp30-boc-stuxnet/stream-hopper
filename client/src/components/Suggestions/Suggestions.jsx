@@ -15,6 +15,21 @@ export default function Suggestions({ title, movies }) {
     setCarousel(posterIndex + 1);
   }
 
+  let chevronLeftStyle = {
+    position: 'absolute',
+    display: 'flex',
+    marginLeft: '10%',
+    alignSelf: 'center'
+  };
+  let chevronRightStyle = {
+    position: 'absolute',
+    display: 'flex',
+    marginLeft: '80%',
+    marginRight: '10%',
+    alignSelf: 'center',
+    zIndex: '1'
+  };
+
   let transformStyle = { transform: `translateX(-${posterIndex * 200}px)` }
   return (
     <>
