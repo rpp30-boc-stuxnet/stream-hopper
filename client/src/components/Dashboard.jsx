@@ -101,13 +101,14 @@ export default function Dashboard(props) {
     <>
       <Navbar handleLogout={props.handleLogout} />
       <h1>User Dashboard</h1>
-      {userMovies ? <MyMovies
+
+      {userMovies !== null ? <MyMovies
         title='My Movies'
         removeFromMyMovies={removeFromMyMovies}
         movies={userMovies}
         getUserMovies={getUserMovies}
         setMovies={setMovies} /> : <></>}
-      {userSuggestions ? <Suggestions
+      {userSuggestions !== null && userSuggestions === 0 ? <Suggestions
         title='Suggestions For You'
         movies={userSuggestions}
         addToMyMovies={addToMyMovies} /> : <></>}
