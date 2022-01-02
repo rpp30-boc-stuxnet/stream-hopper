@@ -1,3 +1,4 @@
+// import logo from './logo.svg';
 import AppRouter from './components/AppRouter.jsx';
 import './App.css';
 
@@ -5,7 +6,10 @@ import './App.css';
 function App() {
   return (
     <div className="App" data-testid="main-app-div">
-      <AppRouter />
+      <header className="App-header">
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <AppRouter />
+      </header>
     </div>
   );
 }
