@@ -1,0 +1,110 @@
+.loginFormHolder {
+  width: 40%;
+  margin-left: 30%;
+  background-color: white;
+  margin-top: 8%;
+}
+
+.loginTitle {
+  font-weight: bold;
+  font-size:40px;
+  margin: 0px;
+}
+
+.loginTitleHolder {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeOutButton {
+  background: white;
+  font-weight: bold;
+  border: 0px;
+  margin: 0px;
+  font-size: 20px;
+}
+
+.closeOutButton:hover {
+  color: orange
+}
+
+.googleLogin {
+  background-color: forestgreen;
+  width: 80%;
+  font-size: 25px;
+  margin-top: 30px;
+  color: white;
+  font-weight: bold;
+}
+
+.facebookLogin {
+  background-color: royalblue;
+  width: 80%;
+  font-size: 25px;
+  margin-top: 30px;
+  color: white;
+  font-weight: bold;
+}
+
+.manualLoginHolder {
+  display: flex;
+  width: 80%;
+  margin-left: 55px;
+}
+
+.loginSeparator {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.manualEntryTitle {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  margin-left: 5px;
+  text-align: left;
+}
+
+.manualEntryInput {
+  width: 180%;
+  margin-left: 10px;
+  margin-top: 2px;
+  padding: 15px;
+  font-size: 20px;
+  font-style: italic;
+  border: 4px black;
+  background-color: lightgrey;
+}
+
+.manualEntryHolder {
+  margin-bottom: 10px;
+}
+
+.submitBtn {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: lightgreen;
+  width: 40%;
+  font-size: 20px;
+}
+
+.submitBtn:hover {
+  background-color: orange
+}
+
+.loginErrorHolder {
+  background-color: white;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 20%;
+  padding: 10px;
+}
+
+.loginErrorInfo {
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  font-weight:bold
+}
