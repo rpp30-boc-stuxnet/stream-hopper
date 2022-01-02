@@ -30,9 +30,13 @@ body {
   font-size: 20px;
   width: 100px;
 }
+.loginButton:hover {
+  background-color: orange
+}
 
 .loginButtonHolder {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
+
