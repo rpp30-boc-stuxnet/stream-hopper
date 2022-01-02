@@ -55,18 +55,28 @@ export default function ReviewButtons({ tmdb_id }) {
 
   return (
     <>
-      {currentRating?.user_thumb_rating === 'up' ?
-        <IconContext.Provider value={{ className: 'voted' }}>
-          <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
-          <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
-        </IconContext.Provider>
+      {currentRating?.user_thumb_rating ?
+        currentRating.user_thumb_rating === 'up' ?
+          <>
+            <IconContext.Provider value={{ className: 'voted' }}>
+              <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
+            </IconContext.Provider>
+            <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
+          </>
+          :
+          <>
+            <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
+            <IconContext.Provider value={{ className: 'voted' }}>
+              <FaRegThumbsDown data-rating='up' onClick={handleUserRating} />
+            </IconContext.Provider>
+          </>
+
         :
         <>
           <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
           <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
         </>
       }
-
     </>
   )
 }
