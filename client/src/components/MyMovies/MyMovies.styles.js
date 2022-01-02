@@ -3,6 +3,7 @@ import tw, { styled } from "twin.macro";
 
 export const MoviesContainer = styled.div`
   ${tw`
+    flex
     my-8
   `}
 `;
@@ -17,6 +18,7 @@ export const MoviesTitle = styled.h2`
 `;
 
 export const MoviesRow = styled.div`
+  max-width: 700px;
 ${tw`
       flex
       overflow-x-hidden
@@ -43,6 +45,11 @@ export const MoviesPoster = styled.img`
 `;
 
 export const MoviePosterContainer = styled.div`
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+
+}
 ${tw`
   relative
   m-2
@@ -50,20 +57,9 @@ ${tw`
 `}
 `;
 
-export const RemoveMovieButton = styled.button`
+export const AddRemoveMovieButton = styled.button`
 ${tw`
-  absolute
+
 `}
 `;
 
-export const LikeButton = styled.button`
-${tw`
-absolute
-`}
-`;
-
-export const DislikeButton = styled.button`
-${tw`
-absolute
-`}
-`;
