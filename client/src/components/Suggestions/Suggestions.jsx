@@ -37,14 +37,14 @@ export default function Suggestions({ title, movies, addToMyMovies }) {
         {suggestionsPosterIndex > 0 && <FaChevronLeft style={chevronLeftStyle} className="carouselArrow" onClick={transformLeft} />}
         <MoviesRow>
           {movies.map((movie, index) => (
-            <MoviePosterContainer style={transformStyle}>
+            <MoviePosterContainer
+              style={transformStyle}
+              key={index}>
               <Link to={`/movieDetails/${movie.tmdb_id}`}>
                 <MoviesPoster
                   key={index}
                   src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
                   alt={movie.name}
-                  data-user={movie.user_id}
-                  data-id={movie.tmdb_id}
                 />
               </Link>
               <div className='buttonsContainer'>
