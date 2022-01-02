@@ -87,6 +87,12 @@ export default function Dashboard(props) {
       .catch((error) => {
         console.log('error getting user movies on dashboard: ', error);
       })
+
+
+
+  }, [])
+
+  useEffect(() => {
     getUserSuggestions()
       .then((data) => {
         setSuggestions(data);
@@ -94,21 +100,20 @@ export default function Dashboard(props) {
       .catch((error) => {
         console.log('error getting user suggestions on dashboard: ', error);
       })
-
-  }, [])
+  }, [userMovies])
 
   return (
     <>
       <Navbar handleLogout={props.handleLogout} />
       <h1>User Dashboard</h1>
 
-      {userMovies !== null ? <MyMovies
+      {userMovies ? <MyMovies
         title='My Movies'
         removeFromMyMovies={removeFromMyMovies}
         movies={userMovies}
         getUserMovies={getUserMovies}
         setMovies={setMovies} /> : <></>}
-      {userSuggestions !== null && userSuggestions === 0 ? <Suggestions
+      {userSuggestions !== null && userSuggestions[0] ? <Suggestions
         title='Suggestions For You'
         movies={userSuggestions}
         addToMyMovies={addToMyMovies} /> : <></>}
