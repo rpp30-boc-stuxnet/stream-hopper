@@ -57,22 +57,22 @@ function MovieOverview (props) {
   return (
     <div id = "movieOverviewContainer">
       <div id = "leftSide">
-        <h1 id = "leftSideHeading">{movieDetails ? movieDetails.title : 'Title Missing'}</h1>
+        <h1 id = "leftSideHeading">{Object.keys(movieDetails).length > 0 ? movieDetails.title : 'Title Missing'}</h1>
         <div id ="moviePoster">
-          <img src = { movieDetails ? movieDetails.poster_path : null} alt ="movie_poster"/>
+          <img src = { Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : null} alt ="movie_poster"/>
         </div>
         <div id= "movieDetails">
          <div id = "movieRatings">
-          { movieDetails ? 'imdb: ' + movieDetails.ratings[0].Value : null}
+          { Object.keys(movieDetails).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
          </div>
          <div id = "moveReleaseDate">
-          { movieDetails ? movieDetails.release_date : null}
+          { Object.keys(movieDetails).length > 0 ? movieDetails.release_date : null}
          </div>
          <div id = "director">
-          { movieDetails ? movieDetails.director : null}
+          { Object.keys(movieDetails).length > 0 ? movieDetails.director : null}
          </div>
          <div id = "runTime">
-          { movieDetails ? 'Run Time: ' + movieDetails.run_time : null}
+          { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : null}
          </div>
         </div>
         <button id ="addMovie" onClick = {handleAddMovies}> Add to My Movies </button>
@@ -85,7 +85,7 @@ function MovieOverview (props) {
         <div>
           <h3 id ="synopsisHeading">Film Synopsis</h3>
           <div id ="synopsisContent">
-            {movieDetails ? movieDetails.synopsis : 'Synopsis not Available'}
+            {Object.keys(movieDetails).length > 0 ? movieDetails.synopsis : 'Synopsis not Available'}
           </div>
         </div>
       </div>
