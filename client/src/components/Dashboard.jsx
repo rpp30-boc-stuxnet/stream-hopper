@@ -105,7 +105,8 @@ export default function Dashboard(props) {
   return (
     <>
       <Navbar handleLogout={props.handleLogout} />
-      <h1>User Dashboard</h1>
+      <main className={'dashboard'}>
+        <h1>User Dashboard</h1>
 
       {userMovies ? <MyMovies
         title='My Movies'
@@ -117,6 +118,8 @@ export default function Dashboard(props) {
         title='Suggestions For You'
         movies={userSuggestions}
         addToMyMovies={addToMyMovies} /> : <></>}
+      </main>
+
     </>
   )
 }

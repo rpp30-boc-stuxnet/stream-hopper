@@ -8,7 +8,7 @@ export default function Navbar(props) {
     <nav className={'navbar'} >
       <span className={'navLogo'} >Stream Hopper</span>
       {/** Search bar will go here */}
-      <span><SearchBar/></span>
+      <SearchBar />
       <button
         className={'logoutBtn'}
         onClick={props.handleLogout} >
