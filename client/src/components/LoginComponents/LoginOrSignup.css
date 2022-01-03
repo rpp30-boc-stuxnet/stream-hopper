@@ -1,7 +1,12 @@
 .loginFormHolder {
+  padding: 0 14px;
+  margin: 10% auto;
   width: 40%;
   background-color: white;
   color: black;
+  border: none;
+  border-radius: 10px;
+  z-index: 1;
 }
 
 .loginTitle {
@@ -84,13 +89,14 @@
   font-weight: bold;
   margin-top: 14px;
   margin-bottom: 20px;
-  background-color: lightgreen;
+  background-color: #521836;
+  color: white;
   width: 40%;
   font-size: 20px;
 }
 
 .submitBtn:hover {
-  background-color: orange
+  background-color: orange;
 }
 
 .loginErrorHolder {
