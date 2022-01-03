@@ -40,18 +40,18 @@ const Welcome = (props) => {
         <p className="welcomeText" >Find the best streaming services for any movie or tv show in one place</p>
         <p className="welcomeText">Click login or sign up to get started</p>
         <div className="loginButtonHolder">
-          <button className="loginButton" onClick={handleAccountActionClick}>Login</button>
+          <button className="loginButton" onClick={handleAccountActionClick}>Log in</button>
           <button className="loginButton" onClick={handleAccountActionClick}>Sign up</button>
         </div>
       </div>
     )
   } else if (accountState.isLoginActive) {
     return (
-      <LoginOrSignup protocol={'Login'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin} />
+      <LoginOrSignup protocol={'Log in'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin} />
     )
   } else if (accountState.isSignupActive) {
     return (
-      <LoginOrSignup protocol={'Sign Up'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
+      <LoginOrSignup protocol={'Sign up'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
     )
   } else {
     console.log('[Welcome Component] this shouldn not happen. isActiveState = ' + accountState.isLoginActive + 'isSignupActive = ' + accountState.isSignupActive)
@@ -61,4 +61,5 @@ const Welcome = (props) => {
   }
 
 }
+
 export default Welcome;

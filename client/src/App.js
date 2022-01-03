@@ -6,6 +6,7 @@ import './App.css';
 function App() {
   return (
     <div className="App" data-testid="main-app-div">
+      <div className="backgroundFader"></div>
       <AppRouter />
     </div>
   );
