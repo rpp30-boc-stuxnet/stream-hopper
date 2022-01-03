@@ -4,7 +4,7 @@ import Welcome from './LoginComponents/Welcome.jsx';
 import { auth } from './LoginComponents/firebase/firebaseConfig.js';
 import { signOut } from 'firebase/auth';
 import Dashboard from './Dashboard.jsx';
-import TestOverview from './overview/TestOverview.jsx'
+import MovieOverview from './MovieOverview/movieoverview.js';
 
 
 const AppRouter = () => {
@@ -37,7 +37,7 @@ const AppRouter = () => {
       <Routes>
         <Route exact path="/" element={loggedIn ? <Navigate to="/homePage" /> : <Welcome handleLogout={handleLogout} handleSuccessfulLogin={handleSuccessfulLogin} />} />
         <Route path='/homepage' element={loggedIn ? <Dashboard handleLogout={handleLogout} /> : <Navigate to="/" />} />
-        <Route path='/movieDetails/:id' element={loggedIn ? <TestOverview handleLogout={handleLogout} /> : <Navigate to="/" />} />
+        <Route path='/movieDetails/:id' element={loggedIn ? <MovieOverview handleLogout={handleLogout} /> : <Navigate to="/" />} />
       </Routes>
     </Router>
   );
