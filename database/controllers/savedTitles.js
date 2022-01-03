@@ -2,10 +2,10 @@ const axios = require('axios').default;
 const Saved_Title = require('../models/savedTitle.js');
 
 const findSavedTitles = async (req, res) => {
-  console.log('req is hitting controller: ', req.query.user_id);
+  //console.log('req is hitting controller: ', req.query.user_id);
   await Saved_Title.find({ user_id: req.query.user_id })
     .then((savedTitles) => {
-      console.log('success getting saved titles: ', savedTitles)
+      //console.log('success getting saved titles: ', savedTitles)
       res.status(200).send(savedTitles.reverse())
     })
     .catch((error) => {

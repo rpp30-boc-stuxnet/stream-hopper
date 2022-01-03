@@ -45,9 +45,13 @@ const shuffleArray = array => {
 const findRelatedTitles = async (req, res) => {
   // TO-DO: Complete this function
   let threeMostRecent = [];
+  let allLoggedTitles = {};
 
   await Saved_Title.find({user_id: req.query.user_id})
     .then((savedTitles) => {
+      for (var i = 0; i < savedTitles.length; i++) {
+        allLoggedTitles[savedTitles[i].tmdb_id] = true;
+      }
       savedTitles = savedTitles.slice(-3);
       for (var i = 0; i < savedTitles.length; i++) {
         threeMostRecent.push({type: savedTitles[i].type, tmdb_id: savedTitles[i].tmdb_id})
@@ -68,16 +72,19 @@ const findRelatedTitles = async (req, res) => {
     })
       .then((response) => {
         for (var i = 0; i < response.data.results.slice(0,5).length; i++) {
-          let currentRecommendation = {
-            type: response.data.results[i].media_type,
-            tmdb_id: response.data.results[i].id,
-            poster_path: 'https://image.tmdb.org/t/p/w500' + response.data.results[i].poster_path
-          }
-          if (priorityMovies[JSON.stringify(response.data.results[i].id)] && !orderModified) {
-            finalResults.unshift(currentRecommendation);
-            orderModified = true;
-          } else {
-            finalResults.push(currentRecommendation);
+          if (!allLoggedTitles[response.data.results[i].id]) {
+            let currentRecommendation = {
+              type: response.data.results[i].media_type,
+              tmdb_id: response.data.results[i].id,
+              poster_path: 'https://image.tmdb.org/t/p/w500' + response.data.results[i].poster_path
+            }
+            if (priorityMovies[JSON.stringify(response.data.results[i].id)] && !orderModified) {
+              finalResults.unshift(currentRecommendation);
+              orderModified = true;
+            } else {
+              finalResults.push(currentRecommendation);
+            }
+            allLoggedTitles[currentRecommendation.tmdb_id] = true;
           }
         }
       })

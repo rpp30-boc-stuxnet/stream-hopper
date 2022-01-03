@@ -3,6 +3,7 @@ import tw, { styled } from "twin.macro";
 
 export const MoviesContainer = styled.div`
   ${tw`
+    flex
     my-8
   `}
 `;
@@ -17,9 +18,10 @@ export const MoviesTitle = styled.h2`
 `;
 
 export const MoviesRow = styled.div`
-  ${tw`
+  max-width: 700px;
+${tw`
       flex
-      overflow-x-auto
+      overflow-x-hidden
       mt-4
       p-4
     `}
@@ -41,3 +43,23 @@ export const MoviesPoster = styled.img`
     transform: scale(1.09);
   }
 `;
+
+export const MoviePosterContainer = styled.div`
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+
+}
+${tw`
+  relative
+  m-2
+  w-40
+`}
+`;
+
+export const AddRemoveMovieButton = styled.button`
+${tw`
+
+`}
+`;
+

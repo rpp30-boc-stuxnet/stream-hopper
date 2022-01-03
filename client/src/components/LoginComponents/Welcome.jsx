@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LoginOrSignup from './LoginOrSignup.jsx';
+import './Welcome.css'
 
 const Welcome = (props) => {
 
@@ -9,7 +10,7 @@ const Welcome = (props) => {
   })
 
   const handleAccountActionClick = (event) => {
-    if (event.target.textContent === 'Signup') {
+    if (event.target.textContent === 'Sign up') {
       let newAccountState = {
         isLoginActive: 0,
         isSignupActive: 1
@@ -34,30 +35,31 @@ const Welcome = (props) => {
 
   if (!accountState.isLoginActive && !accountState.isSignupActive) {
     return (
-      <div>
-        <p>Welcome to Stremhopper</p>
-        <p>Find the best streaming services for any movie or tv show in one place</p>
-        <p>Click login or signup to get started</p>
-        <div>
-          <button onClick={handleAccountActionClick}>Login</button>
-          <button onClick={handleAccountActionClick}>Signup</button>
+      <div className="WelcomeBox">
+        <p className="welcomeTitle" >Welcome to Streamhopper</p>
+        <p className="welcomeText" >Find the best streaming services for any movie or tv show in one place</p>
+        <p className="welcomeText">Click login or sign up to get started</p>
+        <div className="loginButtonHolder">
+          <button className="loginButton" onClick={handleAccountActionClick}>Log in</button>
+          <button className="loginButton" onClick={handleAccountActionClick}>Sign up</button>
         </div>
       </div>
     )
   } else if (accountState.isLoginActive) {
     return (
-      <LoginOrSignup protocol={'Login'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
+      <LoginOrSignup protocol={'Log in'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin} />
     )
   } else if (accountState.isSignupActive) {
     return (
-      <LoginOrSignup protocol={'Signup'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
+      <LoginOrSignup protocol={'Sign up'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
     )
   } else {
     console.log('[Welcome Component] this shouldn not happen. isActiveState = ' + accountState.isLoginActive + 'isSignupActive = ' + accountState.isSignupActive)
-    return(
+    return (
       <p>Welcome Component - This should not happen</p>
     )
   }
 
 }
+
 export default Welcome;

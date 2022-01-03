@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SearchBar from '../SearchBar/SearchBar.jsx';
 
 // navbar, currently assumes user is logged in
 export default function Navbar(props) {
@@ -7,7 +8,7 @@ export default function Navbar(props) {
     <nav className={'navbar'} >
       <span className={'navLogo'} >Stream Hopper</span>
       {/** Search bar will go here */}
-      <span>Searchbar Here</span>
+      <span><SearchBar/></span>
       <button
         className={'logoutBtn'}
         onClick={props.handleLogout} >

@@ -5,11 +5,23 @@ const Overall_Thumb_Rating = require('../models/overallThumbRating.js');
 const findThumbRatings = async (req, res) => {
   await User_Thumb_Rating.findOne({user_id: req.query.user_id, tmdb_id: req.query.tmdb_id})
     .then(async (userThumbRating) => {
-      let user_thumb_rating = userThumbRating.thumb_rating || null;
+      let user_thumb_rating;
+      if (userThumbRating) {
+        user_thumb_rating = userThumbRating.thumb_rating;
+      } else {
+        user_thumb_rating = null;
+      }
       await Overall_Thumb_Rating.findOne({tmdb_id: req.query.tmdb_id})
         .then((overallThumbRating) => {
-          let overall_thumbs_ups = overallThumbRating.thumbs_ups || null;
-          let overall_thumbs_downs = overallThumbRating.thumbs_downs || null;
+          let overall_thumbs_ups;
+          let overall_thumbs_down;
+          if (overallThumbRating) {
+            overall_thumbs_ups = overallThumbRating.thumbs_ups || 0;
+            overall_thumbs_downs = overallThumbRating.thumbs_downs || 0;
+          } else {
+            overall_thumbs_ups = 0;
+            overall_thumbs_downs = 0;
+          }
           res.status(200).send({
             user_id: req.query.user_id,
             tmdb_id: new Number(req.query.tmdb_id),
@@ -29,8 +41,7 @@ const saveThumbRating = async (req, res) => {
     // prev_thumb_rating and new_thumb_rating can be null, 'up', or 'down'
 
   if (req.body.prev_thumb_rating === req.body.new_thumb_rating) {
-    res.status(200).send('No changes made.  Previous and new thumb ratings were the same');
-    return;
+    req.body.new_thumb_rating = null;
   }
 
   User_Thumb_Rating.findOneAndUpdate(
