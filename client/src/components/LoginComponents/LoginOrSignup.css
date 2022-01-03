@@ -41,6 +41,10 @@
   font-weight: bold;
 }
 
+.googleLogin:hover {
+  background-color: orange;
+}
+
 .facebookLogin {
   background-color: royalblue;
   width: 80%;
@@ -48,6 +52,10 @@
   margin-top: 30px;
   color: white;
   font-weight: bold;
+}
+
+.facebookLogin:hover {
+  background-color: orange;
 }
 
 .manualLoginHolder {

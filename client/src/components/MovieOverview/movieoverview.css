@@ -1,0 +1,30 @@
+#movieOverviewContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+#leftSide {
+  width: 30%;
+  margin: 1em;
+
+}
+#rightSide {
+  width: 60%;
+  margin: 1em;
+
+}
+#moviePoster{
+  height: auto;
+  width: 80%;
+  margin: 0 auto;
+}
+#moviePoster img{
+  width:100%
+}
+#synopsisContent{
+  background: transparent;
+  color: white;
+  border:none;
+  width: 80%;
+  margin: 0 auto;
+}
