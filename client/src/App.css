@@ -64,6 +64,55 @@ button {
   color: green;
 }
 
+.searchInputs {
+  margin-top: 105px;
+  display: flex;
+}
+
+.searchBar input {
+  background-color: white;
+  border: 0;
+  border-radius: 2px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  font-size: 18px;
+  padding: 15px;
+  height: 30px;
+  width: 300px;
+
+}
+
+.dataResults {
+  margin-top: 5px;
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.dataResults::-webkit-scrollbar {
+  display: none;
+}
+
+.dataResults .dataItem {
+  width: 100px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  color: black
+}
+
+.dataItem {
+  width:100%;
+  font-size: 1.2rem;
+}
+
+.dataItem:hover {
+  background-color: lightgrey;
+}
+
 
 /* palette test */
 .color-primary-0 { color: #250401 }	/* Main Primary color */

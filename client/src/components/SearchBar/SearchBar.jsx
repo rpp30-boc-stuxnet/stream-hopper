@@ -8,6 +8,7 @@ class SearchBar extends React.Component {
     this.state = {
       searchData: [],
     }
+    this.searchChange = this.searchChange.bind(this);
   }
 
   searchChange = (e) => {
@@ -17,7 +18,8 @@ class SearchBar extends React.Component {
       }
     })
     .then((res) => {
-      console.log(res)
+      // console.log(res)
+      this.setState({searchData: res.data})
     })
     .catch((err) => {
       console.log(err)
@@ -32,14 +34,18 @@ class SearchBar extends React.Component {
             type="text"
             placeholder="search for a movie or tv show"
             value={this.state.searchTerm}
-            onChange={(event) => this.setState({searchTerm: event.target.value})}
+            onChange={(event) => this.searchChange(event)}
           />
         </div>
         <div className="dataResults">
           {this.state.searchData.map((data, index) => {
             return (
               <div key={index}>
-                <div className="dataItem">{data.poster_path}{data.release_date}{data.title}</div>
+                <div style={{display:'inline'}}>
+                <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
+                <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</span>
+                <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</span>
+                </div>
               </div>
             )
           })}
