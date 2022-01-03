@@ -261,23 +261,21 @@ const LoginOrSignup = (props) => {
           <button className="facebookLogin" onClick={handleFacebookLogin} id="facebook-login">{props.protocol} with Facebook</button>
         </div>
         <p className="loginSeparator">-OR-</p>
-        <div className="manualLoginHolder">
-          <form>
-            <div className="manualEntryHolder">
-              <div>
-               <p className="manualEntryTitle">Email Address</p>
-              </div>
-              <input className="manualEntryInput" type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
+        <form className="manualLoginHolder">
+          <div className="manualEntryHolder">
+            <div>
+              <p className="manualEntryTitle">Email Address</p>
             </div>
-            <div className="manualEntryHolder">
-              <div>
-                <p className="manualEntryTitle">Password</p>
-              </div>
-              <input className="manualEntryInput" type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
+            <input className="manualEntryInput" type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
+          </div>
+          <div className="manualEntryHolder">
+            <div>
+              <p className="manualEntryTitle">Password</p>
             </div>
-          </form>
-        </div>
-        <button className="submitBtn" onClick={handleManualSignIn}>{props.protocol}</button>
+            <input className="manualEntryInput" type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
+          </div>
+          <button className="submitBtn" onClick={handleManualSignIn}>{props.protocol}</button>
+        </form>
       </div>
     )
   }
