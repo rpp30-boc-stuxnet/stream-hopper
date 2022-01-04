@@ -10,6 +10,7 @@ class SearchBar extends React.Component {
       searchData: [],
     }
     this.searchChange = this.searchChange.bind(this);
+<<<<<<< HEAD
     this.searchEnter = this.searchEnter.bind(this);
   }
 
@@ -17,9 +18,12 @@ class SearchBar extends React.Component {
     if (e.key === 'Enter') {
       console.log('ENTER WAS PRESSED')
     }
+=======
+    this.makeList = this.makeList.bind(this);
+>>>>>>> cce22a56ec230126663d8051ce6bd9e3e0d14031
   }
 
-  searchChange = (e) => {
+  searchChange (e) {
     axios.get('/api/search', {
       params: {
         title: e.target.value
@@ -34,6 +38,20 @@ class SearchBar extends React.Component {
       });
   }
 
+  makeList (data) {
+    return data.map((data, index) => {
+      return (
+        <div key={index}>
+          <div style={{display:'inline'}}>
+          <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
+          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</span>
+          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</span>
+          </div>
+        </div>
+      )
+    })
+  }
+
   render() {
     return (
       <div className="search-bar">
@@ -46,6 +64,7 @@ class SearchBar extends React.Component {
             onKeyPress={(event) => this.searchEnter(event)}
           />
         </div>
+<<<<<<< HEAD
          {this.state.searchData.length > 0 && (
         <div className="dataResults">
           {this.state.searchData.map((data, index) => {
@@ -63,6 +82,14 @@ class SearchBar extends React.Component {
           })}
         </div>
          )}
+=======
+        {this.state.searchData.length > 0 ?
+          <div className="dataResults">
+            {this.makeList(this.state.searchData)}
+          </div>
+          : <></>
+        }
+>>>>>>> cce22a56ec230126663d8051ce6bd9e3e0d14031
       </div>
     )
   }
