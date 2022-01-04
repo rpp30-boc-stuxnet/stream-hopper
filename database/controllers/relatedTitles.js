@@ -76,7 +76,8 @@ const findRelatedTitles = async (req, res) => {
             let currentRecommendation = {
               type: response.data.results[i].media_type,
               tmdb_id: response.data.results[i].id,
-              poster_path: 'https://image.tmdb.org/t/p/w500' + response.data.results[i].poster_path
+              poster_path: 'https://image.tmdb.org/t/p/w500' + response.data.results[i].poster_path,
+              saved_by_user: false
             }
             if (priorityMovies[JSON.stringify(response.data.results[i].id)] && !orderModified) {
               finalResults.unshift(currentRecommendation);
