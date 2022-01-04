@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import LoginOrSignup from './LoginOrSignup.jsx';
-import MovieOverview from '../MovieOverview/movieoverview.js';
 import './Welcome.css'
 
 const Welcome = (props) => {
