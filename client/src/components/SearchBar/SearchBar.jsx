@@ -6,6 +6,7 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      searchTerm: '',
       searchData: [],
     }
     this.searchChange = this.searchChange.bind(this);
@@ -13,6 +14,7 @@ class SearchBar extends React.Component {
   }
 
   searchChange (e) {
+    this.setState({ searchTerm: e.target.value });
     axios.get('/api/search', {
       params: {
         title: e.target.value
@@ -52,7 +54,7 @@ class SearchBar extends React.Component {
             onChange={(event) => this.searchChange(event)}
           />
         </div>
-        {this.state.searchData.length > 0 ?
+        {(this.state.searchData.length > 0 && this.state.searchTerm !== '') ?
           <div className="dataResults">
             {this.makeList(this.state.searchData)}
           </div>
