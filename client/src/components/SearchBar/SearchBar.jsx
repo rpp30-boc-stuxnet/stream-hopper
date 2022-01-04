@@ -1,6 +1,6 @@
 import React from 'react'
-const axios = require('axios')
 import { Link } from 'react-router-dom'
+const axios = require('axios')
 
 
 class SearchBar extends React.Component {
@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
     }
   }
 
-  searchChange (e) {
+  searchChange = (e) => {
     axios.get('/api/search', {
       params: {
         title: e.target.value
@@ -35,15 +35,15 @@ class SearchBar extends React.Component {
       });
   }
 
-  makeList (data) {
+  makeList = (data) => {
     return data.map((data, index) => {
       return (
         <Link to={`/movieDetails/${data.tmdb_id}`}>
-        <div style={{display:'inline'}}>
-        <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
-        <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</span>
-        <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</span>
-        </div>
+          <div style={{display:'inline'}}>
+          <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
+          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</span>
+          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</span>
+          </div>
         </Link>
       )
     })
