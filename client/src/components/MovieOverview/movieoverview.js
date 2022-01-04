@@ -5,22 +5,22 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 function MovieOverview (props) {
-  //props hands me userId and movieId
-  //const userId = props.userId;
-  //const movieId = props.movieId;  << might be named something else
 
-  const [movieExistsInMyMovies, setMovieExistsInMyMovies] = useState(false);
+  const [existsInMyList, setExistsInMyList] = useState(false);
   const [movieDetails, setMovieDetails] = useState({});
+  const [titleSources, setTitleSources] = useState({});
+
   let params = useParams();
   let mediaId = params.id;
-
+  let mediaType = params.type;
+  //console.log(mediaType, 'media type');
   const searchDetails = () =>{
     return new Promise((resolve, reject) =>{
       axios.get('/api/titleDetails', {
         params: {
           user_id: window.localStorage.userUID,
           tmdb_id: mediaId,
-          type: 'tv'
+          type: mediaType
         }
       })
         .then((response) => {
@@ -32,11 +32,37 @@ function MovieOverview (props) {
         })
     })
   }
+  const searchSources = () =>{
+    return new Promise((resolve, reject) =>{
+      axios.get('/api/streamSources', {
+        params: {
+          user_id: window.localStorage.userUID,
+          tmdb_id: mediaId,
+          type: mediaType
+        }
+      })
+        .then((response) => {
+          //console.log('success getting title Sources: ', response.data);
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  }
 
   useEffect(() => {
+    let deetz = {};
+    let sources = {}
     searchDetails()
     .then((data)=>{
-      setMovieDetails(data);
+      deetz = data;
+      searchSources()
+      .then((requestSourcesData)=>{
+        sources = requestSourcesData;
+        setMovieDetails(deetz);
+        setTitleSources(sources);
+      })
     })
     .catch((err)=>{
       console.log(err);
