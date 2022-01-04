@@ -27,7 +27,7 @@
   opacity: 60%;
   top: 0;
   left: 0;
-  position: absolute;
+  position: fixed;
   box-shadow: inset 0 0 100px black;
   z-index: 0;
 }
