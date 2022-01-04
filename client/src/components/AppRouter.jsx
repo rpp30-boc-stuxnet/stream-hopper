@@ -35,9 +35,9 @@ const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={loggedIn ? <Navigate to="/homePage" /> : <Welcome handleLogout={handleLogout} handleSuccessfulLogin={handleSuccessfulLogin} />} />
-        <Route path='/homepage' element={loggedIn ? <Dashboard handleLogout={handleLogout} /> : <Navigate to="/" />} />
-        <Route path='/movieDetails/:id' element={loggedIn ? <MovieOverview handleLogout={handleLogout} /> : <Navigate to="/" />} />
+        <Route exact path='/' element={loggedIn ? <Navigate to='/homePage' /> : <Welcome handleLogout={handleLogout} handleSuccessfulLogin={handleSuccessfulLogin} />} />
+        <Route path='/homepage' element={loggedIn ? <Dashboard className={'dashboard'} handleLogout={handleLogout} /> : <Navigate to='/' />} />
+        <Route path='/movieDetails/:id' element={loggedIn ? <MovieOverview handleLogout={handleLogout} /> : <Navigate to='/' />} />
       </Routes>
     </Router>
   );

@@ -9,9 +9,10 @@ class SearchBar extends React.Component {
       searchData: [],
     }
     this.searchChange = this.searchChange.bind(this);
+    this.makeList = this.makeList.bind(this);
   }
 
-  searchChange = (e) => {
+  searchChange (e) {
     axios.get('/api/search', {
       params: {
         title: e.target.value
@@ -26,6 +27,20 @@ class SearchBar extends React.Component {
       });
   }
 
+  makeList (data) {
+    return data.map((data, index) => {
+      return (
+        <div key={index}>
+          <div style={{display:'inline'}}>
+          <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
+          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</span>
+          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</span>
+          </div>
+        </div>
+      )
+    })
+  }
+
   render() {
     return (
       <div className="search-bar">
@@ -37,19 +52,12 @@ class SearchBar extends React.Component {
             onChange={(event) => this.searchChange(event)}
           />
         </div>
-        <div className="dataResults">
-          {this.state.searchData.map((data, index) => {
-            return (
-              <div key={index}>
-                <div style={{display:'inline'}}>
-                <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
-                <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</span>
-                <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</span>
-                </div>
-              </div>
-            )
-          })}
-        </div>
+        {this.state.searchData.length > 0 ?
+          <div className="dataResults">
+            {this.makeList(this.state.searchData)}
+          </div>
+          : <></>
+        }
       </div>
     )
   }
