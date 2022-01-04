@@ -5,7 +5,9 @@ const findSavedTitles = async (req, res) => {
   //console.log('req is hitting controller: ', req.query.user_id);
   await Saved_Title.find({ user_id: req.query.user_id })
     .then((savedTitles) => {
-      //console.log('success getting saved titles: ', savedTitles)
+      for (var i = 0; i < savedTitles.length; i++) {
+        savedTitles[i]._doc.saved_by_user = true;
+      }
       res.status(200).send(savedTitles.reverse())
     })
     .catch((error) => {
