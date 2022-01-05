@@ -9,7 +9,7 @@
   margin: 1em;
 
 }
-#rightSide {
+#streamOptions {
   width: 60%;
   margin: 1em;
 
@@ -28,4 +28,7 @@
   border:none;
   width: 80%;
   margin: 0 auto;
+}
+#streamOptionsContainer{
+  display:inline-block;
 }
