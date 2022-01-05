@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import LoginOrSignup from './LoginOrSignup.jsx';
-import './Welcome.css'
-
 const Welcome = (props) => {
 
   const [accountState, setAccountState] = useState({
@@ -36,7 +34,8 @@ const Welcome = (props) => {
   if (!accountState.isLoginActive && !accountState.isSignupActive) {
     return (
 
-      <div className="WelcomeBox">
+      <div className="welcomeBox">
+        <div className="welcomeFader"></div>
         <p className="welcomeTitle" >Welcome to Streamhopper</p>
         <p className="welcomeText" >Find the best streaming services for any movie or tv show in one place</p>
         <p className="welcomeText">Click login or sign up to get started</p>

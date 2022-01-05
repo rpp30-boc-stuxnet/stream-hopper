@@ -32,11 +32,11 @@ class SearchBar extends React.Component {
   makeList (data) {
     return data.map((data, index) => {
       return (
-        <div key={index}>
-          <div style={{display:'inline'}}>
-          <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
-          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</span>
-          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</span>
+        <div className="dataItem" key={index}>
+          <img className="dataImg" src={data.poster_path} alt='movie poster'></img>
+          <div className="dataText">
+            <span>{data.title}</span>
+            <span>{data.release_date}</span>
           </div>
         </div>
       )
@@ -45,24 +45,23 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="search-bar">
-        <div className="searchInputs">
-          <input
-            type="text"
-            placeholder="search for a movie or tv show"
-            value={this.state.searchTerm}
-            onChange={(event) => this.searchChange(event)}
-          />
-        </div>
+      <>
+        <input
+          type="text"
+          className="searchInput"
+          placeholder="search for a movie or tv show"
+          value={this.state.searchTerm}
+          onChange={(event) => this.searchChange(event)}
+        />
         {(this.state.searchData.length > 0 && this.state.searchTerm !== '') ?
           <div className="dataResults">
             {this.makeList(this.state.searchData)}
           </div>
           : <></>
         }
-      </div>
+      </>
     )
   }
 }
 
-export default SearchBar
+export default SearchBar;

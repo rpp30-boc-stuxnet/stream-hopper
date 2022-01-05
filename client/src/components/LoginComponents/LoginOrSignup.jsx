@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from './firebase/firebaseConfig.js';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, linkWithCredential, EmailAuthProvider, fetchSignInMethodsForEmail, signInWithEmailAndPassword, createUserWithEmailAndPassword }  from 'firebase/auth';
-import './LoginOrSignup.css';
 
 const LoginOrSignup = (props) => {
 

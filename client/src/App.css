@@ -1,124 +1,7 @@
-* {
-  box-sizing: border-box;
-}
 
-.App {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background-image: url("https://images.unsplash.com/photo-1509281373149-e957c6296406?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1328&q=80");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: #250401;
-  background-position: 50% 36%;
-  width: 100%;
-  min-height: 100vh;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  overflow-x: hidden;
-}
-
-.backgroundFader {
-  display: block;
-  height: 100vh;
-  width: 100%;
-  background-color: black;
-  opacity: 60%;
-  top: 0;
-  left: 0;
-  position: fixed;
-  box-shadow: inset 0 0 100px black;
-  z-index: 0;
-}
-
-button {
-  padding: 8px;
-  border: none;
-  border-radius: 10px;
-}
-
-.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #100100;
-  width: 100vw;
-  padding: 10px 16px;
-  margin: 0;
-  box-sizing: border-box;
-  z-index: 2;
-}
-
-.dashboard {
-  display: flex;
-  flex-direction: column;
-  z-index: 1;
-}
-
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-} */
 
 .App-link {
   color: #fbca61;
-}
-
-
-/* Review Buttons Styling */
-.voted {
-  color: green;
-}
-
-.searchInputs {
-  margin-top: 105px;
-  display: flex;
-}
-
-.searchBar input {
-  background-color: white;
-  border: 0;
-  border-radius: 2px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  font-size: 18px;
-  padding: 15px;
-  height: 30px;
-  width: 300px;
-
-}
-
-.dataResults {
-  margin-top: 5px;
-  width: 300px;
-  height: 200px;
-  background-color: white;
-  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
-  overflow: hidden;
-  overflow-y: auto;
-}
-
-.dataResults::-webkit-scrollbar {
-  display: none;
-}
-
-.dataResults .dataItem {
-  width: 100px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  color: black
-}
-
-.dataItem {
-  width:100%;
-  font-size: 1.2rem;
-}
-
-.dataItem:hover {
-  background-color: lightgrey;
 }
 
 
@@ -128,54 +11,140 @@ button {
   -------------------
 */
 
-.searchInputs {
-  margin-top: 0;
-  display: flex;
-}
-
-.searchInputs input {
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 18px;
-  padding: 15px;
-  height: 30px;
-  width: 300px;
-}
-
-.dataResults {
-  position: absolute;
-  border: none;
-  border-radius: 5px;
-  margin-top: 5px;
-  width: 300px;
-  height: 200px;
-  background-color: white;
-  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
-  overflow: hidden;
-  overflow-y: auto;
-}
-
-.dataResults::-webkit-scrollbar {
-  display: none;
-}
-
-.dataResults .dataItem {
-  width: 100px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  color: black
-}
-
-.dataItem:hover {
-  background-color: lightgrey;
-}
-
 #clearBtn {
   cursor: pointer;
 }
 
+
+
+/*
+  _________________
+  |  Log in CSS  |
+  -----------------
+*/
+
+.loginFormHolder {
+  padding: 0 14px;
+  margin: 10% auto;
+  width: 40%;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.loginTitle {
+  font-weight: bold;
+  font-size:40px;
+  margin: 0px;
+}
+
+.loginTitleHolder {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeOutButton {
+  background: white;
+  font-weight: bold;
+  border: 0px;
+  margin: 0px;
+  font-size: 20px;
+}
+
+.closeOutButton:hover {
+  color: orange
+}
+
+.googleLogin {
+  background-color: forestgreen;
+  width: 80%;
+  font-size: 25px;
+  margin-top: 30px;
+  color: white;
+  font-weight: bold;
+}
+
+.googleLogin:hover {
+  background-color: orange;
+}
+
+.facebookLogin {
+  background-color: royalblue;
+  width: 80%;
+  font-size: 25px;
+  margin-top: 30px;
+  color: white;
+  font-weight: bold;
+}
+
+.facebookLogin:hover {
+  background-color: orange;
+}
+
+.manualLoginHolder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.loginSeparator {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.manualEntryTitle {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  text-align: left;
+}
+
+.manualEntryInput {
+  width: 95%;
+  margin-top: 2px;
+  padding: 10px;
+  font-size: 20px;
+  font-style: italic;
+  border: 2px solid black;
+  background-color: lightgrey;
+}
+
+.manualEntryHolder {
+  width: 80%;
+  padding: 10px;
+}
+
+.submitBtn {
+  font-weight: bold;
+  margin-top: 14px;
+  margin-bottom: 20px;
+  background-color: #521836;
+  color: white;
+  width: 40%;
+  font-size: 20px;
+}
+
+.submitBtn:hover {
+  background-color: orange;
+}
+
+.loginErrorHolder {
+  background-color: white;
+  width: 70%;
+  padding: 10px;
+}
+
+.loginErrorInfo {
+  color: black;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  font-weight:bold
+}
 
 
 /* palette test */
