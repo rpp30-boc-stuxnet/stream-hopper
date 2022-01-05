@@ -40,7 +40,7 @@ export default function Suggestions({ title, movies, addToMyMovies }) {
             <MoviePosterContainer
               style={transformStyle}
               key={index}>
-              <Link to={`/movieDetails/${movie.tmdb_id}`}>
+              <Link to={`/details/${movie.tmdb_id}/${movie.type}`}>
                 <MoviesPoster
                   key={index}
                   src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
