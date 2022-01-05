@@ -7,8 +7,8 @@ function StreamTile (props){
   const[details, setDetails] = useState({})
 
   useEffect(()=>{
+
       if(props.details !== undefined) {
-        console.log(props, 'stream tile props')
         let validDetails = {};
         validDetails.type = props.type;
         for(let i = 0; i < props.details.length; i++) {
@@ -47,7 +47,6 @@ function StreamTile (props){
           }
 
         }
-      console.log(validDetails, 'validDetails')
       setDetails(validDetails);
     }
 
@@ -61,9 +60,11 @@ function StreamTile (props){
       <div className = "sourceContainer">
         {Object.keys(details).length > 0 ?
           Object.keys(details).map((item, index)=>{
-            return (
-              <SourceBox price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}/>
-            )
+            if(item !== 'type') {
+              return (
+                <SourceBox price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}/>
+              )
+            }
           })
         : null}
       </div>

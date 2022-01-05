@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import './SourceBox.css';
 
 function SourceBox(props){
-  console.log(props.webURL);
   return (
     <div className = "sourceBox">
       <div className ="sourceBoxImageContainer">
+        {props.logoURL ?
         <a href = {props.webURL}>
           <img src = {props.logoURL} className = "sourceBoxImage"/>
-        </a>
+        </a> : <img src = "https://i.imgur.com/7sR45d6.png" className = "sourceBoxImage"/>}
       </div>
       <div className = "sourceBoxPriceAndQuality">
-        {props.price + ' | ' + props.quality}
+        {(props.price && props.quality) ? (props.price + ' | ' + props.quality) : 'Info Not Available'}
       </div>
       <div className = "sourceBoxInternalRating">
-        Quality: 100%
+      {(props.price && props.quality) ? '100%' : 'Quality Not Available'}
       </div>
     </div>
   )
