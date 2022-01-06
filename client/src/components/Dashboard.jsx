@@ -153,7 +153,7 @@ export default function Dashboard(props) {
       .catch((error) => {
         console.log('error getting trending titles on dashboard: ', error);
       })
-  })
+  }, [])
 
   return (
     <>
