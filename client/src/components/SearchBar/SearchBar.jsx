@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 const axios = require('axios')
 
 
@@ -6,15 +7,20 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchTerm: '',
       searchData: [],
     }
     this.searchChange = this.searchChange.bind(this);
     this.makeList = this.makeList.bind(this);
+    this.searchEnter = this.searchEnter.bind(this)
   }
 
-  searchChange (e) {
-    this.setState({ searchTerm: e.target.value });
+  searchEnter = (e) => {
+    if (e.key === 'Enter') {
+      console.log('ENTER WAS PRESSED')
+    }
+  }
+
+  searchChange = (e) => {
     axios.get('/api/search', {
       params: {
         title: e.target.value
@@ -29,23 +35,23 @@ class SearchBar extends React.Component {
       });
   }
 
-  makeList (data) {
+  makeList = (data) => {
     return data.map((data, index) => {
       return (
-        <div className="dataItem" key={index}>
-          <img className="dataImg" src={data.poster_path} alt='movie poster'></img>
-          <div className="dataText">
-            <span>{data.title}</span>
-            <span>{data.release_date}</span>
+        <Link to={`/details/${data.tmdb_id}/${data.type}`}>
+          <div style={{display:'inline'}}>
+          <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
+          <div style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</div>
+          <div style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</div>
           </div>
-        </div>
+        </Link>
       )
     })
   }
 
   render() {
     return (
-      <>
+      <div>
         <input
           type="text"
           className="searchInput"
@@ -59,9 +65,9 @@ class SearchBar extends React.Component {
           </div>
           : <></>
         }
-      </>
+      </div>
     )
   }
 }
 
-export default SearchBar;
+export default SearchBar

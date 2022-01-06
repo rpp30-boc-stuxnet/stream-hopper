@@ -47,7 +47,6 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
                   key={index}
                   src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
                   alt={movie.name}
-
                 />
               </Link>
               <div className='buttonsContainer'>
