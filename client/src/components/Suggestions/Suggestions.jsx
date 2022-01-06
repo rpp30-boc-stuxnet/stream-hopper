@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow, MoviePosterContainer, AddRemoveMovieButton } from "../MyMovies/MyMovies.styles.js";
 import ReviewButtons from '../ReviewButtons.jsx';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
@@ -49,7 +49,6 @@ export default function Suggestions({ title, movies, addToMyMovies }) {
               </Link>
               <div className='buttonsContainer'>
                 <AddRemoveMovieButton onClick={addToMyMovies}
-                  data-user={movie.user_id}
                   data-id={movie.tmdb_id}
                   data-type={movie.type}>Add</AddRemoveMovieButton>
                 <ReviewButtons tmdb_id={movie.tmdb_id} />
