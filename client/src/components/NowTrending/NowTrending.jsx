@@ -52,8 +52,8 @@ export default function NowTrending({ title, trendingTitles, addToMyMovies }) {
                 </Link>
                 <div className='buttonsContainer'>
                   <AddRemoveMovieButton onClick={addToMyMovies}
-                    data-user={movie.user_id}
-                    data-id={movie.tmdb_id}>Add</AddRemoveMovieButton>
+                    data-id={movie.tmdb_id}
+                    data-type={movie.type}>Add</AddRemoveMovieButton>
                   <ReviewButtons tmdb_id={movie.tmdb_id} />
                 </div>
               </MoviePosterContainer>

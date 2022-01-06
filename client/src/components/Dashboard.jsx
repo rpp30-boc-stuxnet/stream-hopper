@@ -167,14 +167,17 @@ export default function Dashboard(props) {
           movies={userMovies}
           getUserMovies={getUserMovies}
           setMovies={setMovies} /> : <>No Titles Yet!</>}
+
         {userSuggestions !== null && userSuggestions[0] ? <Suggestions
           title='Suggestions For You'
           movies={userSuggestions}
           addToMyMovies={addToMyMovies} /> : <></>}
+
         {spielbergTitles ? <SpielbergTitles
           title='Our Favorites'
           spielbergTitles={spielbergTitles}
           addToMyMovies={addToMyMovies} /> : <></>}
+
         {trendingTitles ? <NowTrending
           title='Now Trending'
           trendingTitles={trendingTitles}
