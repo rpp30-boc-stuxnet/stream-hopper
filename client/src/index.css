@@ -232,3 +232,124 @@ button {
     hover:bg-[#FF6F59]
     hover:text-white
 }
+
+/*
+  _________________
+  |  Log in CSS  |
+  -----------------
+*/
+
+.loginFormHolder {
+  @apply
+    flex
+    flex-col
+    py-0
+    px-4
+    mx-auto
+    my-8
+    w-4/5
+    bg-white
+    text-black
+    rounded-xl
+    z-10
+    md:w-3/5
+    lg:w-2/5
+}
+
+.loginTitle {
+  @apply m-0 text-4xl font-bold
+}
+
+.loginExit {
+  @apply flex justify-end
+}
+
+.exitBtn {
+  @apply
+    bg-white
+    border-none
+    m-0
+    text-xl
+    font-bold
+    hover:text-orange-500
+}
+
+.googleLogin {
+  @apply
+    w-4/5
+    mt-8
+    bg-green-600
+    text-white
+    font-bold
+    text-2xl
+    hover:bg-orange-500
+}
+
+.facebookLogin {
+  @apply
+  w-4/5
+  mt-8
+  bg-blue-600
+  text-white
+  font-bold
+  text-2xl
+  hover:bg-orange-500
+}
+
+.loginSeparator {
+  @apply text-xl font-bold mt-3
+}
+
+.manualLoginHolder {
+  @apply flex flex-col items-center w-full
+}
+
+.manualEntryTitle {
+  @apply mb-1 text-2xl text-left font-bold
+}
+
+.manualEntryInput {
+  @apply
+    w-11/12
+    mb-2
+    py-2
+    px-3
+    text-xl
+    italic
+    border-2
+    border-solid
+    border-black
+    bg-neutral-200
+}
+
+.manualEntryHolder {
+  @apply w-10/12 p-3
+}
+
+.submitBtn {
+  @apply
+    w-2/5
+    mt-3
+    mb-7
+    bg-[#64113F]
+    text-white
+    font-bold
+    text-xl
+    hover:bg-orange-500
+}
+
+.loginErrorHolder {
+  @apply
+  w-4/5
+  p-3
+  bg-white
+  z-10
+  rounded-b-xl
+  md:w-3/5
+  lg:w-2/5
+}
+
+.loginErrorInfo {
+  @apply mt-2 mb-1 text-xl text-black font-bold
+}
+
