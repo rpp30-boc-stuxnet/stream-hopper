@@ -73,10 +73,16 @@ const findRelatedTitles = async (req, res) => {
       .then((response) => {
         for (var i = 0; i < response.data.results.slice(0,5).length; i++) {
           if (!allLoggedTitles[response.data.results[i].id]) {
+            let posterUrl;
+            if (response.data.results[i].poster_path) {
+              posterUrl = 'https://image.tmdb.org/t/p/w500' + response.data.results[i].poster_path;
+            } else {
+              posterUrl = posterUrl = 'https://i.imgur.com/7sR45d6.png';
+            }
             let currentRecommendation = {
               type: response.data.results[i].media_type,
               tmdb_id: response.data.results[i].id,
-              poster_path: 'https://image.tmdb.org/t/p/w500' + response.data.results[i].poster_path,
+              poster_path: posterUrl,
               saved_by_user: false
             }
             if (priorityMovies[JSON.stringify(response.data.results[i].id)] && !orderModified) {
