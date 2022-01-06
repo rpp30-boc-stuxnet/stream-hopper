@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { auth } from './firebase/firebaseConfig.js';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, linkWithCredential, EmailAuthProvider, fetchSignInMethodsForEmail, signInWithEmailAndPassword, createUserWithEmailAndPassword }  from 'firebase/auth';
 import './LoginOrSignup.css';
+import EmailValidator from './EmailValidator.jsx';
 
 const LoginOrSignup = (props) => {
 
@@ -10,10 +11,7 @@ const LoginOrSignup = (props) => {
     errorCode: '',
   });
 
-  const [promptManualEntry, setPromptManualEntry] = useState({
-    showPrompt: 0,
-    credential: ''
-  });
+  const [showPassword, setShowPassword] = useState(false);
 
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
@@ -72,7 +70,9 @@ const LoginOrSignup = (props) => {
 
 
   const handleManualSignIn = (e) => {
-    if (e.target.textContent === 'Login') {
+    e.preventDefault();
+
+    if (e.target.textContent === 'Log in') {
       signInWithEmailAndPassword(auth, userEmail, userPassword)
       .then((userCredential) => {
         props.handleSuccessfulLogin();
@@ -82,7 +82,7 @@ const LoginOrSignup = (props) => {
           //if the user is attempting to login with an email that is already linked in firebase to google or facebook,
           //then we will link their manual creds to their other login methods for them.
           const credential = EmailAuthProvider.credential(userEmail, userPassword);
-          fetchSignInMethodsForEmail(userEmail)
+          fetchSignInMethodsForEmail(auth, userEmail)
           .then((signInMethods) => {
             if (signInMethods[0] === 'facebook.com') {
               linkAccounts('facebook', credential);
@@ -96,7 +96,29 @@ const LoginOrSignup = (props) => {
               errorCode: err.code
             });
           })
+        } else if (err.code === 'auth/wrong-password') {
+          fetchSignInMethodsForEmail(auth, userEmail)
+          .then((signInMethods) => {
+            if (signInMethods[0] === 'facebook.com') {
+              handleFacebookLogin()
+            } else if (signInMethods[0] === 'google.com') {
+              handleGoogleLogin()
+            } else {
+              //it's actually just the wrong password.
+              setLoginError({
+                loginError: 1,
+                errorCode: err.code
+              });
+            }
+          })
+          .catch((err) => {
+            setLoginError({
+              loginError: 1,
+              errorCode: err.code
+            });
+          })
         } else {
+          console.log(err)
           setLoginError({
             loginError: 1,
             errorCode: err.code
@@ -139,7 +161,7 @@ const LoginOrSignup = (props) => {
           errorCode: err.code
         });
       })
-    } else if (accountLinkProvider === 'google') {
+    } else {
       //we first try google and build in attempting with email in case google fails
       //this is the only method that needs to try two methods because FB tries this method by default but it could be the wrong method.
       let provider = new GoogleAuthProvider();
@@ -157,50 +179,12 @@ const LoginOrSignup = (props) => {
         })
       })
       .catch((err) => {
-        //if the sign in with google fails, then try with email ONLY if the error is still saying there's a duplicated account
-        if (err.code === 'auth/account-exists-with-different-credential') {
-          setPromptManualEntry({
-            showPrompt: 1,
-            credential: initialCredential
-          });
-        } else {
-          setLoginError({
-            loginError: 1,
-            errorCode: err.code
-          });
-        }
-      })
-    } else {
-      //if the requested method = email/password, then prompt the user for the email and password and then link the email/password account with the initially submitted credential.
-      setPromptManualEntry({
-        showPrompt: 1,
-        credential: initialCredential
-      });
-    }
-  }
-
-  const handleManualLink = (e) => {
-    //sign in to the email/password and then link the accounts.
-    signInWithEmailAndPassword(auth, userEmail, userPassword)
-    .then((userCredential) => {
-      linkWithCredential(auth.currentUser, promptManualEntry.credential)
-      .then((usercred) => {
-        //link the logged in account to the initially attempted method
-        setPromptManualEntry({
-          showPrompt: 0,
-          credential: ''
+        setLoginError({
+          loginError: 1,
+          errorCode: err.code
         });
-        props.handleSuccessfulLogin();
-      }).catch((error) => {
-        console.log("Account linking error", error.code);
-      });
-    })
-    .catch((error) => {
-      setLoginError({
-        loginError: 1,
-        errorCode: error.code
-      });
-    });
+      })
+    }
   }
 
   const handleErrorOk = (e) => {
@@ -218,32 +202,17 @@ const LoginOrSignup = (props) => {
     }
   }
 
+  const handleShowPasswordClick = (e) => {
+    e.preventDefault();
+    setShowPassword(showPassword ? false : true);
+  }
+
   if (loginError.loginError) {
     return (
       <div className="loginErrorHolder">
         <p className="loginErrorInfo">There was an error while logging in to Streamhopper. Please try again or use a different method. </p>
         <p className="loginErrorInfo">Error message: {loginError.errorCode}</p>
         <button className="submitBtn" onClick={handleErrorOk}>Ok</button>
-      </div>
-    )
-  } else if (promptManualEntry.showPrompt){
-    return(
-      <div>
-        <p>Please enter your email address and password to continue</p>
-        <div>
-          <button onClick={props.handleXOutClick}>X</button>
-        </div>
-        <form>
-          <div>
-            <label htmlFor='emailAddress'>Email Address</label>
-            <input type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
-          </div>
-        </form>
-        <button onClick={handleManualLink}>Continue</button>
       </div>
     )
   } else {
@@ -267,14 +236,18 @@ const LoginOrSignup = (props) => {
               <p className="manualEntryTitle">Email Address</p>
             </div>
             <input className="manualEntryInput" type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
+            <EmailValidator email={userEmail}/>
           </div>
           <div className="manualEntryHolder">
             <div>
               <p className="manualEntryTitle">Password</p>
             </div>
-            <input className="manualEntryInput" type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
+            <div>
+              <input className="manualEntryInput" type={showPassword ? 'text':'password'} name='password' autoComplete='off' onChange={handleInputChange} placeholder='Enter password'/>
+              <button onClick={handleShowPasswordClick}>{showPassword ? 'Hide':'Show'}</button>
+            </div>
           </div>
-          <button className="submitBtn" onClick={handleManualSignIn}>{props.protocol}</button>
+          <button className="submitBtn" disabled={userEmail.includes('@') ? false : true} onClick={handleManualSignIn}>{props.protocol}</button>
         </form>
       </div>
     )

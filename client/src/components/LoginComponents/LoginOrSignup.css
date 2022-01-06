@@ -103,7 +103,18 @@
   font-size: 20px;
 }
 
-.submitBtn:hover {
+.submitBtn:disabled {
+  font-weight: bold;
+  margin-top: 14px;
+  margin-bottom: 20px;
+  background-color: #521836;
+  opacity: 20%;
+  color: white;
+  width: 40%;
+  font-size: 20px;
+}
+
+.submitBtn:hover:enabled {
   background-color: orange;
 }
 
@@ -119,4 +130,10 @@
   margin-top: 5px;
   margin-bottom: 0px;
   font-weight:bold
+}
+
+.emailValidator {
+  font-size: 15px;
+  color: red;
+  font-style: italic;
 }
