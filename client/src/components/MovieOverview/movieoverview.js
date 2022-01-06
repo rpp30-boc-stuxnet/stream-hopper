@@ -6,14 +6,13 @@ import { useParams } from 'react-router-dom';
 
 function MovieOverview (props) {
 
-  const [existsInMyList, setExistsInMyList] = useState(false);
   const [movieDetails, setMovieDetails] = useState({});
   const [titleSources, setTitleSources] = useState({});
 
   let params = useParams();
   let mediaId = params.id;
   let mediaType = params.type;
-  //console.log(mediaType, 'media type');
+
   const searchDetails = () =>{
     return new Promise((resolve, reject) =>{
       axios.get('/api/titleDetails', {
@@ -50,10 +49,27 @@ function MovieOverview (props) {
         })
     })
   }
+  const transformDataSources = (data) => {
+    let mappedData = {};
+    for(let i = 0; i < data.length; i++) {
+      if(mappedData[data[i].type] === undefined) {
+        mappedData[data[i].type] = [];
+      }
+      mappedData[data[i].type].push({
+        companyInfo: data[i].company_info,
+        price: data[i].price,
+        quality: data[i].format,
+        webUrl: data[i].web_url,
+        type: data[i].type
+      })
+    }
+    console.log(mappedData)
+     return mappedData;
+  }
 
   useEffect(() => {
     let deetz = {};
-    let sources = {}
+    let sources = {};
     searchDetails()
     .then((data)=>{
       deetz = data;
@@ -61,7 +77,9 @@ function MovieOverview (props) {
       .then((requestSourcesData)=>{
         sources = requestSourcesData;
         setMovieDetails(deetz);
-        setTitleSources(sources);
+
+        let tranformedData = transformDataSources(sources);
+        setTitleSources(tranformedData);
       })
     })
     .catch((err)=>{
@@ -85,7 +103,7 @@ function MovieOverview (props) {
       <div id = "leftSide">
         <h1 id = "leftSideHeading">{Object.keys(movieDetails).length > 0 ? movieDetails.title : 'Title Missing'}</h1>
         <div id ="moviePoster">
-          <img src = { Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : null} alt ="movie_poster"/>
+          <img src = { Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : 'https://i.imgur.com/7sR45d6.png'} alt ="movie_poster"/>
         </div>
         <div id= "movieDetails">
          <div id = "movieRatings">
@@ -101,18 +119,24 @@ function MovieOverview (props) {
           { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : null}
          </div>
         </div>
-        <button id ="addMovie" onClick = {handleAddMovies}> Add to My Movies </button>
+        <div id ="addRemoveMovieButtons">
+          {Object.keys(movieDetails).length > 0 ?
+            (movieDetails.saved_by_user ? <button id ="addMovie" onClick = {handleAddMovies}> Add to My Movies </button> : <button id ="addMovie" onClick = {handleRemoveMovies}> Remove from My Movies </button>) :
+            null}
+        </div>
       </div>
-      <div id = "rightSide">
-        <h2 id ="rightSideHeading"> Where to Watch</h2>
-        {/* <StreamTile title = {"Stream"} options = {options.stream ? options.stream : null}/>
-        <StreamTile title = {"Rent"} options = {options.rent ? options.rent : null}/>
-        <StreamTile title = {"Buy"} options = {options.buy ? options.buy : null}/> */}
+      <div id = "streamOptions">
+        <h2 id ="streamOptionsHeading"> Where to Watch</h2>
+        <div id= "streamOptionsContainer">
+          {Object.keys(titleSources).length > 0 ? Object.keys(titleSources).map((item, index) => {
+            return <StreamTile type = {item} key = {index} details = {titleSources[item]}/>
+          }): <StreamTile type = 'Not Available'/>}
+        </div>
         <div>
           <h3 id ="synopsisHeading">Film Synopsis</h3>
           <div id ="synopsisContent">
             {Object.keys(movieDetails).length > 0 ? movieDetails.synopsis : 'Synopsis not Available'}
-          </div>
+        </div>
         </div>
       </div>
 

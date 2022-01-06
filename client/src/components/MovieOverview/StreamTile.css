@@ -1,0 +1,9 @@
+.sourceContainer{
+  text-align: center;
+  font-size: 1em;
+}
+.tileContainer{
+  width:100%;
+  background-color: grey;
+  margin: 1em;
+}
