@@ -45,7 +45,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <>
+      <div>
         <input
           type="text"
           className="searchInput"
@@ -59,7 +59,7 @@ class SearchBar extends React.Component {
           </div>
           : <></>
         }
-      </>
+      </div>
     )
   }
 }
