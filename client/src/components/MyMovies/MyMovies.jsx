@@ -17,18 +17,22 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
     setCarousel(posterIndex + 1);
   }
 
-  let transformStyle = { transform: `translateX(-${posterIndex * 500}px)` };
+  let transformStyle = {
+    transform: `translateX(-${posterIndex * 500}px)`
+  };
 
   let chevronLeftStyle = {
+    marginLeft: '20px',
+    paddingRight: '8px',
     display: 'flex',
     alignSelf: 'center',
-    zIndex: '1'
+    zIndex: '10'
   };
 
   let chevronRightStyle = {
     display: 'flex',
     alignSelf: 'center',
-    zIndex: '1'
+    zIndex: '10'
   };
 
   return (
@@ -36,7 +40,9 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
     <>
       <MoviesTitle>{title}</MoviesTitle>
       <MoviesContainer>
-        {posterIndex > 0 && <FaChevronLeft style={chevronLeftStyle} className="carouselArrow" onClick={transformLeft} />}
+        <div className="carouselLeft" >
+          {posterIndex > 0 && <FaChevronLeft onClick={transformLeft} />}
+        </div>
         <MoviesRow movies={movies} >
 
           {movies.map((movie, index) => (
@@ -62,7 +68,7 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
           ))}
 
         </MoviesRow>
-        {posterIndex < movies.length - 3 && <FaChevronRight style={chevronRightStyle} onClick={transformRight} />}
+        {posterIndex < movies.length - 3 && <FaChevronRight style={chevronRightStyle} className="carouselRight" onClick={transformRight} />}
       </MoviesContainer>
     </>
   )
