@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MyMovies from './MyMovies/MyMovies.jsx';
 import Suggestions from './Suggestions/Suggestions.jsx';
+import SpielbergTitles from './SpielbergTitles/SpielbergTitles.jsx';
+import NowTrending from './NowTrending/NowTrending.jsx';
 import Navbar from './Navbar/Navbar.jsx';
 
 export default function Dashboard(props) {
 
   const [userMovies, setMovies] = useState(null);
   const [userSuggestions, setSuggestions] = useState(null);
+  const [spielbergTitles, setSpielberg] = useState(null);
+  const [trendingTitles, setTrending] = useState(null);
 
   const getUserMovies = () => {
     return new Promise((resolve, reject) => {
@@ -34,6 +38,38 @@ export default function Dashboard(props) {
       })
         .then((response) => {
           //console.log('success getting user suggestions: ', response);
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  }
+
+  const getSpielbergTitles = () => {
+    return new Promise((resolve, reject) => {
+      axios.get('/api/spielbergTitles', {
+        params: {
+          user_id: window.localStorage.userUID
+        }
+      })
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          reject(error);
+        })
+    })
+  }
+
+  const getTrendingTitles = () => {
+    return new Promise((resolve, reject) => {
+      axios.get('/api/trendingTitles', {
+        params: {
+          user_id: window.localStorage.userUID
+        }
+      })
+        .then((response) => {
           resolve(response.data);
         })
         .catch((error) => {
@@ -87,9 +123,6 @@ export default function Dashboard(props) {
       .catch((error) => {
         console.log('error getting user movies on dashboard: ', error);
       })
-
-
-
   }, [])
 
   useEffect(() => {
@@ -102,22 +135,46 @@ export default function Dashboard(props) {
       })
   }, [userMovies])
 
+  useEffect(() => {
+    getSpielbergTitles()
+      .then((data) => {
+        setSpielberg(data);
+      })
+      .catch((error) => {
+        console.log('Error retrieving Spielberg titles on dashboard: ', error);
+      })
+  }, [])
+
+  useEffect(() => {
+    getTrendingTitles()
+      .then((data) => {
+        setTrending(data);
+      })
+      .catch((error) => {
+        console.log('error getting trending titles on dashboard: ', error);
+      })
+  })
+
   return (
     <>
       <Navbar handleLogout={props.handleLogout} />
       <main className={'dashboard'}>
         <h1>User Dashboard</h1>
 
-      {userMovies ? <MyMovies
-        title='My Movies'
-        removeFromMyMovies={removeFromMyMovies}
-        movies={userMovies}
-        getUserMovies={getUserMovies}
-        setMovies={setMovies} /> : <></>}
-      {userSuggestions !== null && userSuggestions[0] ? <Suggestions
-        title='Suggestions For You'
-        movies={userSuggestions}
-        addToMyMovies={addToMyMovies} /> : <></>}
+        {userMovies ? <MyMovies
+          title='My Movies'
+          removeFromMyMovies={removeFromMyMovies}
+          movies={userMovies}
+          getUserMovies={getUserMovies}
+          setMovies={setMovies} /> : <></>}
+        {userSuggestions !== null && userSuggestions[0] ? <Suggestions
+          title='Suggestions For You'
+          movies={userSuggestions}
+          addToMyMovies={addToMyMovies} /> : <></>}
+        {spielbergTitles ? <SpielbergTitles
+          spielbergTitles={spielbergTitles} /> : <></>}
+        {trendingTitles ? <NowTrending
+          trendingTitles={trendingTitles} /> : <></>}
       </main>
 
     </>
