@@ -51,7 +51,6 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
       <div>
         <input
           type="text"
@@ -61,18 +60,6 @@ class SearchBar extends React.Component {
           onChange={(event) => this.searchChange(event)}
         />
         {(this.state.searchData.length > 0 && this.state.searchTerm !== '') ?
-=======
-      <div className="search-bar">
-        <div className="searchInputs">
-          <input
-            type="text"
-            placeholder="search for a movie or tv show"
-            value={this.state.searchTerm}
-            onChange={(event) => this.searchChange(event)}
-          />
-        </div>
-        {this.state.searchData.length > 0 ?
->>>>>>> staging
           <div className="dataResults">
             {this.makeList(this.state.searchData)}
           </div>
