@@ -25,7 +25,8 @@ const findTitleDetails = async (req, res) => {
   } else if (req.query.type === 'movie') {
     searchField = 'tmdb_movie_id'
   } else {
-    res.status(400).send('Invalid \'type\' input in search query.  Acceptable options are \'tv\' or \'movie\'')
+    res.status(400).send('Invalid \'type\' input in search query.  Acceptable options are \'tv\' or \'movie\'');
+    return;
   }
 
   await axios.get(`https://api.watchmode.com/v1/search/`, {

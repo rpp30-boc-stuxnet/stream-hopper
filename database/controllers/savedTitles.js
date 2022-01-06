@@ -12,7 +12,8 @@ const findSavedTitles = async (req, res) => {
     })
     .catch((error) => {
       console.log('error getting saved titles: ', error)
-      res.status(400).send(error)
+      res.status(400).send(error);
+      return;
     })
 }
 
@@ -28,7 +29,8 @@ const addSavedTitle = async (req, res) => {
       posterPath = 'https://image.tmdb.org/t/p/w500' + result.data.poster_path;
     })
     .catch((error) => {
-      res.status(400).send('Error while fetching tmdb id from tmdb\'s API: ' + error)
+      res.status(400).send('Error while fetching tmdb id from tmdb\'s API: ' + error);
+      return;
     })
 
   Saved_Title.find({ user_id: req.body.user_id, type: req.body.type, tmdb_id: req.body.tmdb_id })
@@ -41,12 +43,14 @@ const addSavedTitle = async (req, res) => {
             res.status(201).send('Title added successfully');
           })
           .catch((error) => {
-            res.status(400).send(error)
+            res.status(400).send(error);
+            return;
           })
       }
     })
     .catch((error) => {
-      res.status(400).send('Error inside Saved_Title.find function: ' + error)
+      res.status(400).send('Error inside Saved_Title.find function: ' + error);
+      return;
     })
 }
 
@@ -61,6 +65,7 @@ const deleteSavedTitle = async (req, res) => {
     })
     .catch((error) => {
       res.status(400).send(error)
+      return;
     })
 }
 
