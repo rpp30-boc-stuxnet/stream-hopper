@@ -58,7 +58,8 @@ const findRelatedTitles = async (req, res) => {
       }
     })
     .catch((error) => {
-      res.status(400).send('Error while finding most recent titles on user\'s list: ' + error)
+      res.status(400).send('Error while finding most recent titles on user\'s list: ' + error);
+      return;
     })
 
   let relatedTmdbIds = [];
@@ -96,7 +97,8 @@ const findRelatedTitles = async (req, res) => {
         }
       })
       .catch((error) => {
-        res.status(400).send('Error while fetching related ID\'s from watchmode API: ' + error)
+        res.status(400).send('Error while fetching related ID\'s from watchmode API: ' + error);
+        return;
       })
   }
 
@@ -105,7 +107,7 @@ const findRelatedTitles = async (req, res) => {
   shuffleArray(finalResults);
   finalResults.unshift(firstElem);
 
-  res.status(200).send(finalResults)
+  res.status(200).send(finalResults);
 
 }
 
