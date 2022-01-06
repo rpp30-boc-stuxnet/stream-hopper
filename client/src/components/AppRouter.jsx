@@ -10,12 +10,17 @@ import MovieOverview from './MovieOverview/movieoverview.js';
 const AppRouter = () => {
   const [loggedIn, setLoggedIn] = useState(0);
 
-  useEffect(() => { }, [loggedIn])
+  useEffect(() => {
+    if (window.localStorage.getItem('userUID') !== null) {
+      setLoggedIn(1);
+    }
+  }, [loggedIn])
 
   const handleSuccessfulLogin = () => {
     //save userUID in localstorage. it can be accessed anywhere in the app for any axios requests that need to send it to the server to reference it in the DB
     //it will also enable the App to remember the user so the login process is less painful
-    window.localStorage.setItem('userUID', auth.currentUser.uid)
+    window.localStorage.setItem('userUID', auth.currentUser.uid);
+    window.localStorage.setItem('userEmail', auth.currentUser.email);
     setLoggedIn(1);
   }
 
