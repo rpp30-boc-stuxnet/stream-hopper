@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 function MovieOverview (props) {
-
   const [existsInMyList, setExistsInMyList] = useState(false);
   const [movieDetails, setMovieDetails] = useState({});
   const [titleSources, setTitleSources] = useState({});

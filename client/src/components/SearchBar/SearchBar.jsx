@@ -7,7 +7,6 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchTerm: '',
       searchData: [],
     }
     this.searchChange = this.searchChange.bind(this);
@@ -39,11 +38,11 @@ class SearchBar extends React.Component {
   makeList = (data) => {
     return data.map((data, index) => {
       return (
-        <Link to={`/movieDetails/${data.tmdb_id}`}>
+        <Link to={`/details/${data.tmdb_id}/${data.type}`}>
           <div style={{display:'inline'}}>
           <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
-          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</span>
-          <span style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</span>
+          <div style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</div>
+          <div style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</div>
           </div>
         </Link>
       )
@@ -61,7 +60,7 @@ class SearchBar extends React.Component {
             onChange={(event) => this.searchChange(event)}
           />
         </div>
-        {(this.state.searchData.length > 0 && this.state.searchTerm !== '') ?
+        {this.state.searchData.length > 0 ?
           <div className="dataResults">
             {this.makeList(this.state.searchData)}
           </div>
