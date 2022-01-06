@@ -2,15 +2,16 @@ import tw, { styled } from "twin.macro";
 
 
 export const MoviesContainer = styled.div`
-  z-index: 1;
   ${tw`
     flex
     my-8
+    p-4
+    w-full
+    z-10
   `}
 `;
 
 export const MoviesTitle = styled.h2`
-  z-index: 1;
   ${tw`
       text-2xl
       font-bold
@@ -20,14 +21,14 @@ export const MoviesTitle = styled.h2`
 `;
 
 export const MoviesRow = styled.div`
-  z-index: 1;
-  max-width: 700px;
   ${tw`
-        flex
-        overflow-x-hidden
-        mt-4
-        p-4
-      `}
+      flex
+      overflow-x-hidden
+      mt-4
+      mx-3
+      p-4
+      w-11/12
+    `}
 
     &::-webkit-scrollbar {
       display: none;

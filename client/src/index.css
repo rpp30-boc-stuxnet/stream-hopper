@@ -39,11 +39,11 @@ button {
 
 .fader {
   box-shadow: inset 0 0 100px black;
-  @apply block fixed w-full h-full bg-black opacity-50 z-0
+  @apply block fixed w-full h-full bg-black opacity-50 z-0 top-0 left-0
 }
 
 .dashboard {
-  @apply flex flex-col z-10
+  @apply flex flex-col w-screen items-center z-10
 }
 
 /*
@@ -149,18 +149,6 @@ button {
     text-sm
     text-center
 }
-
-
-/*
-  __________________
-  |  Vote Buttons  |
-  ------------------
-*/
-
-.voted {
-  @apply text-[#68A357]
-}
-
 
 /*
   _________________
@@ -353,3 +341,22 @@ button {
   @apply mt-2 mb-1 text-xl text-black font-bold
 }
 
+/*
+  __________________
+  |  Vote Buttons  |
+  ------------------
+*/
+
+.voted {
+  @apply text-[#68A357]
+}
+
+/*
+  __________________
+  |  Carousel CSS  |
+  ------------------
+*/
+
+.carouselLeft {
+  @apply flex self-center ml-5 z-10
+}

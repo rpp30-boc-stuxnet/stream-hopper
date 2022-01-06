@@ -39,10 +39,12 @@ class SearchBar extends React.Component {
     return data.map((data, index) => {
       return (
         <Link to={`/details/${data.tmdb_id}/${data.type}`}>
-          <div style={{display:'inline'}}>
-          <img src={data.poster_path} alt='movie poster' width="40px" height="40px"></img>
-          <div style={{fontSize: "10px", display:"block",color:"black"}}>{data.release_date}</div>
-          <div style={{fontSize: "10px", display:"block",color:"black"}}>{data.title}</div>
+          <div className="dataItem" key={index}>
+            <img className="dataImg" src={data.poster_path} alt='movie poster'></img>
+            <div className="dataText">
+              <span>{data.title}</span>
+              <span>{data.release_date}</span>
+            </div>
           </div>
         </Link>
       )
