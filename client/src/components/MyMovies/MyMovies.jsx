@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import ReviewButtons from '../ReviewButtons.jsx';
 import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow, MoviePosterContainer, AddRemoveMovieButton } from "./MyMovies.styles.js";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';

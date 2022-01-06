@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow, MoviePosterContainer, AddRemoveMovieButton } from "../MyMovies/MyMovies.styles.js";
 import ReviewButtons from '../ReviewButtons.jsx';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';

@@ -166,15 +166,19 @@ export default function Dashboard(props) {
           removeFromMyMovies={removeFromMyMovies}
           movies={userMovies}
           getUserMovies={getUserMovies}
-          setMovies={setMovies} /> : <></>}
+          setMovies={setMovies} /> : <>No Titles Yet!</>}
         {userSuggestions !== null && userSuggestions[0] ? <Suggestions
           title='Suggestions For You'
           movies={userSuggestions}
           addToMyMovies={addToMyMovies} /> : <></>}
         {spielbergTitles ? <SpielbergTitles
-          spielbergTitles={spielbergTitles} /> : <></>}
+          title='Our Favorites'
+          spielbergTitles={spielbergTitles}
+          addToMyMovies={addToMyMovies} /> : <></>}
         {trendingTitles ? <NowTrending
-          trendingTitles={trendingTitles} /> : <></>}
+          title='Now Trending'
+          trendingTitles={trendingTitles}
+          addToMyMovies={addToMyMovies} /> : <></>}
       </main>
 
     </>
