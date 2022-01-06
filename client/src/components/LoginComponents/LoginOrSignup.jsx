@@ -241,7 +241,7 @@ const LoginOrSignup = (props) => {
             </div>
             <div>
               <input className="manualEntryInput" type={showPassword ? 'text':'password'} name='password' autoComplete='off' onChange={handleInputChange} placeholder='Enter password'/>
-              <button onClick={handleShowPasswordClick}>{showPassword ? 'Hide':'Show'}</button>
+              <button style={{fontSize: '15px', background: 'lightblue', }} onClick={handleShowPasswordClick}>{showPassword ? 'Hide Password':'Show Password'}</button>
             </div>
           </div>
           <button className="submitBtn" disabled={userEmail.includes('@') ? false : true} onClick={handleManualSignIn}>{props.protocol}</button>
