@@ -6,7 +6,7 @@ export default function Navbar(props) {
 
   return (
     <nav className={'navbar'} >
-      <span className={'navLogo'} >Stream Hopper</span>
+      <span className={'navLogo'} >streamhopper</span>
       {/** Search bar will go here */}
       <SearchBar />
       <button
