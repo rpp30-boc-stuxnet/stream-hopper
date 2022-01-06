@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { auth } from './firebase/firebaseConfig.js';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, linkWithCredential, EmailAuthProvider, fetchSignInMethodsForEmail, signInWithEmailAndPassword, createUserWithEmailAndPassword }  from 'firebase/auth';
-<<<<<<< HEAD
-=======
-import './LoginOrSignup.css';
 import EmailValidator from './EmailValidator.jsx';
->>>>>>> loginFeatureUpdates
 
 const LoginOrSignup = (props) => {
 
@@ -237,10 +233,6 @@ const LoginOrSignup = (props) => {
           <div className="manualEntryHolder">
               <p className="manualEntryTitle">Email Address</p>
             <input className="manualEntryInput" type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
-<<<<<<< HEAD
-              <p className="manualEntryTitle">Password</p>
-            <input className="manualEntryInput" type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
-=======
             <EmailValidator email={userEmail}/>
           </div>
           <div className="manualEntryHolder">
@@ -251,7 +243,6 @@ const LoginOrSignup = (props) => {
               <input className="manualEntryInput" type={showPassword ? 'text':'password'} name='password' autoComplete='off' onChange={handleInputChange} placeholder='Enter password'/>
               <button onClick={handleShowPasswordClick}>{showPassword ? 'Hide':'Show'}</button>
             </div>
->>>>>>> loginFeatureUpdates
           </div>
           <button className="submitBtn" disabled={userEmail.includes('@') ? false : true} onClick={handleManualSignIn}>{props.protocol}</button>
         </form>

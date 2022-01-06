@@ -1,5 +1,4 @@
 import React from 'react';
-import './LoginOrSignup.css';
 
 const EmailValidator = (props) => {
   if(props.email.includes('@') || props.email === '') {
