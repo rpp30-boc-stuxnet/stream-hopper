@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from './firebase/firebaseConfig.js';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, linkWithCredential, EmailAuthProvider, fetchSignInMethodsForEmail, signInWithEmailAndPassword, createUserWithEmailAndPassword }  from 'firebase/auth';
-import './LoginOrSignup.css';
 
 const LoginOrSignup = (props) => {
 
@@ -250,8 +249,8 @@ const LoginOrSignup = (props) => {
     return (
 
       <div className="loginFormHolder">
-        <div className="loginTitleHolder">
-          <button className="closeOutButton" onClick={props.handleXOutClick}>X</button>
+        <div className="loginExit">
+          <button className="exitBtn" onClick={props.handleXOutClick}>X</button>
         </div>
         <p className="loginTitle">{props.protocol} with Streamhopper</p>
         <div>
@@ -263,15 +262,9 @@ const LoginOrSignup = (props) => {
         <p className="loginSeparator">-OR-</p>
         <form className="manualLoginHolder">
           <div className="manualEntryHolder">
-            <div>
               <p className="manualEntryTitle">Email Address</p>
-            </div>
             <input className="manualEntryInput" type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
-          </div>
-          <div className="manualEntryHolder">
-            <div>
               <p className="manualEntryTitle">Password</p>
-            </div>
             <input className="manualEntryInput" type='text' name='password' onChange={handleInputChange} placeholder='Enter password'/>
           </div>
           <button className="submitBtn" onClick={handleManualSignIn}>{props.protocol}</button>
