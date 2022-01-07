@@ -27,14 +27,14 @@ button {
     flex-col
     items-center
     text-center
-    w-screen
-    min-h-screen
+    w-full
+    min-h-full
     text-white
     overflow-x-hidden
 }
 
 .backImg {background-position: 50% 36%;
-  @apply block fixed w-screen h-full bg-cover bg-no-repeat z-0
+  @apply block fixed w-full h-full bg-cover bg-no-repeat z-0
 }
 
 .fader {
@@ -43,7 +43,7 @@ button {
 }
 
 .dashboard {
-  @apply flex flex-col w-screen items-center z-10
+  @apply flex flex-col w-full items-center z-10
 }
 
 /*
@@ -59,7 +59,7 @@ button {
     justify-between
     items-center
     bg-[#64113F]
-    w-screen
+    w-full
     h-20
     py-3
     px-4
@@ -71,6 +71,7 @@ button {
   @apply
     italic
     m-0
+    ml-5
     h-12
 }
 
@@ -79,7 +80,8 @@ button {
     bg-white
     text-[#64113F]
     text-xl
-    h-10
+    h-11
+    mr-5
     rounded-xl
 }
 
@@ -177,7 +179,7 @@ button {
     content-center
     items-center
     p-4
-    w-screen
+    w-full
     h-screen
     text-xl
     text-[#FCECC9]
@@ -359,4 +361,8 @@ button {
 
 .carouselLeft {
   @apply flex self-center ml-5 z-10
+}
+
+.carouselRight {
+  @apply flex self-center mr-5 z-10
 }
