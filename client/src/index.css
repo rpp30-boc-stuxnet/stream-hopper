@@ -362,3 +362,7 @@ button {
 .carouselLeft {
   @apply flex self-center ml-5 z-10
 }
+
+.carouselRight {
+  @apply flex self-center mr-5 z-10
+}

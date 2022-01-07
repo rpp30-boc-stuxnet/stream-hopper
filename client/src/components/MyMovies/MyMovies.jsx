@@ -20,20 +20,6 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
     transform: `translateX(-${posterIndex * 500}px)`
   };
 
-  let chevronLeftStyle = {
-    marginLeft: '20px',
-    paddingRight: '8px',
-    display: 'flex',
-    alignSelf: 'center',
-    zIndex: '10'
-  };
-
-  let chevronRightStyle = {
-    display: 'flex',
-    alignSelf: 'center',
-    zIndex: '10'
-  };
-
   return (
 
     <>
@@ -67,7 +53,9 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
           ))}
 
         </MoviesRow>
-        {posterIndex < movies.length - 3 && <FaChevronRight style={chevronRightStyle} className="carouselRight" onClick={transformRight} />}
+        <div className="carouselRight">
+          {posterIndex < movies.length - 3 && <FaChevronRight className="carouselRight" onClick={transformRight} />}
+        </div>
       </MoviesContainer>
     </>
   )
