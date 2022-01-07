@@ -42,8 +42,8 @@ const findTitleDetails = async (req, res) => {
 
         await axios.get(`http://www.omdbapi.com/`, {
           params: {
-            apiKey: process.env.OMDB_API_KEY,
             i: imdb_id,
+            apikey: process.env.OMDB_API_KEY,
             plot: 'full'
           }
         })
@@ -53,8 +53,8 @@ const findTitleDetails = async (req, res) => {
             if(omdbResponse.data.imdbID !== imdb_id) {
               await axios.get(`http://www.omdbapi.com/`, {
                 params: {
-                  apiKey: process.env.OMDB_API_KEY,
                   i: omdbResponse.data.imdbID,
+                  apikey: process.env.OMDB_API_KEY,
                   plot: 'full'
                 }
               })
