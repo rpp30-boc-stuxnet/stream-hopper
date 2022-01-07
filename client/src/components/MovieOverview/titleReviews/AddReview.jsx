@@ -4,13 +4,7 @@ import axios from 'axios';
 const AddReview = (props) => {
 
   const [review, setReview] = useState('');
-
-  const textAreaCSS = {
-    height: '200px',
-    fontSize: '20px',
-    width: '60%',
-    color: 'black'
-  }
+  const [remainingChars, setRemainingChars] = useState(280);
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +17,6 @@ const AddReview = (props) => {
       tmdb_id: props.tmdb_id
     })
     .then((result) => {
-      console.log('successfully posted new review');
       props.handleNewReview();
     })
     .catch ((err) => {
@@ -32,18 +25,20 @@ const AddReview = (props) => {
   }
 
   const handleReviewChange = (e) => {
-    console.log(e.target.value);
     setReview(e.target.value);
+    setRemainingChars(280 - e.target.value.length);
   }
 
 
   return (
     <div>
       <form>
-        <textarea name='newReview' onChange={handleReviewChange} style={textAreaCSS} placeholder='Type your review here (maximum of 300 characters)' rows='10' maxLength='300'></textarea>
-        <button onClick={handleReviewSubmit}>Submit Review</button>
-        <button onClick={props.handleCancel}>Cancel</button>
+        <textarea className="reviewText" name='newReview' onChange={handleReviewChange} placeholder='Type your review here (maximum of 280 characters)' rows='10' maxLength='280'></textarea>
       </form>
+      <span className="characterWarning">Characters Remaining: {remainingChars}</span>
+      <br></br>
+      <button className="addReviewBtn" onClick={handleReviewSubmit}>Submit Review</button>
+      <button className="addReviewBtn" onClick={props.handleCancel}>Cancel</button>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import StreamTile from './StreamTile.js';
 import './movieoverview.css';
 import TitleReviews from './titleReviews/TitleReviews.jsx';
 import axios from 'axios';
+import './titleReviews/titleReviews.css';
 import { useParams } from 'react-router-dom';
 
 function MovieOverview (props) {
@@ -138,7 +139,7 @@ function MovieOverview (props) {
             {Object.keys(movieDetails).length > 0 ? movieDetails.synopsis : 'Synopsis not Available'}
           </div>
         </div>
-        <div>
+        <div className="titleReviewsHolder">
           <TitleReviews title={Object.keys(movieDetails).length > 0 ? movieDetails.title : 'No title'} tmdb_id={Object.keys(movieDetails).length > 0 ? movieDetails.tmdb_id : null} type={mediaType}/>
         </div>
       </div>

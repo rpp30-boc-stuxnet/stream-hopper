@@ -9,7 +9,6 @@ const TitleReviews = (props) => {
   const [addReview, setAddReview] = useState(0);
 
   useEffect (() => {
-    console.log('tmdb_id = ' + props.tmdb_id)
     if (props.tmdb_id !== null) {
       getReviews();
     }
@@ -23,7 +22,6 @@ const TitleReviews = (props) => {
       }
     })
     .then((result) => {
-      console.log('[TitleReviews] Data recieved from DB: ', result.data)
       const newReviews = result.data
       const reviewListTiles = []
       newReviews.map((review) => { return (reviewListTiles.push(<ReviewTile key={review._id} reviewBody={review.review_body} username={review.username} time={review.updatedAt}/>)) })
@@ -45,24 +43,16 @@ const TitleReviews = (props) => {
 
   const handleNewReview = () => {
     getReviews();
+    setAddReview(0);
   }
 
-  if (!addReview)  {
-    return (
-      <div>
-        <p>title reviews!</p>
-        <div className='reviewList'>{reviews}</div>
-        <button onClick={handleAddReviewClick}>Add Review</button>
-      </div>
-    )
-  } else {
-    return (
-      <div>
-        <p>Title Reviews</p>
-        <AddReview handleCancel={handleCancel} tmdb_id={props.tmdb_id} type={props.type} handleNewReview={handleNewReview}/>
-      </div>
-    )
-  }
+  return (
+    <div className="reviewSection">
+      <p>Reviews of {props.title}</p>
+      <div className='reviewList'>{reviews.length > 0 ? reviews : <span className="noReviews">No reviews yet. Add one by clicking 'Add Review' below!</span>}</div>
+      {addReview ? <AddReview handleCancel={handleCancel} tmdb_id={props.tmdb_id} type={props.type} handleNewReview={handleNewReview}/> : <button className="addReviewBtn" onClick={handleAddReviewClick}>Add Review</button>  }
+    </div>
+  )
 
 }
 
