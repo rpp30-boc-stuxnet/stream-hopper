@@ -15,6 +15,7 @@ const streamSources = require('./routes/streamSources.js');
 const streamRatings = require('./routes/streamRatings.js');
 const trendingTitles = require('./routes/trendingTitlesRoutes.js');
 const spielbergTitles = require('./routes/spielbergTitlesRoutes.js');
+const titleReviews = require('./routes/titleReviewsRoutes.js');
 
 
 //FOR FACEBOOK TESTING ONLY BECAUSE FACEBOOK LOGIN DOES NOT ACCEPT HTTP REQUESTS//
@@ -51,6 +52,7 @@ if (process.env.ENABLE_HTTPS_SERVER === "active") {
   app.use('/api/streamRatings', streamRatings);
   app.use('/api/trendingTitles', trendingTitles);
   app.use('/api/spielbergTitles', spielbergTitles);
+  app.use('/api/titleReviews', titleReviews);
 
   connectDB();
 
