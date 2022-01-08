@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const overallStreamRatingSchema = mongoose.Schema(
   {
     tmdb_id: {type: Number, required: true},
+    title_type: {type: String, required: true},
     source_company_id: {type: Number, required: true},
     stream_type: {type: String, required: true},
     stream_format: {type: String, required: true},
