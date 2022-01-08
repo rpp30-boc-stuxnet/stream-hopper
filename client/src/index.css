@@ -82,6 +82,17 @@ button {
   @apply h-12 w-auto m-0
 }
 
+.homeLink {
+  @apply
+  flex
+  text-[#F4F1BB]
+  text-2xl
+  italic
+  underline
+  m-0
+  mx-5
+}
+
 .logoutBtn {
   @apply
     bg-[#F4F1BB]
@@ -100,17 +111,23 @@ button {
   ----------------
 */
 
+.searchContainer {
+  @apply
+    flex
+    w-2/4
+}
+
 .searchInput {
   @apply
     bg-[#F4F1BB]
     p-4
     h-8
-    w-96
+    w-full
     border-none
     rounded-lg
     text-lg
     text-[#64113F]
-    mr-20
+    mr-12
 }
 
 .dataResults {
