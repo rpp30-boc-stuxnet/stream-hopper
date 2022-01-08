@@ -4,8 +4,9 @@ import tw, { styled } from "twin.macro";
 export const MoviesContainer = styled.div`
   ${tw`
     flex
-    my-8
-    p-4
+    h-1/4
+    mb-8
+    px-4
     w-full
     z-10
   `}
@@ -13,11 +14,12 @@ export const MoviesContainer = styled.div`
 
 export const MoviesTitle = styled.h2`
   ${tw`
-      text-2xl
-      font-bold
-      uppercase
-      mx-8
-    `}
+    text-2xl
+    text-[#F4F1BB]
+    font-bold
+    uppercase
+    mx-8
+  `}
 `;
 
 export const MoviesRow = styled.div`
@@ -26,7 +28,6 @@ export const MoviesRow = styled.div`
       overflow-x-hidden
       mt-4
       mx-3
-      p-4
       w-11/12
     `}
 
@@ -37,32 +38,39 @@ export const MoviesRow = styled.div`
 
 export const MoviesPoster = styled.img`
   ${tw`
-    m-2
-    w-40
+    mx-2
+    h-72
+    w-auto
   `}
 
   // Scale the movie img when the user hovers on it.
   transition: all 0.2s;
   &:hover {
     transform: scale(1.09);
+    box-shadow: 0 3px 4px 2px rgba(255,255,255,0.4);
   }
 `;
 
 export const MoviePosterContainer = styled.div`
-  .buttonsContainer {
-    display: flex;
-    flex-direction: row;
-  }
   ${tw`
+    flex
+    flex-col
     relative
-    m-2
-    w-40
+    mx-2
+    h-full
   `}
 `;
 
 export const AddRemoveMovieButton = styled.button`
-${tw`
-
-`}
+  ${tw`
+    w-24
+    bg-[#64113F]
+    text-[#F4F1BB]
+    text-lg
+    px-2
+    mx-1
+    rounded-lg
+    hover:bg-[#368F88]
+  `}
 `;
 
