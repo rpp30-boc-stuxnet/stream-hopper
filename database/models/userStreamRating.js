@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const userStreamRatingSchema = mongoose.Schema(
   {
     user_id: {type: String, required: true},
+    title_type: {type: String, required: true},
     tmdb_id: {type: Number, required: true},
     source_company_id: {type: Number, required: true},
     stream_type: {type: String, required: true},

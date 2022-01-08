@@ -6,6 +6,7 @@ const findStreamRatings = async (req, res) => {
   await User_Stream_Rating.findOne(
     {
       user_id: req.query.user_id,
+      title_type: req.query.title_type,
       tmdb_id: req.query.tmdb_id,
       source_company_id: req.query.source_company_id,
       stream_type: req.query.stream_type,
@@ -23,6 +24,7 @@ const findStreamRatings = async (req, res) => {
       Overall_Stream_Rating.findOne(
         {
           tmdb_id: req.query.tmdb_id,
+          title_type: req.query.title_type,
           source_company_id: req.query.source_company_id,
           stream_type: req.query.stream_type,
           stream_format: req.query.stream_format
@@ -34,6 +36,7 @@ const findStreamRatings = async (req, res) => {
           }
           res.status(200).send({
             user_id: req.query.user_id,
+            title_type: req.query.title_type,
             tmdb_id: new Number(req.query.tmdb_id),
             source_company_id: req.query.source_company_id,
             stream_type: req.query.stream_type,
@@ -56,6 +59,7 @@ const findStreamRatings = async (req, res) => {
 const saveStreamRating = async (req, res) => {
   await User_Stream_Rating.findOne({
       user_id: req.body.user_id,
+      title_type: req.body.title_type,
       tmdb_id: req.body.tmdb_id,
       source_company_id: req.body.source_company_id,
       stream_type: req.body.stream_type,
@@ -68,6 +72,7 @@ const saveStreamRating = async (req, res) => {
         User_Stream_Rating.create(
           {
             user_id: req.body.user_id,
+            title_type: req.body.title_type,
             tmdb_id: req.body.tmdb_id,
             source_company_id: req.body.source_company_id,
             stream_type: req.body.stream_type,
@@ -84,6 +89,7 @@ const saveStreamRating = async (req, res) => {
             // find related overallStreamRating
             await Overall_Stream_Rating.findOne({
               tmdb_id: req.body.tmdb_id,
+              title_type: req.body.title_type,
               source_company_id: req.body.source_company_id,
               stream_type: req.body.stream_type,
               stream_format: req.body.stream_format
@@ -94,6 +100,7 @@ const saveStreamRating = async (req, res) => {
                   // create new overallStreamRating using count of 1 and user's rating for each characteristic
                   Overall_Stream_Rating.create({
                     tmdb_id: req.body.tmdb_id,
+                    title_type: req.body.title_type,
                     source_company_id: req.body.source_company_id,
                     stream_type: req.body.stream_type,
                     stream_format: req.body.stream_format,
@@ -117,6 +124,7 @@ const saveStreamRating = async (req, res) => {
                   Overall_Stream_Rating.findOneAndUpdate(
                     {
                       tmdb_id: req.body.tmdb_id,
+                      title_type: req.body.title_type,
                       source_company_id: req.body.source_company_id,
                       stream_type: req.body.stream_type,
                       stream_format: req.body.stream_format
@@ -155,6 +163,7 @@ const saveStreamRating = async (req, res) => {
         User_Stream_Rating.findOneAndUpdate(
           {
             user_id: req.body.user_id,
+            title_type: req.body.title_type,
             tmdb_id: req.body.tmdb_id,
             source_company_id: req.body.source_company_id,
             stream_type: req.body.stream_type,
@@ -175,6 +184,7 @@ const saveStreamRating = async (req, res) => {
               Overall_Stream_Rating.findOneAndUpdate(
                 {
                   tmdb_id: req.body.tmdb_id,
+                  title_type: req.body.title_type,
                   source_company_id: req.body.source_company_id,
                   stream_type: req.body.stream_type,
                   stream_format: req.body.stream_format
