@@ -114,7 +114,10 @@ button {
 .searchContainer {
   @apply
     flex
+    flex-col
+    justify-between
     w-2/4
+    min-w-fit
 }
 
 .searchInput {
@@ -137,9 +140,9 @@ button {
     flex
     flex-col
     p-1
-    mt-2
-    w-96
+    mt-10
     h-52
+    w-2/5
     bg-[#F4F1BB]
     border-none
     overflow-x-hidden
@@ -156,7 +159,7 @@ button {
     flex
     flex-row
     items-center
-    w-96
+    w-full
     h-14
     mb-1
     hover:bg-[#368F8B]
