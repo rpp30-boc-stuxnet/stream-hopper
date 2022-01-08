@@ -4,6 +4,7 @@
   display: inline-block;
 }
 .sourceBoxImageContainer{
+  cursor: pointer;
   margin: 0 auto;
   width: 3em;
   height: 3em;

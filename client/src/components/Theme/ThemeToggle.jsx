@@ -6,7 +6,7 @@ const ThemeToggle = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   return (
-    <div classname="toggle">
+    <div className="toggle">
       {theme === 'dark' ? (
         <FaSun
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
