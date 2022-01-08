@@ -11,6 +11,7 @@ import ReviewButtons from '../ReviewButtons.jsx'
 function MovieOverview (props) {
   const [movieDetails, setMovieDetails] = useState({});
   const [titleSources, setTitleSources] = useState({});
+  const [showForm, setShowForm] = useState(false);
 
   let params = useParams();
   let mediaId = params.id;
@@ -68,6 +69,11 @@ function MovieOverview (props) {
     }
     console.log(mappedData)
      return mappedData;
+  }
+
+  const handleModalToggle =  (e)=> {
+    e.preventDefault();
+    setShowForm(!showForm);
   }
 
   useEffect(() => {
