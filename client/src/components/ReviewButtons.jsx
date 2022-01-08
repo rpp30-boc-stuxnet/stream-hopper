@@ -41,7 +41,7 @@ export default function ReviewButtons({ tmdb_id }) {
 
   useEffect(() => {
     getCurrentUserRating();
-  }, [])
+  }, [getCurrentUserRating])
 
   return (
     <>
@@ -50,27 +50,35 @@ export default function ReviewButtons({ tmdb_id }) {
 
           <>
             <p>{currentRating?.overall_thumbs_ups || 0}</p>
-            <IconContext.Provider value={{ className: 'voted' }}>
+            <div className='votedUp' >
               <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
-            </IconContext.Provider>
-            <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
+            </div>
+            <div className='voteBtn' >
+              <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
+            </div>
             <p>{currentRating?.overall_thumbs_downs || 0}</p>
           </>
           :
           <>
             <p>{currentRating?.overall_thumbs_ups || 0}</p>
-            <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
-            <IconContext.Provider value={{ className: 'voted' }}>
+            <div className='voteBtn' >
+              <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
+            </div>
+            <div className='votedDown' >
               <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
-            </IconContext.Provider>
+            </div>
             <p>{currentRating?.overall_thumbs_downs || 0}</p>
           </>
 
         :
         <>
           <p>{currentRating?.overall_thumbs_ups || 0}</p>
-          <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
-          <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
+            <div className='voteBtn' >
+              <FaRegThumbsUp data-rating='up' onClick={handleUserRating} />
+            </div>
+            <div className='voteBtn' >
+              <FaRegThumbsDown data-rating='down' onClick={handleUserRating} />
+            </div>
           <p>{currentRating?.overall_thumbs_downs || 0}</p>
         </>
       }
