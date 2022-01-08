@@ -21,12 +21,14 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
   };
 
   let chevronLeftStyle = {
+    cursor: 'pointer',
     display: 'flex',
     alignSelf: 'center',
     zIndex: '1'
   };
 
   let chevronRightStyle = {
+    cursor: 'pointer',
     display: 'flex',
     alignSelf: 'center',
     zIndex: '1'

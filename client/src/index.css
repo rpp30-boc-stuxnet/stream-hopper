@@ -387,7 +387,7 @@ button {
 }
 
 .votedUp, .votedDown, .voteBtn {
-  @apply m-1
+  @apply cursor-pointer m-1
 }
 
 .votedUp svg{
@@ -424,10 +424,16 @@ button {
 
 .toggle {
   @apply
-    transition duration-500 ease-in-out rounded-full p-2
+  transition
+  duration-500
+  ease-in-out
+  rounded-full
+  p-2
+  bg-[#F4F1BB]
+  dark:bg-[#368F8B]
 }
 
 .themeBtn {
   @apply
-    text-gray-500 dark:text-gray-400 text-2xl cursor-pointer
+    text-[#368F8B] dark:text-[#F4F1BB] text-2xl cursor-pointer
 }
