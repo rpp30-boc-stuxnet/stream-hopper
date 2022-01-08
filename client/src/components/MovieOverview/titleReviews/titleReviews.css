@@ -1,0 +1,68 @@
+.reviewSection {
+  width: 100%;
+  text-align: left;
+  font-size: 30px;
+}
+
+.reviewList {
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 300px;
+  width: 100%;
+  background-color: rgba(214, 135, 245, 0.55);
+  justify-content: center;
+}
+
+.titleReviewsHolder {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+.reviewTile {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  background: maroon;
+  text-align: left;
+  margin: auto;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.reviewUserDate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.reviewBody {
+  font-size: 20px;
+}
+
+.addReviewBtn {
+  font-size: 16px;
+  background-color: white;
+  color: black;
+  margin-right: 20px;
+}
+
+.reviewText {
+  margin-top: 20px;
+  width: 90%;
+  height: 150px;
+  color: black;
+  font-size: 18px;
+}
+
+.characterWarning {
+  font-size: 16px;
+}
+
+.noReviews {
+  color: black;
+  font-size: 20px;
+}
+

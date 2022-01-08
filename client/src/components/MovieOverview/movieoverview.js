@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import StreamTile from './StreamTile.js';
 import './movieoverview.css';
+import TitleReviews from './titleReviews/TitleReviews.jsx';
 import axios from 'axios';
+import './titleReviews/titleReviews.css';
 import { useParams } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar.jsx';
+import ReviewButtons from '../ReviewButtons.jsx'
 
 function MovieOverview (props) {
   const [movieDetails, setMovieDetails] = useState({});
   const [titleSources, setTitleSources] = useState({});
+  const [showForm, setShowForm] = useState(false);
 
   let params = useParams();
   let mediaId = params.id;
@@ -66,6 +71,11 @@ function MovieOverview (props) {
      return mappedData;
   }
 
+  const handleModalToggle =  (e)=> {
+    e.preventDefault();
+    setShowForm(!showForm);
+  }
+
   useEffect(() => {
     let deetz = {};
     let sources = {};
@@ -98,15 +108,18 @@ function MovieOverview (props) {
   }
 
   return (
+    <>
+    <Navbar handleLogout={props.handleLogout} />
     <div id = "movieOverviewContainer">
       <div id = "leftSide">
         <h1 id = "leftSideHeading">{Object.keys(movieDetails).length > 0 ? movieDetails.title : 'Title Missing'}</h1>
         <div id ="moviePoster">
           <img src = { Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : 'https://i.imgur.com/7sR45d6.png'} alt ="movie_poster"/>
         </div>
+        <ReviewButtons tmdb_id={mediaId} />
         <div id= "movieDetails">
          <div id = "movieRatings">
-          { Object.keys(movieDetails).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
+          { Object.keys(movieDetails).length > 0  && Object.keys(movieDetails.ratings).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
          </div>
          <div id = "moveReleaseDate">
           { Object.keys(movieDetails).length > 0 ? movieDetails.release_date : null}
@@ -135,11 +148,15 @@ function MovieOverview (props) {
           <h3 id ="synopsisHeading">Film Synopsis</h3>
           <div id ="synopsisContent">
             {Object.keys(movieDetails).length > 0 ? movieDetails.synopsis : 'Synopsis not Available'}
+          </div>
         </div>
+        <div className="titleReviewsHolder">
+          <TitleReviews title={Object.keys(movieDetails).length > 0 ? movieDetails.title : 'No title'} tmdb_id={Object.keys(movieDetails).length > 0 ? movieDetails.tmdb_id : null} type={mediaType}/>
         </div>
       </div>
 
     </div>
+    </>
   )
 
 }

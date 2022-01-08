@@ -27,14 +27,14 @@ button {
     flex-col
     items-center
     text-center
-    w-screen
-    min-h-screen
+    w-full
+    min-h-full
     text-white
     overflow-x-hidden
 }
 
 .backImg {background-position: 50% 36%;
-  @apply block fixed w-screen h-full bg-cover bg-no-repeat z-0
+  @apply block fixed w-full h-full bg-cover bg-no-repeat z-0
 }
 
 .fader {
@@ -43,7 +43,7 @@ button {
 }
 
 .dashboard {
-  @apply flex flex-col w-screen items-center z-10
+  @apply flex flex-col text-[#F4F1BB] w-full items-center z-10
 }
 
 /*
@@ -59,7 +59,7 @@ button {
     justify-between
     items-center
     bg-[#64113F]
-    w-screen
+    w-full
     h-20
     py-3
     px-4
@@ -69,18 +69,40 @@ button {
 
 .navLogo {
   @apply
+    flex
+    text-[#F4F1BB]
+    text-3xl
     italic
     m-0
-    h-12
+    mx-5
+    align-middle
+}
+
+.navLogoSvg {
+  @apply h-12 w-auto m-0
+}
+
+.homeLink {
+  @apply
+  flex
+  text-[#F4F1BB]
+  text-2xl
+  italic
+  underline
+  m-0
+  mx-5
 }
 
 .logoutBtn {
   @apply
-    bg-white
+    bg-[#F4F1BB]
     text-[#64113F]
     text-xl
-    h-10
+    h-11
+    mr-5
     rounded-xl
+    hover:bg-[#E15554]
+    hover:text-[#F4F1BB]
 }
 
 /*
@@ -89,17 +111,23 @@ button {
   ----------------
 */
 
+.searchContainer {
+  @apply
+    flex
+    w-2/4
+}
+
 .searchInput {
   @apply
-    bg-white
+    bg-[#F4F1BB]
     p-4
     h-8
-    w-96
+    w-full
     border-none
     rounded-lg
     text-lg
-    text-black
-    mr-20
+    text-[#64113F]
+    mr-12
 }
 
 .dataResults {
@@ -112,7 +140,7 @@ button {
     mt-2
     w-96
     h-52
-    bg-white
+    bg-[#F4F1BB]
     border-none
     overflow-x-hidden
     overflow-y-auto
@@ -131,7 +159,7 @@ button {
     w-96
     h-14
     mb-1
-    hover:bg-slate-300
+    hover:bg-[#368F8B]
 }
 
 .dataImg {
@@ -145,9 +173,10 @@ button {
     flex
     flex-col
     w-full
-    text-black
+    text-[#64113F]
     text-sm
     text-center
+    hover:text-[#F4F1BB]
 }
 
 /*
@@ -177,7 +206,7 @@ button {
     content-center
     items-center
     p-4
-    w-screen
+    w-full
     h-screen
     text-xl
     text-[#FCECC9]
@@ -347,8 +376,24 @@ button {
   ------------------
 */
 
-.voted {
-  @apply text-[#68A357]
+.buttonsContainer {
+  @apply flex flex-row p-1 mt-2 justify-between items-center text-xl
+}
+
+.votedUp, .votedDown, .voteBtn {
+  @apply m-1
+}
+
+.votedUp svg{
+  @apply fill-[#68A357]
+}
+
+.votedDown svg{
+  @apply fill-[#E15554]
+}
+
+.voteBtn svg{
+  @apply fill-[#F4F1BB]
 }
 
 /*
@@ -359,4 +404,8 @@ button {
 
 .carouselLeft {
   @apply flex self-center ml-5 z-10
+}
+
+.carouselRight {
+  @apply flex self-center mr-5 z-10
 }

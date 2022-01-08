@@ -9,6 +9,7 @@ function StreamTile (props){
   useEffect(()=>{
 
       if(props.details !== undefined) {
+
         let validDetails = {};
         validDetails.type = props.type;
         for(let i = 0; i < props.details.length; i++) {
@@ -17,7 +18,8 @@ function StreamTile (props){
               price: '',
               quality: '',
               webURL: '',
-              logoURL: ''
+              logoURL: '',
+              companyId: ''
             }
           }
           if(i === 0) {
@@ -25,6 +27,7 @@ function StreamTile (props){
             validDetails[props.details[i].companyInfo.name].quality = props.details[i].quality;
             validDetails[props.details[i].companyInfo.name].webURL = props.details[i].webURL;
             validDetails[props.details[i].companyInfo.name].logoURL = props.details[i].companyInfo.logo_100px;
+            validDetails[props.details[i].companyInfo.name].companyId = props.details[i].companyInfo.source_id;
           } else {
             if(props.details[i].quality === '4K') {
 
@@ -32,28 +35,32 @@ function StreamTile (props){
               validDetails[props.details[i].companyInfo.name].quality = '4K';
               validDetails[props.details[i].companyInfo.name].webURL = props.details[i].webURL;
               validDetails[props.details[i].companyInfo.name].logoURL = props.details[i].companyInfo.logo_100px;
+              validDetails[props.details[i].companyInfo.name].companyId = props.details[i].companyInfo.source_id;
             } else if (props.details[i].quality === 'HD' && validDetails[props.details[i].companyInfo.name].quality !== '4K') {
               validDetails[props.details[i].companyInfo.name].price = props.details[i].price;
               validDetails[props.details[i].companyInfo.name].quality = 'HD';
               validDetails[props.details[i].companyInfo.name].webURL = props.details[i].webURL;
               validDetails[props.details[i].companyInfo.name].logoURL = props.details[i].companyInfo.logo_100px;
+              validDetails[props.details[i].companyInfo.name].companyId = props.details[i].companyInfo.source_id;
             } else if(props.details[i].quality === 'SD' &&
             (validDetails[props.details[i].companyInfo.name].quality !== '4k' || validDetails[props.details[i].companyInfo.name].quality !== 'HD')) {
               validDetails[props.details[i].companyInfo.name].price = props.details[i].price;
               validDetails[props.details[i].companyInfo.name].quality = 'SD';
               validDetails[props.details[i].companyInfo.name].webURL = props.details[i].webURL;
               validDetails[props.details[i].companyInfo.name].logoURL = props.details[i].companyInfo.logo_100px;
+              validDetails[props.details[i].companyInfo.name].companyId = props.details[i].companyInfo.source_id;
             }
           }
 
         }
+
       setDetails(validDetails);
     }
 
   }, [])
 
 
-
+  console.log(details, 'details')
   return(
     <div className = "tileContainer">
       <div className = "typeName">{details.type ? details.type: 'Not Available'}</div>
@@ -61,9 +68,12 @@ function StreamTile (props){
         {Object.keys(details).length > 0 ?
           Object.keys(details).map((item, index)=>{
             if(item !== 'type') {
-              return (
-                <SourceBox price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}/>
-              )
+              if(details[item].companyId !== '') {
+
+                return (
+                  <SourceBox companyId = {details[item].companyId} price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}/>
+                )
+              }
             }
           })
         : null}

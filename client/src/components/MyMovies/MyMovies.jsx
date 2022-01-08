@@ -21,17 +21,15 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
   };
 
   let chevronLeftStyle = {
-    marginLeft: '20px',
-    paddingRight: '8px',
     display: 'flex',
     alignSelf: 'center',
-    zIndex: '10'
+    zIndex: '1'
   };
 
   let chevronRightStyle = {
     display: 'flex',
     alignSelf: 'center',
-    zIndex: '10'
+    zIndex: '1'
   };
 
   return (
@@ -39,9 +37,7 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
     <>
       <MoviesTitle>{title}</MoviesTitle>
       <MoviesContainer>
-        <div className="carouselLeft" >
-          {posterIndex > 0 && <FaChevronLeft onClick={transformLeft} />}
-        </div>
+        {posterIndex > 0 && <FaChevronLeft style={chevronLeftStyle} onClick={transformLeft} />}
         <MoviesRow movies={movies} >
 
           {movies.map((movie, index) => (
@@ -67,7 +63,7 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
           ))}
 
         </MoviesRow>
-        {posterIndex < movies.length - 3 && <FaChevronRight style={chevronRightStyle} className="carouselRight" onClick={transformRight} />}
+        {posterIndex < movies.length - 3 && <FaChevronRight style={chevronRightStyle} onClick={transformRight} />}
       </MoviesContainer>
     </>
   )

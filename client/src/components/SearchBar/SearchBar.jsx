@@ -55,7 +55,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='searchContainer'>
         <input
           type="text"
           className="searchInput"
