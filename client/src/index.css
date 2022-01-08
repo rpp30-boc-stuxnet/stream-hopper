@@ -409,3 +409,19 @@ button {
 .carouselRight {
   @apply flex self-center mr-5 z-10
 }
+
+/*
+  _____________________
+  |  Color Theme CSS  |
+  ---------------------
+*/
+
+.toggle {
+  @apply
+    transition duration-500 ease-in-out rounded-full p-2
+}
+
+.themeBtn {
+  @apply
+    text-gray-500 dark:text-gray-400 text-2xl cursor-pointer
+}
