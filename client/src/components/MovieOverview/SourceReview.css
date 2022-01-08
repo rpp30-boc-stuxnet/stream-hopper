@@ -16,8 +16,15 @@
   width: 50%;
   margin: 0 auto;
 }
-.formInputField{
-  border-color: turquoise;
-  border-style: solid;
-  border-radius: .5em;
+#formHeader{
+  margin: 2em;
+  padding-top: 1em;
+}
+#statement{
+  display: inline-block;
+}
+#exit{
+  float: right;
+  margin-right: 3em;
+  display: inline-block;
 }

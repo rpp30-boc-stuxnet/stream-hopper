@@ -59,9 +59,8 @@ function StreamTile (props){
 
   }, [])
 
-
-  console.log(details, 'details')
   return(
+
     <div className = "tileContainer">
       <div className = "typeName">{details.type ? details.type: 'Not Available'}</div>
       <div className = "sourceContainer">
@@ -71,7 +70,8 @@ function StreamTile (props){
               if(details[item].companyId !== '') {
 
                 return (
-                  <SourceBox companyId = {details[item].companyId} price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}/>
+                  <SourceBox companyId = {details[item].companyId} price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}
+                   companyName = {item} titleName = {props.titleName}/>
                 )
               }
             }

@@ -15,30 +15,42 @@ function SourceReview(props){
     user_video_quality_rating: '',
     user_stream_reliability_rating: ''
   });
+  const [canSubmit, setCanSubmit] = useState ({
+    fieldsFilled: false,
+    errorMessage: ''
+  })
 
   const handleSubmit = (e) =>{
     e.preventDefault();
     // console.log(sourceReviewData);
-    let options = {
-      user_id: window.localStorage.userUID,
-        tmdb_id: mediaId,
-        stream_type: mediaType,
-        source_company_id: props.companyId,
-        stream_format: props.quality,
-        user_audio_quality_rating: sourceReviewData.user_audio_quality_rating,
-        user_stream_reliability_rating: sourceReviewData.user_stream_reliability_rating,
-        user_video_quality_rating: sourceReviewData.user_video_quality_rating
-    };
-    console.log(options, 'query options')
-    axios.post('/api/streamRatings', options)
-      .then((response) => {
-        //console.log('success getting user suggestions: ', response);
-        console.log(response.data);
-        props.handleToggle(e);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    if(sourceReviewData.user_audio_quality_rating === '' || sourceReviewData.user_audio_quality_rating === null) {
+      setCanSubmit({errorMessage: 'Fill out Audio Rating'})
+    } else if(sourceReviewData.user_video_quality_rating === '' || sourceReviewData.user_video_quality_rating === null) {
+      setCanSubmit({errorMessage: 'Fill out Video Rating'})
+    } else if(sourceReviewData.user_stream_reliability_rating === '' || sourceReviewData.user_stream_reliability_rating === null) {
+      setCanSubmit({errorMessage: 'Fill out Reliability Rating'})
+    } else {
+      let options = {
+        user_id: window.localStorage.userUID,
+          tmdb_id: mediaId,
+          stream_type: mediaType,
+          source_company_id: props.companyId,
+          stream_format: props.quality,
+          user_audio_quality_rating: sourceReviewData.user_audio_quality_rating,
+          user_stream_reliability_rating: sourceReviewData.user_stream_reliability_rating,
+          user_video_quality_rating: sourceReviewData.user_video_quality_rating
+      };
+      console.log(options, 'query options')
+      axios.post('/api/streamRatings', options)
+        .then((response) => {
+          //console.log('success getting user suggestions: ', response);
+          setCanSubmit({errorMessage: ''})
+          props.handleToggle(e);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }
 
   }
 
@@ -59,8 +71,11 @@ function SourceReview(props){
   return (
     <div id = "formContainer">
       <div id = "formBackground">
-        <div id = "formHeader" onClick = {props.handleToggle}>
-          X
+        <div id = "formHeader">
+          <div id = "statement">
+           {'Rate your Experience Watching ' + props.titleName + ' on ' + props.companyName}
+          </div>
+          <div id = "exit" onClick = {props.handleToggle}>X</div>
         </div>
         <form onSubmit = {handleSubmit}>
         <label>
@@ -80,6 +95,7 @@ function SourceReview(props){
         </label>
         <button type ="submit" value="Submit" id = "reviewSubmission">Submit</button>
         </form>
+        {canSubmit.errorMessage === '' ? null : <p>{canSubmit.errorMessage}</p>}
       </div>
     </div>
   )
