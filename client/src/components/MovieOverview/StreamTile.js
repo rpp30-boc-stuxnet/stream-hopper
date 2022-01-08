@@ -61,9 +61,11 @@ function StreamTile (props){
         {Object.keys(details).length > 0 ?
           Object.keys(details).map((item, index)=>{
             if(item !== 'type') {
-              return (
-                <SourceBox price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}/>
-              )
+              if(details[item].logoURL !== null) {
+                return (
+                  <SourceBox company = {item} price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}/>
+                )
+              }
             }
           })
         : null}

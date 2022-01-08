@@ -5,6 +5,8 @@ import TitleReviews from './titleReviews/TitleReviews.jsx';
 import axios from 'axios';
 import './titleReviews/titleReviews.css';
 import { useParams } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar.jsx';
+import ReviewButtons from '../ReviewButtons.jsx'
 
 function MovieOverview (props) {
   const [movieDetails, setMovieDetails] = useState({});
@@ -100,15 +102,18 @@ function MovieOverview (props) {
   }
 
   return (
+    <>
+    <Navbar handleLogout={props.handleLogout} />
     <div id = "movieOverviewContainer">
       <div id = "leftSide">
         <h1 id = "leftSideHeading">{Object.keys(movieDetails).length > 0 ? movieDetails.title : 'Title Missing'}</h1>
         <div id ="moviePoster">
           <img src = { Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : 'https://i.imgur.com/7sR45d6.png'} alt ="movie_poster"/>
         </div>
+        <ReviewButtons tmdb_id={mediaId} />
         <div id= "movieDetails">
          <div id = "movieRatings">
-          { Object.keys(movieDetails).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
+          { Object.keys(movieDetails).length > 0  && Object.keys(movieDetails.ratings).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
          </div>
          <div id = "moveReleaseDate">
           { Object.keys(movieDetails).length > 0 ? movieDetails.release_date : null}
@@ -145,6 +150,7 @@ function MovieOverview (props) {
       </div>
 
     </div>
+    </>
   )
 
 }
