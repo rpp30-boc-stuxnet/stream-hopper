@@ -33,9 +33,10 @@ function SourceReview(props){
       let options = {
         user_id: window.localStorage.userUID,
           tmdb_id: mediaId,
-          stream_type: mediaType,
+          title_type: mediaType,
           source_company_id: props.companyId,
           stream_format: props.quality,
+          stream_type: props.streamType,
           user_audio_quality_rating: sourceReviewData.user_audio_quality_rating,
           user_stream_reliability_rating: sourceReviewData.user_stream_reliability_rating,
           user_video_quality_rating: sourceReviewData.user_video_quality_rating
@@ -43,7 +44,7 @@ function SourceReview(props){
       console.log(options, 'query options')
       axios.post('/api/streamRatings', options)
         .then((response) => {
-          //console.log('success getting user suggestions: ', response);
+          console.log('success getting user suggestions: ', response);
           setCanSubmit({errorMessage: ''})
           props.handleToggle(e);
         })

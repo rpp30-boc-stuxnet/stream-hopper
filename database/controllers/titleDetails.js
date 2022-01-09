@@ -5,7 +5,7 @@ const axios = require('axios').default;
 const findTitleDetails = async (req, res) => {
   let userSavedTitles = {};
   let saved_by_user;
-
+  console.dir(req.query, 'req query')
   await Saved_Title.findOne({user_id: req.query.user_id, tmdb_id: req.query.tmdb_id})
     .then((savedTitle) => {
       if (savedTitle) {
@@ -106,7 +106,7 @@ const findTitleDetails = async (req, res) => {
                 res.status(400).send('Error while retrieving poster from TMDB API: ' + error);
                 return;
               })
-
+              console.dir(newReponse, 'reponse')
             res.status(200).send(newResponse)
           })
       })

@@ -19,18 +19,19 @@ function SourceBox(props){
   }
   // useEffect(()=>{
   //   let options = {
-  //     user_id: window.localStorage.userUID,
+  //       user_id: window.localStorage.userUID,
   //       tmdb_id: mediaId,
   //       source_company_id: props.companyId,
   //       stream_type: mediaType,
-  //       stream_format: props.quality
+  //       stream_format: props.streamType,
+  //       title_type: mediaType
   //   }
-  //   console.log(options, 'options')
-  //   axios.get('/api/streamSources', {params: options})
+  //   axios.get('/api/streamSources', options)
   //   .then((response)=>{
   //     console.log(response, 'getStreamQuality')
   //   })
   //   .catch((error)=>{
+
   //     return error
   //   })
   // }, [])
@@ -49,7 +50,7 @@ function SourceBox(props){
       {(props.price && props.quality) ? '100%' : 'Quality Not Available'}
       </div>
       {showForm ? <SourceReview handleToggle = {handleToggle} quality = {props.quality} companyId = {props.companyId}
-      titleName = {props.titleName} companyName = {props.companyName}/> : null}
+      titleName = {props.titleName} companyName = {props.companyName} streamType = {props.streamType}/> : null}
     </div>
   )
 }

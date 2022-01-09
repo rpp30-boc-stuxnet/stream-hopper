@@ -71,7 +71,7 @@ function StreamTile (props){
 
                 return (
                   <SourceBox companyId = {details[item].companyId} price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}
-                   companyName = {item} titleName = {props.titleName}/>
+                   companyName = {item} titleName = {props.titleName} streamType = {details.type}/>
                 )
               }
             }
