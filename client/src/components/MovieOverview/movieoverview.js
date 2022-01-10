@@ -26,7 +26,7 @@ function MovieOverview (props) {
         }
       })
         .then((response) => {
-          console.log('success getting title details: ', response.data);
+
           resolve(response.data);
         })
         .catch((error) => {
@@ -76,7 +76,7 @@ function MovieOverview (props) {
     searchDetails()
     .then((data)=>{
       deetz = data;
-      console.log(deetz);
+
       searchSources()
       .then((requestSourcesData)=>{
         sources = requestSourcesData;
@@ -117,13 +117,13 @@ function MovieOverview (props) {
           { Object.keys(movieDetails).length > 0  && Object.keys(movieDetails.ratings).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
          </div>
          <div id = "moveReleaseDate">
-          { Object.keys(movieDetails).length > 0 ? movieDetails.release_date : null}
+          { Object.keys(movieDetails).length > 0 ? ('Release: ' + movieDetails.release_date) : 'Release: N/A'}
          </div>
          <div id = "director">
-          { Object.keys(movieDetails).length > 0 ? movieDetails.director : null}
+          { Object.keys(movieDetails).length > 0 ? ('Director: ' + movieDetails.director) : 'Director: N/A--'}
          </div>
          <div id = "runTime">
-          { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : null}
+          { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : 'Run Time: N/A'}
          </div>
         </div>
         <div id ="addRemoveMovieButtons">

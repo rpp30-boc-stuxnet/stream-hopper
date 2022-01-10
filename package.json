@@ -33,6 +33,7 @@
     "mongoose": "^6.1.2",
     "nodemon": "^2.0.15",
     "pm2": "^5.1.2",
+    "react-rating-stars-component": "^2.2.0",
     "react-scripts": "^5.0.0"
   },
   "devDependencies": {

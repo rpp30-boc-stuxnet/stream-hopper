@@ -62,7 +62,7 @@ function StreamTile (props){
   return(
 
     <div className = "tileContainer">
-      <div className = "typeName">{details.type ? details.type: 'Not Available'}</div>
+      <div className = "typeName">{details.type ? details.type.toUpperCase(): 'Not Available'}</div>
       <div className = "sourceContainer">
         {Object.keys(details).length > 0 ?
           Object.keys(details).map((item, index)=>{
