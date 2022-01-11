@@ -14,6 +14,7 @@
     "firebase": "^9.6.1",
     "fs": "^0.0.1-security",
     "http-proxy-middleware": "^2.0.1",
+    "moment": "^2.29.1",
     "npm-watch": "^0.11.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -35,7 +36,7 @@
     "start": "BROWSER=none PORT=4000 react-scripts start",
     "httpsStart": "HTTPS=true SSL_CRT_FILE=../localhost.pem SSL_KEY_FILE=../localhost-key.pem react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "npx jest ./src/Tests/ --coverage",
     "watch": "npm-watch",
     "eject": "react-scripts eject"
   },
@@ -58,8 +59,15 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-react": "^7.16.7",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
     "autoprefixer": "^10.4.1",
+    "babel-jest": "^27.4.6",
+    "babel-plugin-styled-components": "^2.0.2",
     "postcss": "^8.4.5",
+    "react-test-renderer": "^17.0.2",
     "tailwindcss": "^3.0.11"
   }
 }
