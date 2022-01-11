@@ -13,12 +13,6 @@ class SearchBar extends React.Component {
     this.searchChange = this.searchChange.bind(this);
     this.makeList = this.makeList.bind(this);
     this.searchEnter = this.searchEnter.bind(this);
-    this.refreshPage = this.refreshPage.bind(this)
-  }
-
-
-  refreshPage = () => {
-
   }
 
   searchEnter = (e) => {
