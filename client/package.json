@@ -35,7 +35,7 @@
     "start": "BROWSER=none PORT=4000 react-scripts start",
     "httpsStart": "HTTPS=true SSL_CRT_FILE=../localhost.pem SSL_KEY_FILE=../localhost-key.pem react-scripts start",
     "build": "react-scripts build",
-    "test": "clear && npx jest ./src/Tests/ --verbose  --coverage",
+    "test": "npx jest ./src/Tests/ --coverage",
     "watch": "npm-watch",
     "eject": "react-scripts eject"
   },
