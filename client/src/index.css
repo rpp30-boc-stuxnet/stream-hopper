@@ -46,6 +46,16 @@ button {
   @apply flex flex-col text-[#F4F1BB] w-full items-center z-10
 }
 
+.titleListContainer {
+  @apply
+    flex
+    h-1/4
+    mb-8
+    px-4
+    w-full
+    z-10
+}
+
 /*
   ____________________
   |  Navigation Bar  |
