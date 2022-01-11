@@ -28,4 +28,15 @@ describe ('Welcome Component Test', () => {
     userEvent.click(screen.getByText('Sign up'));
     expect(screen.getByText('Sign up with Google')).toBeInTheDocument();
   })
+
+  test('Clicking the `x` button should lead back to the welcome page.', () => {
+    render(<Welcome />)
+    userEvent.click(screen.getByText('Sign up'));
+    expect(screen.getByText('Sign up with Google')).toBeInTheDocument();
+
+    userEvent.click(screen.getByText('X'));
+    expect(screen.getByText('Welcome to Streamhopper')).toBeInTheDocument();
+  })
+
+
 })
