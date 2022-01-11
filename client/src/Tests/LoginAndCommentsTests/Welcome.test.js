@@ -17,10 +17,15 @@ describe ('Welcome Component Test', () => {
     expect(screen.getByText('Welcome to Streamhopper')).toBeInTheDocument();
   })
 
-  test('Should render login options when the user clicks `Login`', () => {
+  test('Should render login options when the user clicks `Log in`', () => {
     render(<Welcome />)
     userEvent.click(screen.getByText('Log in'));
     expect(screen.getByText('Log in with Google')).toBeInTheDocument();
   })
-  //test for pushing login button and having the correct words show up, and same for signup.
+
+  test('Should render login options when the user clicks `Sign up`', () => {
+    render(<Welcome />)
+    userEvent.click(screen.getByText('Sign up'));
+    expect(screen.getByText('Sign up with Google')).toBeInTheDocument();
+  })
 })
