@@ -55,6 +55,10 @@ const titleReviews = require('./routes/titleReviewsRoutes.js');
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
   }))
 
+  app.get('/details*', cors(), ((req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  }))
+
 // }
 
 module.exports = app;
