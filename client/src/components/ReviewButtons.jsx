@@ -41,7 +41,7 @@ export default function ReviewButtons({ tmdb_id }) {
 
   useEffect(() => {
     getCurrentUserRating();
-  }, [getCurrentUserRating])
+  }, [])
 
   return (
     <>

@@ -141,7 +141,7 @@ function MovieOverview (props) {
         <h2 id ="streamOptionsHeading"> Where to Watch</h2>
         <div id= "streamOptionsContainer">
           {Object.keys(titleSources).length > 0 ? Object.keys(titleSources).map((item, index) => {
-            return <StreamTile type = {item} key = {index} details = {titleSources[item]}/>
+            return <StreamTile type = {item} key = {index} details = {titleSources[item]} titleName = {movieDetails.title}/>
           }): <StreamTile type = 'Not Available'/>}
         </div>
         <div>

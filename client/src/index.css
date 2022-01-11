@@ -55,16 +55,18 @@ button {
 .navbar {
   @apply
     flex
-    flex-row
+    flex-col
     justify-between
     items-center
     bg-[#64113F]
     w-full
-    h-20
+    h-fit
     py-3
     px-4
     m-0
     z-20
+    md:flex-row
+    md:h-20
 }
 
 .navLogo {
@@ -114,7 +116,10 @@ button {
 .searchContainer {
   @apply
     flex
+    flex-col
+    justify-between
     w-2/4
+    min-w-fit
 }
 
 .searchInput {
@@ -137,9 +142,9 @@ button {
     flex
     flex-col
     p-1
-    mt-2
-    w-96
+    mt-10
     h-52
+    w-2/5
     bg-[#F4F1BB]
     border-none
     overflow-x-hidden
@@ -156,7 +161,7 @@ button {
     flex
     flex-row
     items-center
-    w-96
+    w-full
     h-14
     mb-1
     hover:bg-[#368F8B]
@@ -189,13 +194,14 @@ button {
   @apply
     absolute
     w-11/12
-    h-1/3
+    h-3/5
     self-center
     justify-self-center
     bg-[#990033]
     opacity-50
     rounded-2xl
     z-0
+    md:h-1/3
 }
 
 .welcomeBox {
@@ -223,7 +229,7 @@ button {
 }
 
 .welcomeText {
-  @apply z-10
+  @apply z-10 p-4 lg:p-0
 }
 
 .loginButtonHolder {
@@ -381,7 +387,7 @@ button {
 }
 
 .votedUp, .votedDown, .voteBtn {
-  @apply m-1
+  @apply cursor-pointer m-1
 }
 
 .votedUp svg{
@@ -408,4 +414,26 @@ button {
 
 .carouselRight {
   @apply flex self-center mr-5 z-10
+}
+
+/*
+  _____________________
+  |  Color Theme CSS  |
+  ---------------------
+*/
+
+.toggle {
+  @apply
+  transition
+  duration-500
+  ease-in-out
+  rounded-full
+  p-2
+  bg-[#F4F1BB]
+  dark:bg-[#368F8B]
+}
+
+.themeBtn {
+  @apply
+    text-[#368F8B] dark:text-[#F4F1BB] text-2xl cursor-pointer
 }
