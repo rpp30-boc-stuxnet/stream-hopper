@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const axios = require('axios')
 
 
@@ -16,8 +16,9 @@ class SearchBar extends React.Component {
     this.refreshPage = this.refreshPage.bind(this)
   }
 
+
   refreshPage = () => {
-    window.location.reload()
+
   }
 
   searchEnter = (e) => {
@@ -45,7 +46,7 @@ class SearchBar extends React.Component {
   makeList = (data) => {
     return data.map((data, index) => {
       return (
-        <Link to={`/details/${data.tmdb_id}/${data.type}`} onClick={() => {this.refreshPage()}}>
+        <Link to={`/details/${data.tmdb_id}/${data.type}`} onClick={() => {useNavigate(`/details/${data.tmdb_id}/${data.type}`)}}>
           <div className="dataItem" key={index}>
             <img className="dataImg" src={data.poster_path} alt='movie poster'></img>
             <div className="dataText">
