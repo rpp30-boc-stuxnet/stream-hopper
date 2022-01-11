@@ -50,17 +50,11 @@ const Welcome = (props) => {
     return (
       <LoginOrSignup protocol={'Log in'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin} />
     )
-  } else if (accountState.isSignupActive) {
+  } else {
     return (
       <LoginOrSignup protocol={'Sign up'} handleXOutClick={handleXOutClick} handleSuccessfulLogin={props.handleSuccessfulLogin}/>
     )
-  } else {
-    console.log('[Welcome Component] this shouldn not happen. isActiveState = ' + accountState.isLoginActive + 'isSignupActive = ' + accountState.isSignupActive)
-    return (
-      <p>Welcome Component - This should not happen</p>
-    )
   }
-
 }
 
 export default Welcome;
