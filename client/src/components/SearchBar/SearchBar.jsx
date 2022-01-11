@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import moment from 'moment';
-moment().format();
 const axios = require('axios')
 
 
@@ -13,7 +11,12 @@ class SearchBar extends React.Component {
     }
     this.searchChange = this.searchChange.bind(this);
     this.makeList = this.makeList.bind(this);
-    this.searchEnter = this.searchEnter.bind(this)
+    this.searchEnter = this.searchEnter.bind(this);
+    this.refreshPage = this.refreshPage.bind(this)
+  }
+
+  refreshPage = () => {
+    window.location.reload()
   }
 
   searchEnter = (e) => {
@@ -40,7 +43,7 @@ class SearchBar extends React.Component {
   makeList = (data) => {
     return data.map((data, index) => {
       return (
-        <Link to={`/details/${data.tmdb_id}/${data.type}`}>
+        <Link to={`/details/${data.tmdb_id}/${data.type}`} onClick={() => {this.refreshPage()}}>
           <div className="dataItem" key={index}>
             <img className="dataImg" src={data.poster_path} alt='movie poster'></img>
             <div className="dataText">
@@ -62,6 +65,7 @@ class SearchBar extends React.Component {
           placeholder="search for a movie or tv show"
           value={this.state.searchTerm}
           onChange={(event) => this.searchChange(event)}
+          onKeyPress={(event) => this.searchEnter(event)}
         />
         {(this.state.searchData.length > 0 && this.state.searchTerm !== '') ?
           <div className="dataResults">
