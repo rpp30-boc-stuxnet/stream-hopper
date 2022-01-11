@@ -3,6 +3,12 @@ const Saved_Title = require('../models/savedTitle.js');
 
 const findSavedTitles = async (req, res) => {
   //console.log('req is hitting controller: ', req.query.user_id);
+
+  if (!req.query.user_id || typeof req.query.user_id !== 'string') {
+    res.status(400).send('Error: Must provide a valid user_id (string) in the query parameters')
+    return;
+  }
+
   await Saved_Title.find({ user_id: req.query.user_id })
     .then((savedTitles) => {
       for (var i = 0; i < savedTitles.length; i++) {
