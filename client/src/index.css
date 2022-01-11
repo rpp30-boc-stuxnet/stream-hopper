@@ -437,3 +437,27 @@ button {
   @apply
     text-[#368F8B] dark:text-[#F4F1BB] text-2xl cursor-pointer
 }
+
+.removeTitleBtn {
+  @apply
+  w-24
+  bg-[#64113F]
+  text-[#F4F1BB]
+  text-lg
+  px-2
+  mx-1
+  rounded-lg
+  hover:bg-[#368F88]
+}
+
+.addTitleBtn {
+  @apply
+  w-24
+  bg-[#64113F]
+  text-[#F4F1BB]
+  text-lg
+  px-2
+  mx-1
+  rounded-lg
+  hover:bg-[#368F88]
+}

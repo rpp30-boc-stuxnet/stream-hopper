@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReviewButtons from '../ReviewButtons.jsx';
 import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow, MoviePosterContainer, AddRemoveMovieButton } from "../MyMovies/MyMovies.styles.js";
+import AddRemoveButtons from '../AddRemoveButtons.jsx';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -51,9 +52,10 @@ export default function NowTrending({ title, trendingTitles, addToMyMovies }) {
                   />
                 </Link>
                 <div className='buttonsContainer'>
-                  <AddRemoveMovieButton onClick={addToMyMovies}
-                    data-id={movie.tmdb_id}
-                    data-type={movie.type}>Add</AddRemoveMovieButton>
+                  <AddRemoveButtons
+                    addToMyMovies={addToMyMovies}
+                    data_id={movie.tmdb_id}
+                    data_type={movie.type} />
                   <ReviewButtons tmdb_id={movie.tmdb_id} />
                 </div>
               </MoviePosterContainer>

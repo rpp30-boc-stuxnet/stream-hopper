@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReviewButtons from '../ReviewButtons.jsx';
-import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow, MoviePosterContainer, AddRemoveMovieButton } from "./MyMovies.styles.js";
+import { MoviesContainer, MoviesTitle, MoviesPoster, MoviesRow, MoviePosterContainer } from "./MyMovies.styles.js";
+import AddRemoveButtons from '../AddRemoveButtons.jsx';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -54,9 +55,12 @@ export default function MyMovies({ title, movies, getUserMovies, setMovies, remo
                 />
               </Link>
               <div className='buttonsContainer'>
-                <AddRemoveMovieButton onClick={removeFromMyMovies}
-                  data-user={movie.user_id}
-                  data-id={movie.tmdb_id}>Remove</AddRemoveMovieButton>
+                <AddRemoveButtons
+                  removeFromMyMovies={removeFromMyMovies}
+                  saved_by_user={movie.saved_by_user}
+                  data_user={movie.user_id}
+                  data_id={movie.tmdb_id}
+                  data_type={movie.type} />
                 <ReviewButtons tmdb_id={movie.tmdb_id} />
               </div>
             </MoviePosterContainer>

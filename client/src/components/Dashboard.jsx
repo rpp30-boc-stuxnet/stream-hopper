@@ -159,7 +159,7 @@ export default function Dashboard(props) {
     <>
       <Navbar handleLogout={props.handleLogout} />
       <main className={'dashboard'}>
-        <h1>User Dashboard</h1>
+        <h1>Hello {window.localStorage.userEmail.split('@')[0]}</h1>
 
         {userMovies ? <MyMovies
           title='My Movies'
