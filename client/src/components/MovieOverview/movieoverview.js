@@ -110,14 +110,17 @@ function MovieOverview (props) {
   return (
     <>
     <Navbar handleLogout={props.handleLogout} />
-    <div id = "movieOverviewContainer">
-      <div id = "leftSide">
-        <h1 id = "leftSideHeading">{Object.keys(movieDetails).length > 0 ? movieDetails.title : 'Title Missing'}</h1>
-        <div id ="moviePoster">
+    <div className="titleOverviewContainer">
+      <div className="detailContainer">
+        <div className="detailFader"></div>
+        <h1 className="title">{Object.keys(movieDetails).length > 0 ? movieDetails.title : 'Title Missing'}</h1>
+        <div className="titlePoster">
           <img src = { Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : 'https://i.imgur.com/7sR45d6.png'} alt ="movie_poster"/>
         </div>
-        <ReviewButtons tmdb_id={mediaId} />
-        <div id= "movieDetails">
+        <div className="reviewButtonContainer">
+          <ReviewButtons tmdb_id={mediaId} />
+        </div>
+        <div className="titleDetails">
          <div id = "movieRatings">
           { Object.keys(movieDetails).length > 0  && Object.keys(movieDetails.ratings).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
          </div>
@@ -131,7 +134,7 @@ function MovieOverview (props) {
           { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : null}
          </div>
         </div>
-        <div id ="addRemoveMovieButtons">
+        <div className="addRemoveButtons">
           {Object.keys(movieDetails).length > 0 ?
             (movieDetails.saved_by_user ? <button id ="addMovie" onClick = {handleAddMovies}> Add to My Movies </button> : <button id ="addMovie" onClick = {handleRemoveMovies}> Remove from My Movies </button>) :
             null}
