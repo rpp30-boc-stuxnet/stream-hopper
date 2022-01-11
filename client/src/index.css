@@ -46,6 +46,16 @@ button {
   @apply flex flex-col text-[#F4F1BB] w-full items-center z-10
 }
 
+.titleListContainer {
+  @apply
+    flex
+    h-1/4
+    mb-8
+    px-4
+    w-full
+    z-10
+}
+
 /*
   ____________________
   |  Navigation Bar  |
@@ -436,4 +446,95 @@ button {
 .themeBtn {
   @apply
     text-[#368F8B] dark:text-[#F4F1BB] text-2xl cursor-pointer
+}
+
+/*
+  ______________________________
+  |  Add Remove Title Buttons  |
+  ------------------------------
+*/
+
+.removeTitleBtn {
+  @apply
+  w-24
+  bg-[#64113F]
+  text-[#F4F1BB]
+  text-lg
+  px-2
+  mx-1
+  rounded-lg
+  hover:bg-[#368F88]
+}
+
+.addTitleBtn {
+  @apply
+  w-24
+  bg-[#64113F]
+  text-[#F4F1BB]
+  text-lg
+  px-2
+  mx-1
+  rounded-lg
+  hover:bg-[#368F88]
+}
+
+/*
+  ____________________
+  |  Title Overview  |
+  --------------------
+*/
+
+.titleOverviewContainer {
+  @apply w-full flex flex-wrap z-10
+}
+
+.detailContainer {
+  @apply flex flex-col flex-wrap h-fit w-full p-8 md:w-1/3 md:flex-nowrap
+}
+
+.detailFader {
+  @apply absolute h-full w-full -mx-4 md:w-1/3 bg-[#990033] opacity-40 z-0 rounded-xl
+}
+
+.title {
+  @apply m-2 text-3xl z-10
+}
+
+.titlePoster{
+  @apply h-auto w-4/5 md:w-full z-10
+}
+
+.titleDetails {
+  @apply z-10
+}
+
+.reviewButtonContainer {
+  @apply flex flex-row p-1 mt-2 items-center text-xl z-10
+}
+
+.addRemoveButtons {
+  @apply z-10
+}
+
+#streamOptions {
+  width: 60%;
+  margin: 1em;
+
+}
+
+
+#moviePoster img{
+  width:100%
+}
+
+#synopsisContent{
+  background: transparent;
+  color: white;
+  border:none;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#streamOptionsContainer{
+  width: 100%;
 }

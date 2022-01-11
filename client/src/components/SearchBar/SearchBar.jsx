@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const axios = require('axios')
 
 
@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
     }
     this.searchChange = this.searchChange.bind(this);
     this.makeList = this.makeList.bind(this);
-    this.searchEnter = this.searchEnter.bind(this)
+    this.searchEnter = this.searchEnter.bind(this);
   }
 
   searchEnter = (e) => {
@@ -40,7 +40,7 @@ class SearchBar extends React.Component {
   makeList = (data) => {
     return data.map((data, index) => {
       return (
-        <Link to={`/details/${data.tmdb_id}/${data.type}`}>
+        <Link to={`/details/${data.tmdb_id}/${data.type}`} onClick={() => {useNavigate(`/details/${data.tmdb_id}/${data.type}`)}}>
           <div className="dataItem" key={index}>
             <img className="dataImg" src={data.poster_path} alt='movie poster'></img>
             <div className="dataText">
@@ -62,6 +62,7 @@ class SearchBar extends React.Component {
           placeholder="search for a movie or tv show"
           value={this.state.searchTerm}
           onChange={(event) => this.searchChange(event)}
+          onKeyPress={(event) => this.searchEnter(event)}
         />
         {(this.state.searchData.length > 0 && this.state.searchTerm !== '') ?
           <div className="dataResults">
