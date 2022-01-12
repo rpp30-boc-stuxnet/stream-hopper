@@ -85,3 +85,30 @@ describe("GET /api/streamRatings", () => {
   })
 
 })
+
+describe("POST /api/streamRatings", () => {
+  describe("When a required query paramater is missing from request", () => {
+    test("Should respond with a 400 status code", async () => {
+
+    })
+
+    test("Should responsd with a message indicating the parameter that was missing", async () => {
+
+    })
+
+  })
+
+  describe("When a user successfully submits source ratings", () => {
+    test("Should respond with a 201 status code", async () => {
+
+    })
+
+    test("Should respond with a message confirming the save was successful", async () => {
+
+    })
+
+    test("Should change the overall stream source ratings in the database", async () => {
+
+    })
+
+})
