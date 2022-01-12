@@ -3,6 +3,44 @@ const User_Stream_Rating = require('../models/userStreamRating.js');
 const Overall_Stream_Rating = require('../models/overallStreamRating.js');
 
 const findStreamRatings = async (req, res) => {
+
+  if (!req.query.user_id || typeof req.query.user_id !== 'string') {
+    res.status(400).send("Error: Must provide a valid 'user_id' (string) in the query parameters");
+    return;
+  } else if (!req.query.title_type || typeof req.query.title_type !== 'string' || (req.query.title_type !== 'tv' && req.query.title_type !== 'movie')) {
+    res.status(400).send("Error: Must provide a valid 'title_type' (string of 'tv' or 'movie') in the query parameters");
+    return;
+  } else if (!req.query.tmdb_id || typeof parseInt(req.query.tmdb_id) !== 'number') {
+    res.status(400).send("Error: Must provide a valid 'tmdb_id' (integer) in the query parameters");
+    return;
+  } else if (!req.query.source_company_id || typeof parseInt(req.query.source_company_id) !== 'number') {
+    res.status(400).send("Error: Must provide a valid 'source_company_id' (integer) in the query parameters");
+    return;
+  } else if (
+    !req.query.stream_type ||
+    typeof req.query.stream_type !== 'string' ||
+    (
+      req.query.stream_type !== 'rent' &&
+      req.query.stream_type !== 'buy' &&
+      req.query.stream_type !== 'sub' &&
+      req.query.stream_type !== 'free'
+    )
+  ) {
+    res.status(400).send("Error: Must provide a valid 'stream_type' (string of 'rent', 'buy', 'sub', or 'free') in the query parameters");
+    return;
+  } else if (
+    !req.query.stream_format ||
+    typeof req.query.stream_format !== 'string' ||
+    (
+      req.query.stream_format !== '4K' &&
+      req.query.stream_format !== 'HD' &&
+      req.query.stream_format !== 'SD'
+    )
+  ) {
+    res.status(400).send("Error: Must provide a valid 'stream_format' (string of '4K', 'HD', or 'SD') in the query parameters");
+    return;
+  }
+
   await User_Stream_Rating.findOne(
     {
       user_id: req.query.user_id,
@@ -57,6 +95,53 @@ const findStreamRatings = async (req, res) => {
 }
 
 const saveStreamRating = async (req, res) => {
+
+  if (!req.body.user_id || typeof req.body.user_id !== 'string') {
+    res.status(400).send("Error: Must provide a valid 'user_id' (string) in the body parameters");
+    return;
+  } else if (!req.body.title_type || typeof req.body.title_type !== 'string' || (req.body.title_type !== 'tv' && req.body.title_type !== 'movie')) {
+    res.status(400).send("Error: Must provide a valid 'title_type' (string of 'tv' or 'movie') in the body parameters");
+    return;
+  } else if (!req.body.tmdb_id || typeof parseInt(req.body.tmdb_id) !== 'number') {
+    res.status(400).send("Error: Must provide a valid 'tmdb_id' (integer) in the body parameters");
+    return;
+  } else if (!req.body.source_company_id || typeof parseInt(req.body.source_company_id) !== 'number') {
+    res.status(400).send("Error: Must provide a valid 'source_company_id' (integer) in the body parameters");
+    return;
+  } else if (
+    !req.body.stream_type ||
+    typeof req.body.stream_type !== 'string' ||
+    (
+      req.body.stream_type !== 'rent' &&
+      req.body.stream_type !== 'buy' &&
+      req.body.stream_type !== 'sub' &&
+      req.body.stream_type !== 'free'
+    )
+  ) {
+    res.status(400).send("Error: Must provide a valid 'stream_type' (string of 'rent', 'buy', 'sub', or 'free') in the body parameters");
+    return;
+  } else if (
+    !req.body.stream_format ||
+    typeof req.body.stream_format !== 'string' ||
+    (
+      req.body.stream_format !== '4K' &&
+      req.body.stream_format !== 'HD' &&
+      req.body.stream_format !== 'SD'
+    )
+  ) {
+    res.status(400).send("Error: Must provide a valid 'stream_format' (string of '4K', 'HD', or 'SD') in the body parameters");
+    return;
+  } else if (!req.body.user_audio_quality_rating || typeof req.body.user_audio_quality_rating !== 'number' || (req.body.user_audio_quality_rating < 1 || req.body.user_audio_quality_rating > 5) || req.body.user_audio_quality_rating % 1 !== 0) {
+    res.status(400).send("Error: Must provide a valid 'user_audio_quality_rating' (integer betwen 1-5) in the body parameters");
+    return;
+  } else if (!req.body.user_video_quality_rating || typeof req.body.user_video_quality_rating !== 'number' || (req.body.user_video_quality_rating < 1 || req.body.user_video_quality_rating > 5) || req.body.user_video_quality_rating % 1 !== 0) {
+    res.status(400).send("Error: Must provide a valid 'user_video_quality_rating' (integer betwen 1-5) in the body parameters");
+    return;
+  } else if (!req.body.user_stream_reliability_rating || typeof req.body.user_stream_reliability_rating !== 'number' || (req.body.user_stream_reliability_rating < 1 || req.body.user_stream_reliability_rating > 5) || req.body.user_stream_reliability_rating % 1 !== 0) {
+    res.status(400).send("Error: Must provide a valid 'user_stream_reliability_rating' (integer betwen 1-5) in the body parameters");
+    return;
+  }
+
   await User_Stream_Rating.findOne({
       user_id: req.body.user_id,
       title_type: req.body.title_type,
