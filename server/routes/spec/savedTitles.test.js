@@ -307,10 +307,93 @@ describe("DELETE /api/savedTitles", () => {
     })
   })
 
-  // Scenario: "Title isn't in user's list"
-    // Test: "Should respond with a 400 status code"
-    // Test: "Should respond with a messaging indicating the title wasn't in the user's list"
-  // Scenario: "Title is in user's list"
-    // Test: "Should respond with a 200 status code"
-    // Test: "Should remove the title from the user's list"
+  describe("Title isn't in user's list", () => {
+    test("Should respond with a 400 status code", async () => {
+      const response = await request(app)
+        .delete('/api/savedTitles')
+        .send({
+          user_id: "Test6",
+          tmdb_id: 123
+        })
+
+      expect(response.statusCode).toBe(400);
+    })
+
+    test("Should respond with a message indicating the title wasn't in the user's list", async () => {
+      const response = await request(app)
+        .delete('/api/savedTitles')
+        .send({
+          user_id: "Test6",
+          tmdb_id: 123
+        })
+
+      expect(response.error.text).toBe("Title was not found in user's list")
+    })
+  })
+
+  describe("Title was in user's list", () => {
+    test("Should respond with a 200 status code", async () => {
+      await request(app)
+        .post('/api/savedTitles')
+        .send({
+          user_id: "Test7",
+          type: "tv",
+          tmdb_id: 46952
+        })
+
+      const response = await request(app)
+        .delete('/api/savedTitles')
+        .send({
+          user_id: "Test7",
+          tmdb_id: 46952
+        })
+
+      expect(response.statusCode).toBe(200);
+    })
+
+    test("Should remove the title from the user's list", async () => {
+      await request(app)
+        .post('/api/savedTitles')
+        .send({
+          user_id: "Test7",
+          type: "tv",
+          tmdb_id: 46952
+        })
+
+      await request(app)
+        .delete('/api/savedTitles')
+        .send({
+          user_id: "Test7",
+          tmdb_id: 46952
+        })
+
+      const response = await request(app)
+        .get('/api/savedTitles')
+        .query({
+          user_id: "Test7"
+        })
+
+      expect(Array.isArray(response.body) && response.body.length === 0).toBe(true);
+    })
+
+    test("Should respond with a message indicating the title was removed successfully", async () => {
+      await request(app)
+        .post('/api/savedTitles')
+        .send({
+          user_id: "Test7",
+          type: "tv",
+          tmdb_id: 46952
+        })
+
+      const response = await request(app)
+        .delete('/api/savedTitles')
+        .send({
+          user_id: "Test7",
+          tmdb_id: 46952
+        })
+
+      expect(response.text).toBe("Title deleted successfully");
+    })
+  })
+
 })

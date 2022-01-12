@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641948189306" clover="3.2.0">
-  <project timestamp="1641948189307" name="All files">
-    <metrics statements="462" coveredstatements="213" conditionals="137" coveredconditionals="30" methods="79" coveredmethods="10" elements="678" coveredelements="253" complexity="0" loc="462" ncloc="462" packages="5" files="27" classes="27"/>
+<coverage generated="1641953877065" clover="3.2.0">
+  <project timestamp="1641953877065" name="All files">
+    <metrics statements="464" coveredstatements="219" conditionals="137" coveredconditionals="34" methods="79" coveredmethods="11" elements="680" coveredelements="264" complexity="0" loc="464" ncloc="464" packages="5" files="27" classes="27"/>
     <package name="database">
       <metrics statements="20" coveredstatements="16" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
       <file name="index.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/index.js">
@@ -29,7 +29,7 @@
       </file>
     </package>
     <package name="database.controllers">
-      <metrics statements="301" coveredstatements="84" conditionals="121" coveredconditionals="29" methods="66" coveredmethods="7"/>
+      <metrics statements="303" coveredstatements="90" conditionals="121" coveredconditionals="33" methods="66" coveredmethods="8"/>
       <file name="relatedTitles.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/relatedTitles.js">
         <metrics statements="43" coveredstatements="6" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -77,65 +77,67 @@
         <line num="114" count="1" type="stmt"/>
       </file>
       <file name="savedTitles.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/savedTitles.js">
-        <metrics statements="58" coveredstatements="42" conditionals="33" coveredconditionals="29" methods="13" coveredmethods="7"/>
+        <metrics statements="60" coveredstatements="48" conditionals="33" coveredconditionals="33" methods="13" coveredmethods="8"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="5" count="7" type="cond" truecount="4" falsecount="0"/>
+        <line num="5" count="8" type="cond" truecount="4" falsecount="0"/>
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
-        <line num="10" count="5" type="stmt"/>
-        <line num="12" count="5" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
         <line num="13" count="2" type="stmt"/>
-        <line num="15" count="5" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
-        <line num="25" count="16" type="cond" truecount="4" falsecount="0"/>
+        <line num="25" count="19" type="cond" truecount="4" falsecount="0"/>
         <line num="26" count="2" type="stmt"/>
         <line num="27" count="2" type="stmt"/>
-        <line num="28" count="14" type="cond" truecount="4" falsecount="0"/>
+        <line num="28" count="17" type="cond" truecount="4" falsecount="0"/>
         <line num="29" count="2" type="stmt"/>
         <line num="30" count="2" type="stmt"/>
-        <line num="31" count="12" type="cond" truecount="5" falsecount="0"/>
+        <line num="31" count="15" type="cond" truecount="5" falsecount="0"/>
         <line num="32" count="2" type="stmt"/>
         <line num="33" count="2" type="stmt"/>
-        <line num="39" count="10" type="stmt"/>
-        <line num="45" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="39" count="13" type="stmt"/>
+        <line num="45" count="13" type="cond" truecount="2" falsecount="0"/>
         <line num="46" count="2" type="stmt"/>
         <line num="47" count="2" type="stmt"/>
         <line num="48" count="2" type="stmt"/>
-        <line num="50" count="8" type="stmt"/>
+        <line num="50" count="11" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
-        <line num="58" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="59" count="8" type="stmt"/>
-        <line num="61" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="13" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="11" type="stmt"/>
+        <line num="61" count="11" type="cond" truecount="2" falsecount="0"/>
         <line num="62" count="2" type="stmt"/>
-        <line num="64" count="6" type="stmt"/>
-        <line num="66" count="6" type="stmt"/>
+        <line num="64" count="9" type="stmt"/>
+        <line num="66" count="9" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
         <line num="70" count="0" type="stmt"/>
         <line num="75" count="0" type="stmt"/>
         <line num="76" count="0" type="stmt"/>
         <line num="82" count="1" type="stmt"/>
-        <line num="83" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="83" count="9" type="cond" truecount="4" falsecount="0"/>
         <line num="84" count="2" type="stmt"/>
         <line num="85" count="2" type="stmt"/>
-        <line num="86" count="2" type="cond" truecount="2" falsecount="2"/>
+        <line num="86" count="7" type="cond" truecount="4" falsecount="0"/>
         <line num="87" count="2" type="stmt"/>
         <line num="88" count="2" type="stmt"/>
-        <line num="90" count="0" type="stmt"/>
-        <line num="92" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="93" count="0" type="stmt"/>
-        <line num="95" count="0" type="stmt"/>
-        <line num="99" count="0" type="stmt"/>
-        <line num="100" count="0" type="stmt"/>
-        <line num="104" count="1" type="stmt"/>
-        <line num="105" count="1" type="stmt"/>
+        <line num="90" count="5" type="stmt"/>
+        <line num="92" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="93" count="2" type="stmt"/>
+        <line num="94" count="2" type="stmt"/>
+        <line num="96" count="3" type="stmt"/>
+        <line num="97" count="3" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
         <line num="106" count="1" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
       </file>
       <file name="sourceDetails.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/sourceDetails.js">
         <metrics statements="7" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>

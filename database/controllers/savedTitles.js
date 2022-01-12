@@ -83,16 +83,18 @@ const deleteSavedTitle = async (req, res) => {
   if (!req.body.user_id || typeof req.body.user_id !== 'string') {
     res.status(400).send("Error: Must provide a valid 'user_id' (string) in the body parameters")
     return;
-  } else if (!req.body.tmdb_id || typeof req.body.tmdb_id !== 'string') {
+  } else if (!req.body.tmdb_id || typeof req.body.tmdb_id !== 'number') {
     res.status(400).send("Error: Must provide a valid 'tmdb_id' (integer) in the body parameters")
     return;
   }
   Saved_Title.findOneAndDelete({ user_id: req.body.user_id, tmdb_id: req.body.tmdb_id })
     .then((response) => {
       if (response === null) {
-        res.status(200).send('Title was not found in list')
+        res.status(400).send("Title was not found in user's list");
+        return;
       } else {
         res.status(200).send('Title deleted successfully');
+        return;
       }
     })
     .catch((error) => {
