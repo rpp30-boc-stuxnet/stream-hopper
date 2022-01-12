@@ -161,12 +161,13 @@ export default function Dashboard(props) {
       <main className={'dashboard'}>
         <h1>Hello {window.localStorage.userEmail.split('@')[0]}</h1>
 
+
         {userMovies ? <MyTitlesList
           title='My Titles'
+          data_testid={1}
           removeFromMyMovies={removeFromMyMovies}
           addToMyMovies={addToMyMovies}
-          movies={userMovies}
-          getUserMovies={getUserMovies} /> : <>No Titles Yet!</>}
+          movies={userMovies} /> : <>No Titles Yet!</>}
 
         {userSuggestions !== null && userSuggestions[0] ? <SuggestionsList
           title='Suggestions For You'

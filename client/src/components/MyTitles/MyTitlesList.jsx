@@ -4,7 +4,7 @@ import AddRemoveButtons from '../AddRemoveButtons.jsx';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 
-export default function MyTitlesList({ title, movies, getUserMovies, setMovies, removeFromMyMovies, addToMyMovies, handleUserRating }) {
+export default function MyTitlesList({ title, movies, getUserMovies, setMovies, removeFromMyMovies, addToMyMovies, handleUserRating, data_testid }) {
 
   const [posterIndex, setCarousel] = useState(0);
 
@@ -47,6 +47,7 @@ export default function MyTitlesList({ title, movies, getUserMovies, setMovies, 
               key={index}
               src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
               alt={movie.name + " poster"}
+              data-testid={data_testid}
             ></img>
             <div className='buttonsContainer'>
               <AddRemoveButtons

@@ -15,6 +15,7 @@
     "fs": "^0.0.1-security",
     "http-proxy-middleware": "^2.0.1",
     "moment": "^2.29.1",
+    "msw": "^0.36.4",
     "npm-watch": "^0.11.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -36,7 +37,7 @@
     "start": "BROWSER=none PORT=4000 react-scripts start",
     "httpsStart": "HTTPS=true SSL_CRT_FILE=../localhost.pem SSL_KEY_FILE=../localhost-key.pem react-scripts start",
     "build": "react-scripts build",
-    "test": "npx jest ./src/Tests/ --coverage",
+    "test": "npx jest ./src/Tests/ --coverage --verbose",
     "watch": "npm-watch",
     "eject": "react-scripts eject"
   },
