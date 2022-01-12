@@ -56,6 +56,53 @@ button {
     z-10
 }
 
+.carouselTitle {
+  @apply
+    text-2xl
+    text-[#F4F1BB]
+    font-bold
+    uppercase
+    mx-8
+}
+
+.titleRow {
+ @apply
+    h-1/4
+    flex
+    overflow-x-hidden
+    mt-4
+    mx-3
+    w-11/12
+}
+
+.titleRow::-webkit-scrollbar {
+  display: none;
+}
+
+.titlePosterContainer {
+  @apply
+    flex
+    flex-col
+    relative
+    mx-2
+    h-full
+}
+
+.titlePoster {
+  transition: all 0.2s;
+
+  @apply
+    mx-2
+    h-4/5
+    w-auto
+
+}
+
+.titlePoster:hover {
+  transform: scale(1.09);
+  box-shadow: 0 3px 4px 2px rgba(255,255,255,0.4);
+}
+
 /*
   ____________________
   |  Navigation Bar  |
