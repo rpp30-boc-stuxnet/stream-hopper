@@ -1,15 +1,5 @@
 const request = require('supertest');
 const app = require('../../app.js');
-// const database = require("../../../database/index.js");
-
-// beforeAll(async () => {
-//   await database.connect();
-//   await database.drop();
-// })
-
-// afterAll(async () => {
-//   await database.disconnect();
-// })
 
 describe("GET /api/search", () => {
   describe("When the 'title' is missing from the request", () => {
