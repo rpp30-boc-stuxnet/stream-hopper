@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1641963430117" clover="3.2.0">
-  <project timestamp="1641963430117" name="All files">
-    <metrics statements="467" coveredstatements="252" conditionals="141" coveredconditionals="42" methods="79" coveredmethods="15" elements="687" coveredelements="309" complexity="0" loc="467" ncloc="467" packages="5" files="27" classes="27"/>
+<coverage generated="1641966974775" clover="3.2.0">
+  <project timestamp="1641966974775" name="All files">
+    <metrics statements="485" coveredstatements="267" conditionals="147" coveredconditionals="53" methods="86" coveredmethods="18" elements="718" coveredelements="338" complexity="0" loc="485" ncloc="485" packages="5" files="27" classes="27"/>
     <package name="database">
       <metrics statements="20" coveredstatements="16" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
       <file name="index.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/index.js">
@@ -29,19 +29,19 @@
       </file>
     </package>
     <package name="database.controllers">
-      <metrics statements="306" coveredstatements="123" conditionals="125" coveredconditionals="41" methods="66" coveredmethods="12"/>
+      <metrics statements="323" coveredstatements="126" conditionals="129" coveredconditionals="41" methods="73" coveredmethods="12"/>
       <file name="relatedTitles.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/relatedTitles.js">
         <metrics statements="46" coveredstatements="39" conditionals="12" coveredconditionals="8" methods="6" coveredmethods="4"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="36" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
         <line num="37" count="8" type="stmt"/>
         <line num="38" count="28" type="stmt"/>
         <line num="39" count="28" type="stmt"/>
         <line num="40" count="28" type="stmt"/>
         <line num="41" count="28" type="stmt"/>
-        <line num="45" count="2" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
         <line num="47" count="10" type="stmt"/>
         <line num="48" count="10" type="stmt"/>
         <line num="50" count="10" type="cond" truecount="4" falsecount="0"/>
@@ -77,13 +77,13 @@
         <line num="112" count="8" type="stmt"/>
         <line num="113" count="8" type="stmt"/>
         <line num="115" count="8" type="stmt"/>
-        <line num="119" count="2" type="stmt"/>
+        <line num="119" count="3" type="stmt"/>
       </file>
       <file name="savedTitles.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/savedTitles.js">
         <metrics statements="60" coveredstatements="48" conditionals="33" coveredconditionals="33" methods="13" coveredmethods="8"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
         <line num="5" count="8" type="cond" truecount="4" falsecount="0"/>
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
@@ -94,7 +94,7 @@
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="24" count="2" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
         <line num="25" count="26" type="cond" truecount="4" falsecount="0"/>
         <line num="26" count="2" type="stmt"/>
         <line num="27" count="2" type="stmt"/>
@@ -123,7 +123,7 @@
         <line num="70" count="0" type="stmt"/>
         <line num="75" count="0" type="stmt"/>
         <line num="76" count="0" type="stmt"/>
-        <line num="82" count="2" type="stmt"/>
+        <line num="82" count="3" type="stmt"/>
         <line num="83" count="9" type="cond" truecount="4" falsecount="0"/>
         <line num="84" count="2" type="stmt"/>
         <line num="85" count="2" type="stmt"/>
@@ -138,25 +138,25 @@
         <line num="97" count="3" type="stmt"/>
         <line num="101" count="0" type="stmt"/>
         <line num="102" count="0" type="stmt"/>
-        <line num="106" count="2" type="stmt"/>
-        <line num="107" count="2" type="stmt"/>
-        <line num="108" count="2" type="stmt"/>
+        <line num="106" count="3" type="stmt"/>
+        <line num="107" count="3" type="stmt"/>
+        <line num="108" count="3" type="stmt"/>
       </file>
       <file name="sourceDetails.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/sourceDetails.js">
         <metrics statements="7" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="2674" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="2674" count="3" type="stmt"/>
         <line num="2675" count="0" type="stmt"/>
         <line num="2676" count="0" type="stmt"/>
         <line num="2678" count="0" type="stmt"/>
-        <line num="2681" count="2" type="stmt"/>
+        <line num="2681" count="3" type="stmt"/>
       </file>
       <file name="spielbergTitles.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/spielbergTitles.js">
         <metrics statements="16" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="109" count="0" type="stmt"/>
         <line num="111" count="0" type="stmt"/>
@@ -169,14 +169,14 @@
         <line num="125" count="0" type="stmt"/>
         <line num="131" count="0" type="stmt"/>
         <line num="134" count="0" type="stmt"/>
-        <line num="138" count="2" type="stmt"/>
+        <line num="138" count="3" type="stmt"/>
       </file>
       <file name="streamRatings.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/streamRatings.js">
         <metrics statements="52" coveredstatements="7" conditionals="32" coveredconditionals="0" methods="13" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="18" count="0" type="stmt"/>
@@ -188,7 +188,7 @@
         <line num="35" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
-        <line num="59" count="2" type="stmt"/>
+        <line num="59" count="3" type="stmt"/>
         <line num="60" count="0" type="stmt"/>
         <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="72" count="0" type="stmt"/>
@@ -223,15 +223,15 @@
         <line num="205" count="0" type="stmt"/>
         <line num="206" count="0" type="stmt"/>
         <line num="217" count="0" type="stmt"/>
-        <line num="221" count="2" type="stmt"/>
-        <line num="222" count="2" type="stmt"/>
+        <line num="221" count="3" type="stmt"/>
+        <line num="222" count="3" type="stmt"/>
       </file>
       <file name="thumbRatings.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/thumbRatings.js">
         <metrics statements="54" coveredstatements="7" conditionals="28" coveredconditionals="0" methods="10" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="10" count="0" type="stmt"/>
@@ -244,7 +244,7 @@
         <line num="23" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
         <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="44" count="0" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
@@ -280,67 +280,84 @@
         <line num="102" count="0" type="stmt"/>
         <line num="104" count="0" type="stmt"/>
         <line num="105" count="0" type="stmt"/>
-        <line num="117" count="2" type="stmt"/>
-        <line num="118" count="2" type="stmt"/>
+        <line num="117" count="3" type="stmt"/>
+        <line num="118" count="3" type="stmt"/>
       </file>
       <file name="titleDetails.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/titleDetails.js">
-        <metrics statements="32" coveredstatements="4" conditionals="12" coveredconditionals="0" methods="9" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="12" count="0" type="stmt"/>
+        <metrics statements="49" coveredstatements="7" conditionals="16" coveredconditionals="0" methods="16" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="24" count="0" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
         <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="43" count="0" type="stmt"/>
-        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="62" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="95" count="0" type="stmt"/>
-        <line num="101" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="102" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
         <line num="106" count="0" type="stmt"/>
-        <line num="107" count="0" type="stmt"/>
+        <line num="109" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="110" count="0" type="stmt"/>
-        <line num="114" count="0" type="stmt"/>
-        <line num="115" count="0" type="stmt"/>
-        <line num="120" count="2" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="116" count="3" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="123" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="126" count="0" type="stmt"/>
+        <line num="130" count="0" type="stmt"/>
+        <line num="136" count="3" type="stmt"/>
+        <line num="139" count="0" type="stmt"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="150" count="0" type="stmt"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="154" count="0" type="stmt"/>
+        <line num="159" count="3" type="stmt"/>
       </file>
       <file name="titleReviews.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/titleReviews.js">
         <metrics statements="15" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="29" count="2" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
       </file>
       <file name="trendingTitles.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/controllers/trendingTitles.js">
         <metrics statements="24" coveredstatements="4" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -361,158 +378,159 @@
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
-        <line num="55" count="2" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
       </file>
     </package>
     <package name="database.models">
       <metrics statements="24" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="overallStreamRating.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/models/overallStreamRating.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
       </file>
       <file name="overallThumbRating.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/models/overallThumbRating.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
       </file>
       <file name="savedTitle.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/models/savedTitle.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
       </file>
       <file name="titleReviews.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/models/titleReviews.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
       </file>
       <file name="userStreamRating.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/models/userStreamRating.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
       </file>
       <file name="userThumbRating.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/database/models/userThumbRating.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
       </file>
     </package>
     <package name="server">
       <metrics statements="35" coveredstatements="33" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="app.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/app.js">
         <metrics statements="35" coveredstatements="33" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
-        <line num="38" count="2" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
-        <line num="40" count="2" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="43" count="2" type="stmt"/>
-        <line num="44" count="2" type="stmt"/>
-        <line num="45" count="2" type="stmt"/>
-        <line num="46" count="2" type="stmt"/>
-        <line num="47" count="2" type="stmt"/>
-        <line num="48" count="2" type="stmt"/>
-        <line num="49" count="2" type="stmt"/>
-        <line num="50" count="2" type="stmt"/>
-        <line num="51" count="2" type="stmt"/>
-        <line num="52" count="2" type="stmt"/>
-        <line num="54" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+        <line num="41" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="45" count="3" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="47" count="3" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+        <line num="54" count="3" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
-        <line num="58" count="2" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
         <line num="59" count="0" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
+        <line num="64" count="3" type="stmt"/>
       </file>
     </package>
     <package name="server.routes">
-      <metrics statements="82" coveredstatements="56" conditionals="14" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <metrics statements="83" coveredstatements="68" conditionals="16" coveredconditionals="11" methods="8" coveredmethods="3"/>
       <file name="relatedTitlesRoutes.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/relatedTitlesRoutes.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
       </file>
       <file name="savedTitlesRoutes.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/savedTitlesRoutes.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
       </file>
       <file name="searchRoutes.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/searchRoutes.js">
-        <metrics statements="16" coveredstatements="5" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
+        <metrics statements="17" coveredstatements="17" conditionals="12" coveredconditionals="11" methods="3" coveredmethods="3"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="18" count="51" type="cond" truecount="4" falsecount="0"/>
+        <line num="19" count="48" type="stmt"/>
+        <line num="21" count="48" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="42" type="stmt"/>
+        <line num="24" count="6" type="stmt"/>
+        <line num="26" count="48" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="39" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="43" count="3" type="stmt"/>
       </file>
       <file name="spielbergTitlesRoutes.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/spielbergTitlesRoutes.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
       </file>
       <file name="streamRatings.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/streamRatings.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
       </file>
       <file name="streamSources.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/streamSources.js">
         <metrics statements="21" coveredstatements="6" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
         <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="9" count="0" type="stmt"/>
         <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -528,41 +546,41 @@
         <line num="42" count="0" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
         <line num="48" count="0" type="stmt"/>
-        <line num="52" count="2" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
       </file>
       <file name="thumbRatings.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/thumbRatings.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
       </file>
       <file name="titleDetailsRoutes.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/titleDetailsRoutes.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="60" count="2" type="stmt"/>
-        <line num="61" count="2" type="stmt"/>
-        <line num="62" count="2" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
-        <line num="66" count="2" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="62" count="3" type="stmt"/>
+        <line num="64" count="3" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
       </file>
       <file name="titleReviewsRoutes.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/titleReviewsRoutes.js">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
       </file>
       <file name="trendingTitlesRoutes.js" path="/Users/drew/Documents/RPP30/BOC/stream-hopper/server/routes/trendingTitlesRoutes.js">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="2" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="7" count="2" type="stmt"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
       </file>
     </package>
   </project>
