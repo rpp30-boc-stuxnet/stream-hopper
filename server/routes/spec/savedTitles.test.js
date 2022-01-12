@@ -11,7 +11,7 @@ afterAll(async () => {
   await database.disconnect();
 })
 
-describe ("GET /api/savedTitles", () => {
+describe("GET /api/savedTitles", () => {
 
   describe("Given a user_id", () => {
     test("Should respond with a 200 status code", async () => {
