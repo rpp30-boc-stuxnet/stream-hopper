@@ -109,7 +109,7 @@ function MovieOverview (props) {
       <div className="detailContainer">
         <div className="detailFader"></div>
         <h1 className="title">{Object.keys(movieDetails).length > 0 ? movieDetails.title : 'Title Missing'}</h1>
-        <div className="titlePoster">
+        <div className="overviewPoster">
           <img src = { Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : 'https://i.imgur.com/7sR45d6.png'} alt ="movie_poster"/>
         </div>
         <div className="reviewButtonContainer">
@@ -135,16 +135,16 @@ function MovieOverview (props) {
             null}
         </div>
       </div>
-      <div id = "streamOptions">
-        <h2 id ="streamOptionsHeading"> Where to Watch</h2>
-        <div id= "streamOptionsContainer">
+      <div className="streamOptions">
+        <h2 className="streamOptionsHeading">Where to Watch</h2>
+        <div className="streamOptionsContainer">
           {Object.keys(titleSources).length > 0 ? Object.keys(titleSources).map((item, index) => {
             return <StreamTile type = {item} key = {index} details = {titleSources[item]} titleName = {movieDetails.title}/>
           }): <StreamTile type = 'Not Available'/>}
         </div>
         <div>
-          <h3 id ="synopsisHeading">Film Synopsis</h3>
-          <div id ="synopsisContent">
+          <h3 id ="synopsisHeading">Title Synopsis</h3>
+          <div className="overviewSynopsis">
             {Object.keys(movieDetails).length > 0 ? movieDetails.synopsis : 'Synopsis not Available'}
           </div>
         </div>

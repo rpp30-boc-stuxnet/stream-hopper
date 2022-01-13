@@ -546,23 +546,23 @@ button {
 }
 
 .detailContainer {
-  @apply flex flex-col flex-wrap h-fit w-full p-8 md:w-1/3 md:flex-nowrap
+  @apply flex flex-col flex-wrap ml-1 md:ml-2 lg:ml-4 xl:ml-4 h-fit w-full p-8 md:w-[30%] lg:w-[31.8%] xl:w-[30%] md:flex-nowrap
 }
 
 .detailFader {
-  @apply absolute h-full w-full -mx-4 md:w-1/3 bg-[#990033] opacity-40 z-0 rounded-xl
+  @apply absolute h-[90%] w-full -mx-5 xl:-mx-6 -mb-12 md:w-[28%] lg:w-[29%] xl:w-[30%] bg-[#FFC15E] opacity-30 z-0 rounded-xl
 }
 
 .title {
   @apply m-2 text-3xl z-10
 }
 
-.titlePoster{
-  @apply h-auto w-4/5 md:w-full z-10
+.overviewPoster{
+  @apply h-auto self-center w-4/5 md:w-full lg:max-w-[80%] z-10
 }
 
 .titleDetails {
-  @apply z-10
+  @apply z-10 text-xl
 }
 
 .reviewButtonContainer {
@@ -573,25 +573,33 @@ button {
   @apply z-10
 }
 
-#streamOptions {
-  width: 60%;
+.streamOptions {
+  @apply flex flex-col w-2/3 mt-4
+}
+
+.streamOptionsHeading {
+  @apply text-3xl mt-1 mb-0
+}
+
+.overviewPoster {
+  @apply w-full z-10
+}
+
+.overviewSynopsis {
+  @apply text-white text-2xl w-full
+}
+
+.streamOptionsContainer{
+  @apply w-11/12
+}
+
+.sourceContainer{
+  @apply text-center text-sm
+}
+
+.tileContainer{
+  width:100%;
+  background-color: grey;
   margin: 1em;
-
-}
-
-
-#moviePoster img{
-  width:100%
-}
-
-#synopsisContent{
-  background: transparent;
-  color: white;
-  border:none;
-  width: 80%;
-  margin: 0 auto;
-}
-
-#streamOptionsContainer{
-  width: 100%;
+  @apply w-full
 }
