@@ -34,20 +34,27 @@ export default function SuggestionsList({ title, movies, getUserMovies, setMovie
     zIndex: '1'
   };
 
+  let posterStyle = {
+    height: '80%',
+    maxHeight: '40vh',
+    width: 'auto'
+  }
+
   return (
     <>
       <h1 className='carouselTitle'>{title}</h1>
-      <div className='titleListContainer' style={transformStyle}>
+      <div className='titleListContainer'>
         {posterIndex > 0 && <FaChevronLeft style={chevronLeftStyle} onClick={transformLeft} />}
         <div className="titleRow">
           {movies.map((movie, index) => {
 
-            return <div className='titlePosterContainer'>
+            return <div className='titlePosterContainer' style={transformStyle}>
               <img
                 className='titlePoster'
                 key={index}
-                src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
+                src={"https://image.tmdb.org/t/p/w185" + movie.poster_path}
                 alt={movie.name}
+                style={posterStyle}
               ></img>
               <div className='buttonsContainer'>
                 <AddRemoveButtons
