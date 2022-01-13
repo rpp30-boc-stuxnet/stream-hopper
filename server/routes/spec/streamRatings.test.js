@@ -21,7 +21,7 @@ describe("GET /api/streamRatings", () => {
       expect(response.statusCode).toBe(400)
     })
 
-    test("Should responsd with a message indicating the parameter that was missing", async () => {
+    test("Should respond with a message indicating the parameter that was missing", async () => {
       const response = await request(app)
         .get('/api/streamRatings')
         .query({})
