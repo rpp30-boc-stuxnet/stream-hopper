@@ -3,6 +3,15 @@ const User_Thumb_Rating = require('../models/userThumbRating.js');
 const Overall_Thumb_Rating = require('../models/overallThumbRating.js');
 
 const findThumbRatings = async (req, res) => {
+
+  if (!req.query.user_id || typeof req.query.user_id !== 'string' || req.query.user_id.length === 0) {
+    res.status(400).send("Error: Must provide a valid 'user_id' (string) in the query parameters");
+    return;
+  } else if (!req.query.tmdb_id || typeof parseInt(req.query.tmdb_id) !== 'number' || parseInt(req.query.tmdb_id) % 1 !== 0) {
+    res.status(400).send("Error: Must provide a valid 'tmdb_id' (integer) in the query parameters");
+    return;
+  }
+
   await User_Thumb_Rating.findOne({user_id: req.query.user_id, tmdb_id: req.query.tmdb_id})
     .then(async (userThumbRating) => {
       let user_thumb_rating;
@@ -37,8 +46,20 @@ const findThumbRatings = async (req, res) => {
 }
 
 const saveThumbRating = async (req, res) => {
-  // req.body: {tmdb_id, user_id, prev_thumb_rating, new_thumb_rating}
-    // prev_thumb_rating and new_thumb_rating can be null, 'up', or 'down'
+
+  if (!req.body.user_id || typeof req.body.user_id !== 'string' || req.body.user_id.length === 0) {
+    res.status(400).send("Error: Must provide a valid 'user_id' (string) in the body parameters");
+    return;
+  } else if (!req.body.tmdb_id || typeof req.body.tmdb_id !== 'number' || req.body.tmdb_id % 1 !== 0) {
+    res.status(400).send("Error: Must provide a valid 'tmdb_id' (integer) in the body parameters");
+    return;
+  } else if (req.body.prev_thumb_rating === undefined || !(req.body.prev_thumb_rating === 'up' || req.body.prev_thumb_rating === 'down' || req.body.prev_thumb_rating === null)) {
+    res.status(400).send("Error: Must provide a valid 'prev_thumb_rating' (string of 'up' or down' OR null) in the body parameters");
+    return;
+  } else if (req.body.new_thumb_rating === undefined || !(req.body.new_thumb_rating === 'up' || req.body.new_thumb_rating === 'down' || req.body.new_thumb_rating === null)) {
+    rest.status(400).send("Error: Must provide a valid 'new_thumb_rating' (string of 'up' or down' OR null) in the body parameters");
+    return;
+  }
 
   if (req.body.prev_thumb_rating === req.body.new_thumb_rating) {
     req.body.new_thumb_rating = null;
@@ -53,10 +74,8 @@ const saveThumbRating = async (req, res) => {
         res.status(400).send('Error during findOneAndUpdate User_Thumb_Rating: ' + error);
         return;
       } else {
-        // findOne to see if movie has thumb ratings
         await Overall_Thumb_Rating.find({ tmdb_id: req.body.tmdb_id })
           .then(async (results) => {
-            // if movie doesn't have any existing thumb ratings
             if (results.length === 0) {
               let thumbsUps = 0;
               let thumbsDowns = 0;
@@ -77,7 +96,6 @@ const saveThumbRating = async (req, res) => {
                   return;
                 })
             } else {
-              // update existing one
               let thumbsUpChange = 0;
               let thumbsDownChange = 0;
 
@@ -95,7 +113,6 @@ const saveThumbRating = async (req, res) => {
 
               results[0].updateOne(
                 { $inc: {'thumbs_ups': thumbsUpChange, 'thumbs_downs': thumbsDownChange } },
-                // {new: true, upsert: true, useFindAndModify: false },
                 async (error, response) => {
                   if (error) {
                     res.status(400).send('Error during findOneAndUpdate User_Thumb_Rating: ' + error);

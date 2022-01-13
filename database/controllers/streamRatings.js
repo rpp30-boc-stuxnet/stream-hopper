@@ -10,7 +10,7 @@ const findStreamRatings = async (req, res) => {
   } else if (!req.query.title_type || typeof req.query.title_type !== 'string' || (req.query.title_type !== 'tv' && req.query.title_type !== 'movie')) {
     res.status(400).send("Error: Must provide a valid 'title_type' (string of 'tv' or 'movie') in the query parameters");
     return;
-  } else if (!req.query.tmdb_id || typeof parseInt(req.query.tmdb_id) !== 'number') {
+  } else if (!req.query.tmdb_id || typeof parseInt(req.query.tmdb_id) !== 'number' || parseInt(req.query.tmdb_id) % 1 !== 0) {
     res.status(400).send("Error: Must provide a valid 'tmdb_id' (integer) in the query parameters");
     return;
   } else if (!req.query.source_company_id || typeof parseInt(req.query.source_company_id) !== 'number') {
