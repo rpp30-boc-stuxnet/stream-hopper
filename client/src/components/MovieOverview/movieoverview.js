@@ -11,7 +11,6 @@ import ReviewButtons from '../ReviewButtons.jsx'
 function MovieOverview (props) {
   const [movieDetails, setMovieDetails] = useState({});
   const [titleSources, setTitleSources] = useState({});
-  const [showForm, setShowForm] = useState(false);
 
   let params = useParams();
   let mediaId = params.id;
@@ -27,7 +26,7 @@ function MovieOverview (props) {
         }
       })
         .then((response) => {
-          //console.log('success getting user suggestions: ', response);
+
           resolve(response.data);
         })
         .catch((error) => {
@@ -67,13 +66,8 @@ function MovieOverview (props) {
         type: data[i].type
       })
     }
-    console.log(mappedData)
+    // console.log(mappedData)
      return mappedData;
-  }
-
-  const handleModalToggle =  (e)=> {
-    e.preventDefault();
-    setShowForm(!showForm);
   }
 
   useEffect(() => {
@@ -82,6 +76,7 @@ function MovieOverview (props) {
     searchDetails()
     .then((data)=>{
       deetz = data;
+
       searchSources()
       .then((requestSourcesData)=>{
         sources = requestSourcesData;
@@ -125,18 +120,18 @@ function MovieOverview (props) {
           { Object.keys(movieDetails).length > 0  && Object.keys(movieDetails.ratings).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
          </div>
          <div id = "moveReleaseDate">
-          { Object.keys(movieDetails).length > 0 ? movieDetails.release_date : null}
+          { Object.keys(movieDetails).length > 0 ? ('Release: ' + movieDetails.release_date) : 'Release: N/A'}
          </div>
          <div id = "director">
-          { Object.keys(movieDetails).length > 0 ? movieDetails.director : null}
+          { Object.keys(movieDetails).length > 0 ? ('Director: ' + movieDetails.director) : 'Director: N/A--'}
          </div>
          <div id = "runTime">
-          { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : null}
+          { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : 'Run Time: N/A'}
          </div>
         </div>
         <div className="addRemoveButtons">
           {Object.keys(movieDetails).length > 0 ?
-            (movieDetails.saved_by_user ? <button id ="addMovie" onClick = {handleAddMovies}> Add to My Movies </button> : <button id ="addMovie" onClick = {handleRemoveMovies}> Remove from My Movies </button>) :
+            (movieDetails.saved_by_user ? <button id ="addMovie" onClick = {handleRemoveMovies}> Remove From My Movies </button> : <button id ="addMovie" onClick = {handleAddMovies}> Add To My Movies </button>) :
             null}
         </div>
       </div>
@@ -165,12 +160,4 @@ function MovieOverview (props) {
 }
 
 export default MovieOverview;
-
-//list of props needed for component to work.
-//stream sources (hulu, amazon, netflix etc.)
-//film synopsis (description)
-//movie title
-// move poster url
-// needs to check if movie is part of "My Movies"
-// year, released, run time, rotten tomato score rating, stream hopper rating
 

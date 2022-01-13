@@ -27,4 +27,17 @@
   float: right;
   margin-right: 3em;
   display: inline-block;
+  size: 4em;
+}
+.stars{
+  width: fit-content;
+  height: auto;
+  left: 40%;
+  position: relative;
+
+
+}
+#confirmationMessage{
+  margin: 0 auto;
+  padding-bottom: 2em;
 }

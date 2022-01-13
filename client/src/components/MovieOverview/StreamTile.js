@@ -62,7 +62,7 @@ function StreamTile (props){
   return(
 
     <div className = "tileContainer">
-      <div className = "typeName">{details.type ? details.type: 'Not Available'}</div>
+      <div className = "typeName">{details.type ? details.type.toUpperCase(): 'Not Available'}</div>
       <div className = "sourceContainer">
         {Object.keys(details).length > 0 ?
           Object.keys(details).map((item, index)=>{
@@ -71,7 +71,7 @@ function StreamTile (props){
 
                 return (
                   <SourceBox companyId = {details[item].companyId} price = {details[item].price} quality = {details[item].quality} webURL = {details[item].webURL} logoURL = {details[item].logoURL} key = {index}
-                   companyName = {item} titleName = {props.titleName}/>
+                   companyName = {item} titleName = {props.titleName} streamType = {details.type}/>
                 )
               }
             }

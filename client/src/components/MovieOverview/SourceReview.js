@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './SourceReview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import ReactStars from "react-rating-stars-component";
 
 function SourceReview(props){
 
@@ -17,12 +18,15 @@ function SourceReview(props){
   });
   const [canSubmit, setCanSubmit] = useState ({
     fieldsFilled: false,
-    errorMessage: ''
+    errorMessage: '',
+    confirmationMessage: 'Ratings Received!',
+    showFeedback: false
   })
 
   const handleSubmit = (e) =>{
     e.preventDefault();
     // console.log(sourceReviewData);
+    console.log(sourceReviewData);
     if(sourceReviewData.user_audio_quality_rating === '' || sourceReviewData.user_audio_quality_rating === null) {
       setCanSubmit({errorMessage: 'Fill out Audio Rating'})
     } else if(sourceReviewData.user_video_quality_rating === '' || sourceReviewData.user_video_quality_rating === null) {
@@ -33,19 +37,19 @@ function SourceReview(props){
       let options = {
         user_id: window.localStorage.userUID,
           tmdb_id: mediaId,
-          stream_type: mediaType,
+          title_type: mediaType,
           source_company_id: props.companyId,
           stream_format: props.quality,
+          stream_type: props.streamType,
           user_audio_quality_rating: sourceReviewData.user_audio_quality_rating,
           user_stream_reliability_rating: sourceReviewData.user_stream_reliability_rating,
           user_video_quality_rating: sourceReviewData.user_video_quality_rating
       };
-      console.log(options, 'query options')
+
       axios.post('/api/streamRatings', options)
         .then((response) => {
-          //console.log('success getting user suggestions: ', response);
-          setCanSubmit({errorMessage: ''})
-          props.handleToggle(e);
+          console.log('success saving rating: ', response);
+          setCanSubmit({errorMessage: '', showFeedback: true})
         })
         .catch((error) => {
           console.log(error);
@@ -54,17 +58,17 @@ function SourceReview(props){
 
   }
 
-  const handleFormChange = (e) =>{
+  const handleFormChange = (e, m) =>{
+    console.log(e + m, ' handleformchange')
     let newData = sourceReviewData;
-
-    if(e.target.name === 'audioQuality') {
-      newData.user_audio_quality_rating = e.target.value;
+    if(m === 'audio') {
+      newData.user_audio_quality_rating = e;
     }
-    if(e.target.name === 'videoQuality') {
-      newData.user_video_quality_rating = e.target.value;
+    if(m === 'video') {
+      newData.user_video_quality_rating = e;
     }
-    if(e.target.name === 'reliabilityRating') {
-      newData.user_stream_reliability_rating = e.target.value;
+    if(m === 'reliability') {
+      newData.user_stream_reliability_rating = e;
     }
     setSourceReviewData(newData);
   }
@@ -73,29 +77,53 @@ function SourceReview(props){
       <div id = "formBackground">
         <div id = "formHeader">
           <div id = "statement">
-           {'Rate your Experience Watching ' + props.titleName + ' on ' + props.companyName}
+           {canSubmit.showFeedback ? null : 'Rate your Experience Watching ' + props.titleName + ' on ' + props.companyName}
           </div>
           <div id = "exit" onClick = {props.handleToggle}>X</div>
         </div>
-        <form onSubmit = {handleSubmit}>
-        <label>
-          Audio Quality:
-          <input type = "text" className = "formInputField" name = "audioQuality" onChange = {handleFormChange}/>
-          <br></br>
-        </label>
-        <label>
-          Video Quality:
-          <input type = "text" className = "formInputField" name = "videoQuality" onChange = {handleFormChange}/>
-          <br></br>
-        </label>
-        <label>
-          Reliability:
-          <input type = "text" className = "formInputField" name = "reliabilityRating" onChange = {handleFormChange}/>
-          <br></br>
-        </label>
-        <button type ="submit" value="Submit" id = "reviewSubmission">Submit</button>
-        </form>
-        {canSubmit.errorMessage === '' ? null : <p>{canSubmit.errorMessage}</p>}
+        {canSubmit.showFeedback ? (
+
+          <div id = "confirmationMessage">
+            Ratings Received!
+          </div>
+
+          ) :
+          <>
+          <form onSubmit = {handleSubmit}>
+            <label>
+              Audio Quality:
+              <div className ="stars">
+                <ReactStars count = {5} onChange = {(e)=>{
+                  handleFormChange(e, 'audio');
+                }} size = {25} activeColor = { '#ffd700'}/>
+              </div>
+              <br></br>
+            </label>
+            <label>
+              Video Quality:
+              <div className ="stars">
+                <ReactStars count = {5} onChange = {(e)=>{
+                  handleFormChange(e, 'video');
+                }} size = {25} activeColor = { '#ffd700'}/>
+              </div>
+              <br></br>
+            </label>
+            <label>
+              Reliability:
+              <div className ="stars">
+                <ReactStars count = {5} onChange = {(e)=>{
+                  handleFormChange(e, 'reliability');
+                }} size = {25} activeColor = { '#ffd700'}/>
+              </div>
+              <br></br>
+            </label>
+            <button type ="submit" value="Submit" id = "reviewSubmission">Submit</button>
+          </form>
+          {canSubmit.errorMessage === '' ? null : canSubmit.errorMessage}
+          </>
+
+        }
+
       </div>
     </div>
   )
