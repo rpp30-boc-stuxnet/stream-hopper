@@ -614,70 +614,402 @@ describe("POST /api/thumbRatings", () => {
 
   })
 
-  // describe("When the user changes their thumb rating from down to up", () => {
-  //   test("Should respond with a 201 status code", async () => {
+  describe("When the user changes their thumb rating from down to up", () => {
+    test("Should respond with a 201 status code", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 3,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
 
-  //   })
+      let response = await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 3,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'up'
+        })
 
-  //   test("Should respond with a message confirming the save was successful", async () => {
+      expect(response.statusCode).toBe(201)
+    })
 
-  //   })
+    test("Should respond with a message confirming the save was successful", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 33,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
 
-  //   test("Should update the user's rating in the database to 'up'", async () => {
+      let response = await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 33,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'up'
+        })
 
-  //   })
+      expect(response.text).toBe("Thumb rating saved successfully")
+    })
 
-  //   test("Should decrease the overall_thumbs_downs for the title by one", async () => {
+    test("Should update the user's rating in the database to 'up'", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 333,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
 
-  //   })
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 333,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'up'
+        })
 
-  //   test("Should increase the overall_thumbs_ups for the title by one", async () => {
+      let response = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 333
+        })
 
-  //   })
+      expect(response.body.user_thumb_rating).toBe("up")
+    })
 
-  //   test("Should not increase the total thumb ratings for the title", async () => {
+    test("Should decrease the overall_thumbs_downs for the title by one", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 3333,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
 
-  //   })
+      let firstResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 3333
+        })
 
-  // })
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 3333,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'up'
+        })
 
-  // describe("When a POST request is sent with equal (non-null) values for prev_thumb_rating and new_thumb_rating", () => {
-  //   test("Should respond with a 201 status code", async () => {
+      let secondResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 3333
+        })
 
-  //   })
+      let diffInThumbsDowns = secondResponse.body.overall_thumbs_downs - firstResponse.body.overall_thumbs_downs
 
-  //   test("Should respond with a message confirming the save was successful", async () => {
+      expect(diffInThumbsDowns).toBe(-1)
+    })
 
-  //   })
+    test("Should increase the overall_thumbs_ups for the title by one", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 33333,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
 
-  //   test("Should update the user's rating in the database to null", async () => {
+      let firstResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 33333
+        })
 
-  //   })
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 33333,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'up'
+        })
 
-  //   test("Should decrease the total thumb ratings for the title by one", async () => {
+      let secondResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 33333
+        })
 
-  //   })
+      let diffInThumbsUps = secondResponse.body.overall_thumbs_ups - firstResponse.body.overall_thumbs_ups
 
-  // })
+      expect(diffInThumbsUps).toBe(1)
+    })
 
-  // describe("When a POST request is sent with equal null values for prev_thumb_rating and new_thumb_rating", () => {
-  //   test("Should respond with a 201 status code", async () => {
+    test("Should not increase or decrease the total thumb ratings for the title", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 333333,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
 
-  //   })
+      let firstResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 333333
+        })
 
-  //   test("Should respond with a message confirming the save was successful", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 333333,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'up'
+        })
 
-  //   })
+      let secondResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 333333
+        })
 
-  //   test("Should save the user's rating in the database as null", async () => {
+      let firstTotalThumbs = firstResponse.body.overall_thumbs_ups + firstResponse.body.overall_thumbs_downs;
+      let secondTotalThumbs = secondResponse.body.overall_thumbs_ups + secondResponse.body.overall_thumbs_downs;
+      let diffInTotalThumbs = secondTotalThumbs - firstTotalThumbs
 
-  //   })
+      expect(diffInTotalThumbs).toBe(0)
+    })
 
-  //   test("Should not increase or decrease the total thumb ratings for the title", async () => {
+  })
 
-  //   })
+  describe("When a POST request is sent with equal (non-null) values for prev_thumb_rating and new_thumb_rating", () => {
+    test("Should respond with a 201 status code", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 4,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
 
-  // })
+      let response = await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 4,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'down'
+        })
+
+      expect(response.statusCode).toBe(201)
+    })
+
+    test("Should respond with a message confirming the save was successful", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 44,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
+
+      let response = await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 44,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'down'
+        })
+
+      expect(response.text).toBe("Thumb rating saved successfully")
+    })
+
+    test("Should update the user's rating in the database to null", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 444,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
+
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 444,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'down'
+        })
+
+      let response = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 444
+        })
+
+      expect(response.body.user_thumb_rating).toBe(null)
+    })
+
+    test("Should decrease the total thumb ratings for the title by one", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 444444,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'down'
+        })
+
+      let firstResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 444444
+        })
+
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 444444,
+          prev_thumb_rating: 'down',
+          new_thumb_rating: 'down'
+        })
+
+      let secondResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 444444
+        })
+
+      let firstTotalThumbs = firstResponse.body.overall_thumbs_ups + firstResponse.body.overall_thumbs_downs;
+      let secondTotalThumbs = secondResponse.body.overall_thumbs_ups + secondResponse.body.overall_thumbs_downs;
+      let diffInTotalThumbs = secondTotalThumbs - firstTotalThumbs
+
+      expect(diffInTotalThumbs).toBe(-1)
+    })
+
+  })
+
+  describe("When a POST request is sent with equal null values for prev_thumb_rating and new_thumb_rating", () => {
+    test("Should respond with a 201 status code", async () => {
+      let response = await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 5,
+          prev_thumb_rating: null,
+          new_thumb_rating: null
+        })
+
+      expect(response.statusCode).toBe(201)
+    })
+
+    test("Should respond with a message confirming the save was successful", async () => {
+      let response = await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 55,
+          prev_thumb_rating: null,
+          new_thumb_rating: null
+        })
+
+      expect(response.text).toBe("Thumb rating saved successfully")
+    })
+
+    test("Should save the user's rating in the database as null", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 555,
+          prev_thumb_rating: null,
+          new_thumb_rating: null
+        })
+
+      let response = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 555
+        })
+
+      expect(response.body.user_thumb_rating).toBe(null)
+    })
+
+    test("Should not increase or decrease the total thumb ratings for the title", async () => {
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test2',
+          tmdb_id: 555555,
+          prev_thumb_rating: null,
+          new_thumb_rating: 'up'
+        })
+
+      let firstResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 555555
+        })
+
+      await request(app)
+        .post('/api/thumbRatings')
+        .send({
+          user_id: 'Test1',
+          tmdb_id: 555555,
+          prev_thumb_rating: null,
+          new_thumb_rating: null
+        })
+
+      let secondResponse = await request(app)
+        .get('/api/thumbRatings')
+        .query({
+          user_id: 'Test1',
+          tmdb_id: 555555
+        })
+
+      let firstTotalThumbs = firstResponse.body.overall_thumbs_ups + firstResponse.body.overall_thumbs_downs;
+      let secondTotalThumbs = secondResponse.body.overall_thumbs_ups + secondResponse.body.overall_thumbs_downs;
+      let diffInTotalThumbs = secondTotalThumbs - firstTotalThumbs
+
+      expect(diffInTotalThumbs).toBe(0)
+    })
+
+  })
 
 
 })
