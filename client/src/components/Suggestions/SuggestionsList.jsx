@@ -39,27 +39,29 @@ export default function SuggestionsList({ title, movies, getUserMovies, setMovie
       <h1 className='carouselTitle'>{title}</h1>
       <div className='titleListContainer' style={transformStyle}>
         {posterIndex > 0 && <FaChevronLeft style={chevronLeftStyle} onClick={transformLeft} />}
+        <div className="titleRow">
+          {movies.map((movie, index) => {
 
-        {movies.map((movie, index) => {
-
-          return <div className='titlePosterContainer'>
-            <img
-              key={index}
-              src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
-              alt={movie.name}
-            ></img>
-            <div className='buttonsContainer'>
-              <AddRemoveButtons
-                addToMyMovies={addToMyMovies}
-                saved_by_user={movie.saved_by_user}
-                data_user={movie.user_id}
-                data_id={movie.tmdb_id}
-                data_type={movie.type} />
-              <ReviewButtons tmdb_id={movie.tmdb_id} />
+            return <div className='titlePosterContainer'>
+              <img
+                className='titlePoster'
+                key={index}
+                src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
+                alt={movie.name}
+              ></img>
+              <div className='buttonsContainer'>
+                <AddRemoveButtons
+                  addToMyMovies={addToMyMovies}
+                  saved_by_user={movie.saved_by_user}
+                  data_user={movie.user_id}
+                  data_id={movie.tmdb_id}
+                  data_type={movie.type} />
+                <ReviewButtons tmdb_id={movie.tmdb_id} />
+              </div>
             </div>
-          </div>
-        })
-        }
+          })
+          }
+        </div>
         {posterIndex < movies.length - 3 && <FaChevronRight style={chevronRightStyle} onClick={transformRight} />}
       </div>
     </>
