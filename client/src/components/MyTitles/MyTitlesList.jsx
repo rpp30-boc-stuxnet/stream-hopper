@@ -34,6 +34,12 @@ export default function MyTitlesList({ title, movies, getUserMovies, setMovies, 
     zIndex: '1'
   };
 
+  let posterStyle = {
+    height: '80%',
+    maxHeight: '40vh',
+    width: 'auto'
+  }
+
   return (
     <>
       <h1 className='carouselTitle'>{title}</h1>
@@ -46,8 +52,9 @@ export default function MyTitlesList({ title, movies, getUserMovies, setMovies, 
               <img
                 className='titlePoster'
                 key={index}
-                src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
+                src={"https://image.tmdb.org/t/p/w185" + movie.poster_path}
                 alt={movie.name + " poster"}
+                style={posterStyle}
               ></img>
               <div className='buttonsContainer'>
                 <AddRemoveButtons
