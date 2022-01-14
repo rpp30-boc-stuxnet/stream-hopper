@@ -22,19 +22,19 @@ function SourceReview(props){
     showFeedback: false
   })
 
-  const handleAudioRating = (rate: number) => {
+  const handleAudioRating = (rate) => {
 
-    setAudioRating(rate);
+    setAudioRating(Number(rate));
   }
 
-  const handleVideoRating = (rate: number) => {
+  const handleVideoRating = (rate) => {
 
-    setVideoRating(rate);
+    setVideoRating(Number(rate));
   }
 
-  const handleReliabilityRating = (rate: number) => {
+  const handleReliabilityRating = (rate) => {
 
-    setReliabilityRating(rate);
+    setReliabilityRating(Number(rate));
   }
 
   const handleSubmit = (e) =>{
