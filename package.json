@@ -11,7 +11,7 @@
   "scripts": {
     "postinstall": "cd client && npm install",
     "react-test": "cd client && npm test",
-    "back-test": "NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "back-test": "NODE_ENV=test NODE_OPTIONS=--experimental-vm-modules npx jest --coverage --runInBand",
     "start": "node server/index.js",
     "build": "cd client && npm run build",
     "front-dev": "cd client && npm start",

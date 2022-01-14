@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import ReviewButtons from '../ReviewButtons.jsx';
 import AddRemoveButtons from '../AddRemoveButtons.jsx';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
-export default function MyTitlesList({ title, movies, getUserMovies, setMovies, removeFromMyMovies, addToMyMovies, handleUserRating }) {
+export default function MyTitlesList({ title, movies, getUserMovies, setMovies, removeFromMyMovies, addToMyMovies, handleUserRating, data_testid }) {
 
   const [posterIndex, setCarousel] = useState(0);
 
@@ -34,6 +35,12 @@ export default function MyTitlesList({ title, movies, getUserMovies, setMovies, 
     zIndex: '1'
   };
 
+  let posterStyle = {
+    height: '80%',
+    maxHeight: '40vh',
+    width: 'auto'
+  }
+
   return (
     <>
       <h1 className='carouselTitle'>{title}</h1>
@@ -42,13 +49,17 @@ export default function MyTitlesList({ title, movies, getUserMovies, setMovies, 
         <div className='titleRow'>
           {movies.map((movie, index) => {
 
-            return <div className='titlePosterContainer' style={transformStyle}>
+            return <div key={index + 'uniqueTitleKey'} className='titlePosterContainer' style={transformStyle}>
+              <Link to={`/details/${movie.tmdb_id}/${movie.type}`}>
               <img
                 className='titlePoster'
                 key={index}
-                src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
+                src={"https://image.tmdb.org/t/p/w185" + movie.poster_path}
                 alt={movie.name + " poster"}
+                style={posterStyle}
+                data-testid={data_testid}
               ></img>
+              </Link>
               <div className='buttonsContainer'>
                 <AddRemoveButtons
                   addToMyMovies={addToMyMovies}

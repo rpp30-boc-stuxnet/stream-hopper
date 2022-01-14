@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MyTitlesList from './MyTitles/MyTitlesList.jsx';
 import SuggestionsList from './Suggestions/SuggestionsList.jsx';
-// import Suggestions from './Suggestions/Suggestions.jsx';
 
-import Navbar from './Navbar/Navbar.jsx';
+
+
 
 export default function Dashboard(props) {
 
@@ -82,7 +82,7 @@ export default function Dashboard(props) {
     axios.delete('/api/savedTitles', {
       data: {
         user_id: event.target.dataset.user,
-        tmdb_id: event.target.dataset.id
+        tmdb_id: parseInt(event.target.dataset.id)
       }
     })
       .then(() => {
@@ -100,7 +100,7 @@ export default function Dashboard(props) {
     axios.post('/api/savedTitles', {
       user_id: window.localStorage.userUID,
       type: event.target.dataset.type,
-      tmdb_id: event.target.dataset.id
+      tmdb_id: parseInt(event.target.dataset.id)
     })
       .then(() => {
         return getUserMovies();
@@ -157,12 +157,14 @@ export default function Dashboard(props) {
 
   return (
     <>
-      <Navbar handleLogout={props.handleLogout} />
+
       <main className={'dashboard'}>
-        <h1>Hello {window.localStorage.userEmail.split('@')[0]}</h1>
+        {/* <h1>Hello {window.localStorage.userEmail.split('@')[0]}</h1> */}
+        <h1>Hello</h1>
 
         {userMovies ? <MyTitlesList
           title='My Titles'
+          data_testid={1}
           removeFromMyMovies={removeFromMyMovies}
           addToMyMovies={addToMyMovies}
           movies={userMovies}
@@ -170,16 +172,19 @@ export default function Dashboard(props) {
 
         {userSuggestions !== null && userSuggestions[0] ? <SuggestionsList
           title='Suggestions For You'
+          data_testid={1}
           movies={userSuggestions}
           addToMyMovies={addToMyMovies} /> : <></>}
 
         {spielbergTitles ? <MyTitlesList
           title='Our Favorites'
+          data_testid={1}
           movies={spielbergTitles}
           addToMyMovies={addToMyMovies} /> : <></>}
 
         {trendingTitles ? <MyTitlesList
           title='Now Trending'
+          data_testid={1}
           movies={trendingTitles}
           addToMyMovies={addToMyMovies} /> : <></>}
       </main>

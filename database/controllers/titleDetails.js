@@ -134,6 +134,18 @@ const findPosterUrl = async (titleType, tmdbId) => {
 
 
 const findTitleDetails = async (req, res) => {
+  let params = req.query;
+  if (!params.user_id || typeof params.user_id !== 'string') {
+    res.status(400).send("Error: Must provide a valid 'user_id' (string) in the query parameters");
+    return;
+  } else if (!params.type || typeof params.type !== 'string' || (params.type !== 'tv' && params.type !== 'movie')) {
+    res.status(400).send("Error: Must provide a valid 'type' (string of 'tv' or 'movie') in the query parameters");
+    return;
+  } else if (!params.tmdb_id || typeof parseInt(params.tmdb_id) !== 'number' || parseInt(params.tmdb_id) % 1 !== 0) {
+    res.status(400).send("Error: Must provide a valid 'tmdb_id' (integer) in the query parameters");
+    return;
+  }
+
   let errMessage;
   let result;
   await Promise.all(

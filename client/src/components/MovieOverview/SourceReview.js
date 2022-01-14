@@ -47,12 +47,16 @@ function SourceReview(props){
     } else if(reliabilityRating === '' || reliabilityRating === null || reliabilityRating === 0) {
       setCanSubmit({errorMessage: 'Fill out Reliability Rating'})
     } else {
+      let qualityCheck = props.quality;
+      if(qualityCheck === null) {
+        qualityCheck = "SD";
+      }
       let options = {
         user_id: window.localStorage.userUID,
           tmdb_id: mediaId,
           title_type: mediaType,
           source_company_id: props.companyId,
-          stream_format: props.quality,
+          stream_format: qualityCheck,
           stream_type: props.streamType,
           user_audio_quality_rating: audioRating,
           user_stream_reliability_rating: reliabilityRating,
