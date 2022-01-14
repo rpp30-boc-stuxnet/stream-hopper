@@ -3,6 +3,12 @@ const axios = require('axios').default;
 
 
 const findSpielbergTitles = async (req, res) => {
+
+  if (!req.query.user_id || typeof req.query.user_id !== 'string') {
+    res.status(400).send("Error: Must provide a valid 'user_id' (string) in the query parameters");
+    return;
+  }
+
   let titles = [
     {
       "type": "movie",
