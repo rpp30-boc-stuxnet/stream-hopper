@@ -232,7 +232,7 @@ const LoginOrSignup = (props) => {
         <form className="manualLoginHolder">
           <div className="manualEntryHolder">
               <p className="manualEntryTitle">Email Address</p>
-            <input className="manualEntryInput" type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
+            <input data-testid="test-userEmailInput" className="manualEntryInput" type='text' name='emailAddress' onChange={handleInputChange} placeholder='Enter email address'/>
             <EmailValidator email={userEmail}/>
           </div>
           <div className="manualEntryHolder">
@@ -240,11 +240,11 @@ const LoginOrSignup = (props) => {
               <p className="manualEntryTitle">Password</p>
             </div>
             <div>
-              <input className="manualEntryInput" type={showPassword ? 'text':'password'} name='password' autoComplete='off' onChange={handleInputChange} placeholder='Enter password'/>
+              <input data-testid="test-passwordEntry" className="manualEntryInput" type={showPassword ? 'text':'password'} name='password' autoComplete='off' onChange={handleInputChange} placeholder='Enter password'/>
               <button style={{fontSize: '15px', background: 'lightblue', }} onClick={handleShowPasswordClick}>{showPassword ? 'Hide Password':'Show Password'}</button>
             </div>
           </div>
-          <button className="submitBtn" disabled={userEmail.includes('@') ? false : true} onClick={handleManualSignIn}>{props.protocol}</button>
+          <button data-testid="test-submitBtn" className="submitBtn" disabled={userEmail.includes('@') ? false : true} onClick={handleManualSignIn}>{props.protocol}</button>
         </form>
       </div>
     )

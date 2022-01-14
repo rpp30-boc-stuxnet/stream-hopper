@@ -4,7 +4,7 @@ import TitleReviews from './titleReviews/TitleReviews.jsx';
 import axios from 'axios';
 import './titleReviews/titleReviews.css';
 import { useParams } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar.jsx';
+
 import ReviewButtons from '../ReviewButtons.jsx';
 import AddRemoveButtons from '../AddRemoveButtons.jsx';
 
@@ -98,7 +98,7 @@ function MovieOverview (props) {
     axios.delete('/api/savedTitles', {
       data: {
         user_id: event.target.dataset.user,
-        tmdb_id: event.target.dataset.id
+        tmdb_id: parseInt(event.target.dataset.id)
       }
     })
       .then(() => {
@@ -115,7 +115,7 @@ function MovieOverview (props) {
     axios.post('/api/savedTitles', {
       user_id: window.localStorage.userUID,
       type: event.target.dataset.type,
-      tmdb_id: event.target.dataset.id
+      tmdb_id: parseInt(event.target.dataset.id)
     })
       .then(() => {
         setReload(!reload);
@@ -127,7 +127,7 @@ function MovieOverview (props) {
 
   return (
     <>
-    <Navbar handleLogout={props.handleLogout} />
+
     <div className="titleOverviewContainer">
       <div className="detailContainer">
         <div className="detailFader"></div>

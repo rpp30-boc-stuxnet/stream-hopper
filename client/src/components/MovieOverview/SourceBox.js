@@ -18,16 +18,16 @@ function SourceBox(props){
   }
   useEffect(()=>{
 
-    let options = {
+    axios.get('/api/streamRatings', {
+      params: {
         user_id: window.localStorage.userUID,
         tmdb_id: Number(mediaId),
         source_company_id: props.companyId,
         stream_type: props.streamType,
         stream_format: props.quality,
         title_type: mediaType
-    }
-
-    axios.get('/api/streamRatings', options)
+      }
+    })
     .then((response)=>{
 
       setStreamHopperQuality(response.data);
