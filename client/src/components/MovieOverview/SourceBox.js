@@ -3,6 +3,7 @@ import SourceReview from './SourceReview.js';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+
 function SourceBox(props){
 
   let params = useParams();
@@ -17,16 +18,25 @@ function SourceBox(props){
     setShowForm(!showForm);
   }
   useEffect(()=>{
+    getRatings();
+  }, [])
+
+  const getRatings = () =>{
+
     let qualityCheck = props.quality;
+    let rentBuySubFree = props.streamType;
     if(qualityCheck === null) {
       qualityCheck = "SD"
+    }
+    if(rentBuySubFree === "tve" || rentBuySubFree === "TVE") {
+      rentBuySubFree = "free"
     }
     axios.get('/api/streamRatings', {
       params: {
         user_id: window.localStorage.userUID,
         tmdb_id: Number(mediaId),
         source_company_id: props.companyId,
-        stream_type: props.streamType,
+        stream_type: rentBuySubFree,
         stream_format: qualityCheck,
         title_type: mediaType
       }
@@ -39,7 +49,8 @@ function SourceBox(props){
 
       return error
     })
-  }, [])
+
+  }
 
   return (
     <div className = "sourceBox ">
@@ -53,17 +64,17 @@ function SourceBox(props){
       </div> : null}
       <div className = "sourceBoxInternalRating">
         <div className = "audioRating">
-          {streamHopperQuality.audio_average_rating !== undefined ? ('Audio: ' + streamHopperQuality.audio_average_rating + '/5') : 'Audio: Not yet rated'}
+          {streamHopperQuality.audio_average_rating !== undefined  && streamHopperQuality.audio_average_rating !== null ? ('Audio: ' + streamHopperQuality.audio_average_rating + '/5') : 'Audio: Not yet rated'}
         </div>
         <div className = "videoRating">
-          {streamHopperQuality.video_average_rating !== undefined ? ('Video: ' + streamHopperQuality.video_average_rating + '/5') : 'Video: Not yet rated' }
+          {streamHopperQuality.video_average_rating !== undefined && streamHopperQuality.video_average_rating !== null? ('Video: ' + streamHopperQuality.video_average_rating + '/5') : 'Video: Not yet rated' }
         </div>
         <div className = "reliabilityRating">
-          {streamHopperQuality.reliability_average_rating !== undefined? ('Reliability: ' + streamHopperQuality.reliability_average_rating + '/5') : 'Reliability: Not yet rated'}
+          {streamHopperQuality.reliability_average_rating !== undefined && streamHopperQuality.reliability_average_rating !== null? ('Reliability: ' + streamHopperQuality.reliability_average_rating + '/5') : 'Reliability: Not yet rated'}
         </div>
       </div>
       {showForm ? <SourceReview handleToggle = {handleToggle} quality = {props.quality} companyId = {props.companyId}
-      titleName = {props.titleName} companyName = {props.companyName} streamType = {props.streamType}/> : null}
+      titleName = {props.titleName} companyName = {props.companyName} streamType = {props.streamType} refreshData = {getRatings}/> : null}
     </div>
   )
 }
