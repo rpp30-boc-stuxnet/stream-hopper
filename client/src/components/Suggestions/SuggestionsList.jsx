@@ -5,7 +5,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { BrowserRouter, Route, Routes, Navigate, Link } from 'react-router-dom';
 
 
-export default function SuggestionsList({ title, movies, getUserMovies, setMovies, addToMyMovies, handleUserRating }) {
+export default function SuggestionsList({ title, movies, getUserMovies, setMovies, addToMyMovies, handleUserRating, data_testid }) {
 
   const [posterIndex, setCarousel] = useState(0);
 
@@ -47,6 +47,7 @@ export default function SuggestionsList({ title, movies, getUserMovies, setMovie
             <Link to={`/details/${movie.tmdb_id}/${movie.type}`}>
               <img
                 key={index}
+                data-testid={data_testid}
                 src={"https://image.tmdb.org/t/p/w300" + movie.poster_path}
                 alt={movie.name}
               ></img>

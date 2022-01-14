@@ -166,6 +166,7 @@ export default function Dashboard(props) {
         {userMovies ?
           <MyTitlesList
             title='My Titles'
+            data_testid={1}
             removeFromMyMovies={removeFromMyMovies}
             addToMyMovies={addToMyMovies}
             movies={userMovies}
@@ -173,6 +174,7 @@ export default function Dashboard(props) {
 
         {userSuggestions !== null && userSuggestions[0] ? <SuggestionsList
           title='Suggestions For You'
+          data_testid={1}
           movies={userSuggestions}
           addToMyMovies={addToMyMovies} /> : <></>}
 

@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import MyTitlesList from '../../components/MyTitles/MyTitlesList.jsx';
 
 describe('My Titles List Component', function () {
-  test('Should render titles list', function () {
+  test('Should render titles list', function (done) {
 
     let userMovies = [
       {

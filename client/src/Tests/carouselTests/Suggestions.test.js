@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import SuggestionsList from '../../components/Suggestions/SuggestionsList.jsx';
 
 describe('Suggestions Component', function () {
-  test('Should render suggestions list', function () {
+  test('Should render suggestions list', function (done) {
 
     let userMovies = [
       {

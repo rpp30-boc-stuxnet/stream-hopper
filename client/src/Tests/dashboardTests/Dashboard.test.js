@@ -9,6 +9,7 @@ import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import Dashboard from '../../components/Dashboard.jsx';
 import { BrowserRouter } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
 
 let userMovies = [
   {
@@ -145,6 +146,14 @@ let trendingTitles = [
   }
 ]
 
+let currentRating = {
+  "user_id": "User3",
+  "tmdb_id": 329,
+  "user_thumb_rating": "up",
+  "overall_thumbs_ups": 50,
+  "overall_thumbs_downs": 20
+}
+
 const handleLogout = () => {
   signOut(auth)
     .then((result) => {
@@ -179,6 +188,9 @@ describe('Dashboard Component', function () {
       }),
       rest.get('/api/trendingTitles', (req, res, ctx) => {
         return res(ctx.json(trendingTitles))
+      }),
+      rest.get('/api/thumbRatings', (req, res, ctx) => {
+        return res(ctx.json(currentRating))
       })
     );
     const app = render(<BrowserRouter><Dashboard className={'dashboard'} handleLogout={handleLogout} /></BrowserRouter>)
