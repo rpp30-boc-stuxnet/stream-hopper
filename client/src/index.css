@@ -551,7 +551,7 @@ button {
 }
 
 .detailContainer {
-  @apply flex flex-col flex-wrap ml-1 md:ml-2 lg:ml-4 xl:ml-4 h-fit w-full p-8 md:w-[30%] lg:w-[31.8%] xl:w-[30%] md:flex-nowrap
+  @apply flex flex-col flex-wrap ml-1 md:ml-2 lg:ml-4 xl:ml-4 h-fit w-full p-8 md:w-[30%] lg:w-[31.8%] xl:w-[30%] md:flex-nowrap text-[#F4F1BB]
 }
 
 .detailFader {
@@ -563,19 +563,23 @@ button {
 }
 
 .overviewPoster{
-  @apply h-auto self-center w-4/5 md:w-full lg:max-w-[80%] z-10
+  @apply h-auto self-center w-4/5 md:w-full lg:max-w-[80%] z-10 shadow-lg
 }
 
 .titleDetails {
   @apply z-10 text-xl
 }
 
-.reviewButtonContainer {
-  @apply flex flex-row p-1 mt-2 items-center text-xl z-10
+.btnContainer {
+  @apply flex flex-row p-1 my-2 w-2/3 justify-between self-center items-center text-xl z-10
 }
 
-.addRemoveButtons {
+.addRemoveButtonsOverview {
   @apply z-10
+}
+
+.addRemoveButtonsOverview button{
+  @apply bg-[#368F8B] text-[#F4F1BB] hover:bg-[#68A357]
 }
 
 .overviewPoster {
@@ -593,7 +597,7 @@ button {
 }
 
 .streamOptionsHeading {
-  @apply text-3xl mt-1 mb-0
+  @apply text-3xl mt-1 mb-0 text-[#F4F1BB]
 }
 
 .streamOptionsContainer{
@@ -649,42 +653,23 @@ button {
 */
 
 .formContainer{
-  position: fixed; /* Stay in place */
-  z-index: 3; /* Sit on top */
-  left: 0;
-  padding-top: 10em;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  @apply fixed z-30 top-0 left-0 w-full h-full overflow-auto pt-40 bg-black bg-[rgba(0,0,0,0.5)]
 }
 
 .formBackground{
-  color: black;
-  background-color: white;
-  width: 50%;
-  margin: 0 auto;
+  @apply bg-[#F4F1BB] text-[#64113F] w-1/2 mx-auto my-0 rounded-xl shadow-xl
 }
 
 .formHeader{
-  margin: 2em;
-  padding-top: 1em;
+  @apply m-8 pt-4
 }
 
 .statement{
-  margin-left: 2em;
-  margin-right: 2em;
-  display: inline-block;
-  font-size: 1.2em;
+  @apply inline-block mx-8 text-xl
 }
 
-.exit{
-  float: right;
-  margin-top: 2em;
-  margin-right: 2em;
-  size: 4em;
+.reviewExit{
+  @apply cursor-pointer float-right mt-4 mr-6 text-xl font-bold hover:text-[#E15554]
 }
 
 .formContent{
@@ -708,7 +693,7 @@ button {
   width:50%;
   margin-top: 2em;
   margin-bottom: 2em;
-  background-color: #e7e7e7;
+  background-color: #68A357;
   color: black;
 }
 

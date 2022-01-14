@@ -76,11 +76,11 @@ function SourceReview(props){
   }
 
   return (
-    <div id = "formContainer">
-      <div id = "formBackground">
-      <div id = "exit" onClick = {props.handleToggle}>X</div>
-        <div id = "formHeader">
-          <div id = "statement">
+    <div className="formContainer">
+      <div className="formBackground">
+      <div className="reviewExit" onClick={props.handleToggle}>X</div>
+        <div className="formHeader">
+          <div className="statement">
            {canSubmit.showFeedback ? null : 'Rate your Experience Watching ' + props.titleName + ' on ' + props.companyName}
           </div>
         </div>
