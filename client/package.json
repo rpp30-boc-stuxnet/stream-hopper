@@ -23,6 +23,7 @@
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "regenerator-runtime": "^0.13.9",
     "twin.macro": "^2.8.2",
     "web-vitals": "^2.1.2"
   },
