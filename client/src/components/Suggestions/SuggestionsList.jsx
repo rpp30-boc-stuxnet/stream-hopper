@@ -18,7 +18,7 @@ export default function SuggestionsList({ title, movies, getUserMovies, setMovie
   }
 
   let transformStyle = {
-    transform: `translateX(-${posterIndex * 500}px)`
+    transform: `translateX(-${posterIndex * 398}px)`
   };
 
   let chevronLeftStyle = {
@@ -36,7 +36,7 @@ export default function SuggestionsList({ title, movies, getUserMovies, setMovie
   };
 
   let posterStyle = {
-    height: '80%',
+    height: '100%',
     maxHeight: '40vh',
     width: 'auto'
   }

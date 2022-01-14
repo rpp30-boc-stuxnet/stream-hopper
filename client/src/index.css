@@ -97,7 +97,7 @@ button {
     mt-4
     mx-3
     pt-4
-    w-11/12
+    w-[96%]
 }
 
 .titleRow::-webkit-scrollbar {
@@ -110,15 +110,20 @@ button {
     flex-col
     mx-2
     h-full
+    w-fit
+    max-w-[12rem]
+}
+
+.titlePosterContainer a {
+  @apply
+    flex
+    self-center
+    max-h-[80%]
+    z-20
 }
 
 .titlePoster {
   transition: all 0.2s;
-
-  @apply
-    mx-2
-    max-h-[80%]
-    z-20
 }
 
 .titlePoster:hover {
@@ -127,7 +132,7 @@ button {
 }
 
 .buttonsContainer {
-  @apply flex flex-row p-1 mt-2 justify-between items-center text-xl
+  @apply flex flex-row self-center w-full max-w-[14rem] mt-2 justify-between items-center text-xl
 }
 
 /*
