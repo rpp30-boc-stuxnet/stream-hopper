@@ -46,6 +46,7 @@ const findThumbRatings = async (req, res) => {
 }
 
 const saveThumbRating = async (req, res) => {
+  req.body.tmdb_id = parseInt(req.body.tmdb_id)
 
   if (!req.body.user_id || typeof req.body.user_id !== 'string' || req.body.user_id.length === 0) {
     res.status(400).send("Error: Must provide a valid 'user_id' (string) in the body parameters");
@@ -57,7 +58,7 @@ const saveThumbRating = async (req, res) => {
     res.status(400).send("Error: Must provide a valid 'prev_thumb_rating' (string of 'up' or down' OR null) in the body parameters");
     return;
   } else if (req.body.new_thumb_rating === undefined || !(req.body.new_thumb_rating === 'up' || req.body.new_thumb_rating === 'down' || req.body.new_thumb_rating === null)) {
-    rest.status(400).send("Error: Must provide a valid 'new_thumb_rating' (string of 'up' or down' OR null) in the body parameters");
+    res.status(400).send("Error: Must provide a valid 'new_thumb_rating' (string of 'up' or down' OR null) in the body parameters");
     return;
   }
 

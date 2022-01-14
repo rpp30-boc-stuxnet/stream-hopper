@@ -159,7 +159,8 @@ export default function Dashboard(props) {
     <>
 
       <main className={'dashboard'}>
-        <h1>Hello {window.localStorage.userEmail.split('@')[0]}</h1>
+        {/* <h1>Hello {window.localStorage.userEmail.split('@')[0]}</h1> */}
+        <h1>Hello</h1>
 
         {userMovies ? <MyTitlesList
           title='My Titles'
