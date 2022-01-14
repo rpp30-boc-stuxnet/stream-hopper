@@ -5,7 +5,7 @@ import TitleReviews from './titleReviews/TitleReviews.jsx';
 import axios from 'axios';
 import './titleReviews/titleReviews.css';
 import { useParams } from 'react-router-dom';
-import Navbar from '../Navbar/Navbar.jsx';
+
 import ReviewButtons from '../ReviewButtons.jsx';
 import AddRemoveButtons from '../AddRemoveButtons.jsx';
 
@@ -128,7 +128,7 @@ function MovieOverview (props) {
 
   return (
     <>
-    <Navbar handleLogout={props.handleLogout} />
+
     <div className="titleOverviewContainer">
       <div className="detailContainer">
         <div className="detailFader"></div>

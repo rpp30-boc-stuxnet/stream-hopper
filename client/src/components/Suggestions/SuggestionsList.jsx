@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import ReviewButtons from '../ReviewButtons.jsx';
 import AddRemoveButtons from '../AddRemoveButtons.jsx';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
-export default function SuggestionsList({ title, movies, getUserMovies, setMovies, addToMyMovies, handleUserRating }) {
+export default function SuggestionsList({ title, movies, getUserMovies, setMovies, addToMyMovies, handleUserRating, data_testid }) {
 
   const [posterIndex, setCarousel] = useState(0);
 
@@ -48,14 +49,17 @@ export default function SuggestionsList({ title, movies, getUserMovies, setMovie
         <div className="titleRow">
           {movies.map((movie, index) => {
 
-            return <div className='titlePosterContainer' style={transformStyle}>
+            return <div key={index + 'uniqueSuggestionKey'} className='titlePosterContainer' style={transformStyle}>
+              <Link to={`/details/${movie.tmdb_id}/${movie.type}`}>
               <img
                 className='titlePoster'
                 key={index}
                 src={"https://image.tmdb.org/t/p/w185" + movie.poster_path}
                 alt={movie.name}
                 style={posterStyle}
+                data-testid={data_testid}
               ></img>
+              </Link>
               <div className='buttonsContainer'>
                 <AddRemoveButtons
                   addToMyMovies={addToMyMovies}
