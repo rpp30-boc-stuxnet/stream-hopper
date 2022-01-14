@@ -46,7 +46,7 @@ const findThumbRatings = async (req, res) => {
 }
 
 const saveThumbRating = async (req, res) => {
-  req.body.tmdb_id = parseInt(req.body.tmdb_id)
+  // req.body.tmdb_id = parseInt(req.body.tmdb_id)
 
   if (!req.body.user_id || typeof req.body.user_id !== 'string' || req.body.user_id.length === 0) {
     res.status(400).send("Error: Must provide a valid 'user_id' (string) in the body parameters");

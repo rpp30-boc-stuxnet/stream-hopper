@@ -99,7 +99,7 @@ function MovieOverview (props) {
     axios.delete('/api/savedTitles', {
       data: {
         user_id: event.target.dataset.user,
-        tmdb_id: event.target.dataset.id
+        tmdb_id: parseInt(event.target.dataset.id)
       }
     })
       .then(() => {
@@ -116,7 +116,7 @@ function MovieOverview (props) {
     axios.post('/api/savedTitles', {
       user_id: window.localStorage.userUID,
       type: event.target.dataset.type,
-      tmdb_id: event.target.dataset.id
+      tmdb_id: parseInt(event.target.dataset.id)
     })
       .then(() => {
         setReload(!reload);

@@ -82,7 +82,7 @@ export default function Dashboard(props) {
     axios.delete('/api/savedTitles', {
       data: {
         user_id: event.target.dataset.user,
-        tmdb_id: event.target.dataset.id
+        tmdb_id: parseInt(event.target.dataset.id)
       }
     })
       .then(() => {
@@ -100,7 +100,7 @@ export default function Dashboard(props) {
     axios.post('/api/savedTitles', {
       user_id: window.localStorage.userUID,
       type: event.target.dataset.type,
-      tmdb_id: event.target.dataset.id
+      tmdb_id: parseInt(event.target.dataset.id)
     })
       .then(() => {
         return getUserMovies();

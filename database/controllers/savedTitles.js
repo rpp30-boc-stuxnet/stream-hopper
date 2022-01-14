@@ -22,8 +22,7 @@ const findSavedTitles = async (req, res) => {
 }
 
 const addSavedTitle = async (req, res) => {
-  console.log(req.body)
-  req.body.tmdb_id = parseInt(req.body.tmdb_id)
+  // req.body.tmdb_id = parseInt(req.body.tmdb_id)
   if (!req.body.user_id || typeof req.body.user_id !== 'string') {
     res.status(400).send('Error: Must provide a valid \'user_id\' (string) in the body parameters');
     return;
@@ -82,7 +81,7 @@ const addSavedTitle = async (req, res) => {
 }
 
 const deleteSavedTitle = async (req, res) => {
-  req.body.tmdb_id = parseInt(req.body.tmdb_id)
+  // req.body.tmdb_id = parseInt(req.body.tmdb_id)
   if (!req.body.user_id || typeof req.body.user_id !== 'string') {
     res.status(400).send("Error: Must provide a valid 'user_id' (string) in the body parameters")
     return;
