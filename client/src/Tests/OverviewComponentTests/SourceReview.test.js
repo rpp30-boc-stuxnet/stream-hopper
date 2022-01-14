@@ -2,24 +2,31 @@
  * @jest-environment jsdom
  */
 
-// dependencies
-import React from 'react'
-import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom'
-import { act } from 'react-dom/test-utils';
-import 'regenerator-runtime/runtime'
-import { setupServer } from 'msw/node'
-import { rest } from 'msw'
+ import React from 'react';
+ import '@testing-library/jest-dom';
+ import { render, screen } from '@testing-library/react';
+ import { BrowserRouter } from 'react-router-dom';
+ import SourceReview from '../../components/MovieOverview/SourceReview.js';
+ import { rest } from 'msw'
+ import 'regenerator-runtime/runtime'
+ import { setupServer } from 'msw/node'
+ import { act } from 'react-dom/test-utils';
 
-//component
+
+ describe('SourceReview component', function () {
+   test('should render SourceReview component', function () {
 
 
-// const server = setupServer()
 
-// beforeAll(() => server.listen())
-// afterEach(() => server.resetHandlers())
-// afterAll(() => server.close())
+     let handleToggle = () => { }
+     const app = render(<SourceReview
+       handleToggle={handleToggle}
+       quality={"SD"}
+       companyId={349}
+       titleName={"Jurassic Park"}
+       companyName={"iTunes"}
+       streamType={"rent"} />)
 
-describe ('Overview Component Test',  () => {
-
-})
+     expect(app.getByText("Audio Quality:")).toBeInTheDocument();
+   })
+ })
