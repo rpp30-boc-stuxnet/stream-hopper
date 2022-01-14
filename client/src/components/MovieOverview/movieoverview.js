@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import StreamTile from './StreamTile.js';
 import TitleReviews from './titleReviews/TitleReviews.jsx';
 import axios from 'axios';
-import './titleReviews/titleReviews.css';
 import { useParams } from 'react-router-dom';
 
 import ReviewButtons from '../ReviewButtons.jsx';
@@ -135,7 +134,16 @@ function MovieOverview (props) {
         <div className="overviewPoster">
           <img src = { Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : 'https://i.imgur.com/7sR45d6.png'} alt ="movie_poster"/>
         </div>
-        <div className="reviewButtonContainer">
+        <div className="btnContainer">
+          <div className="addRemoveButtonsOverview">
+          <AddRemoveButtons
+                      addToMyMovies={addToMyMovies}
+                      removeFromMyMovies={removeFromMyMovies}
+                      saved_by_user={movieDetails.saved_by_user}
+                      data_user={window.localStorage.userUID}
+                      data_id={mediaId}
+                      data_type={mediaType} />
+          </div>
           <ReviewButtons tmdb_id={mediaId} />
         </div>
         <div className="titleDetails">
@@ -152,15 +160,7 @@ function MovieOverview (props) {
           { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : 'Run Time: N/A'}
          </div>
         </div>
-        <div className="addRemoveButtons">
-        <AddRemoveButtons
-                    addToMyMovies={addToMyMovies}
-                    removeFromMyMovies={removeFromMyMovies}
-                    saved_by_user={movieDetails.saved_by_user}
-                    data_user={window.localStorage.userUID}
-                    data_id={mediaId}
-                    data_type={mediaType} />
-        </div>
+
       </div>
       <div className="streamOptions">
         <h2 className="streamOptionsHeading">Where to Watch</h2>
