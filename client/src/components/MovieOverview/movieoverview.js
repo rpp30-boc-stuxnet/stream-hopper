@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import StreamTile from './StreamTile.js';
-import './movieoverview.css';
 import TitleReviews from './titleReviews/TitleReviews.jsx';
 import axios from 'axios';
 import './titleReviews/titleReviews.css';
@@ -142,8 +141,8 @@ function MovieOverview (props) {
             return <StreamTile type = {item} key = {index} details = {titleSources[item]} titleName = {movieDetails.title}/>
           }): <StreamTile type = 'Not Available'/>}
         </div>
-        <div>
-          <h3 id ="synopsisHeading">Title Synopsis</h3>
+        <div className="synopsisContainer">
+          <h3 className="synopsisHeading">Title Synopsis</h3>
           <div className="overviewSynopsis">
             {Object.keys(movieDetails).length > 0 ? movieDetails.synopsis : 'Synopsis not Available'}
           </div>

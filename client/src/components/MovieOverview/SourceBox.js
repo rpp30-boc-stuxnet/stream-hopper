@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './SourceBox.css';
 import SourceReview from './SourceReview.js';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';

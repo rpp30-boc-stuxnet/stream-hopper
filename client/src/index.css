@@ -542,7 +542,7 @@ button {
 */
 
 .titleOverviewContainer {
-  @apply w-full flex flex-wrap z-10
+  @apply w-full flex flex-wrap justify-between z-10
 }
 
 .detailContainer {
@@ -550,7 +550,7 @@ button {
 }
 
 .detailFader {
-  @apply absolute h-[90%] w-full -mx-5 xl:-mx-6 -mb-12 md:w-[28%] lg:w-[29%] xl:w-[30%] bg-[#FFC15E] opacity-30 z-0 rounded-xl
+  @apply absolute h-[104%] md:h-[90%] lg:h-[90%] xl:h-[90%] w-[94%] -mx-5 xl:-mx-6 -mb-12 md:w-[28%] lg:w-[29%] xl:w-[30%] bg-[#990033] opacity-50 z-0 rounded-xl
 }
 
 .title {
@@ -573,33 +573,53 @@ button {
   @apply z-10
 }
 
+.overviewPoster {
+  @apply w-full z-10
+}
+
 .streamOptions {
-  @apply flex flex-col w-2/3 mt-4
+  @apply flex flex-col items-center w-11/12 md:w-2/3 lg:w-2/3 xl:w-2/3 mt-4
 }
 
 .streamOptionsHeading {
   @apply text-3xl mt-1 mb-0
 }
 
-.overviewPoster {
-  @apply w-full z-10
-}
-
-.overviewSynopsis {
-  @apply text-white text-2xl w-full
-}
-
 .streamOptionsContainer{
-  @apply w-11/12
+  @apply flex flex-col w-full
 }
 
 .sourceContainer{
-  @apply text-center text-sm
+  @apply flex flex-row flex-wrap justify-start text-center text-base leading-4
 }
 
 .tileContainer{
-  width:100%;
-  background-color: grey;
-  margin: 1em;
-  @apply w-full
+  @apply flex flex-col w-[95%] bg-[#F4F1BB] text-[#64113F] m-4 rounded-xl
+}
+
+.typeName {
+  @apply self-center border-b-2 border-solid border-[#64113F] w-11/12 mb-1
+}
+
+.sourceBox{
+  @apply m-2 text-sm inline-block
+}
+
+.sourceBoxImageContainer{
+  @apply cursor-pointer my-0 mx-auto w-14 h-14 mb-2
+}
+.sourceBoxImage{
+  @apply w-full h-full
+}
+
+.synopsisContainer {
+  @apply flex flex-col self-center w-[92%] p-2 mt-4 mr-3 bg-[#F4F1BB] text-[#64113F] rounded-xl
+}
+
+.synopsisHeading {
+  @apply self-center border-b-2 border-solid border-[#64113F] w-11/12 mb-1
+}
+
+.overviewSynopsis {
+  @apply text-lg p-4 text-justify
 }
