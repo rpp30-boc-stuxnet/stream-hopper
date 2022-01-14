@@ -15,7 +15,7 @@ import { rest } from 'msw'
 import StreamTile from '../../components/MovieOverview/StreamTile.js';
 
 
-let sourceData = {
+let deetz = {
     "rent": [
         {
             "companyInfo": {
@@ -476,29 +476,19 @@ let sourceData = {
 }
 
 
-const server = setupServer()
+// const server = setupServer()
 
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
+// beforeAll(() => server.listen())
+// afterEach(() => server.resetHandlers())
+// afterAll(() => server.close())
 
 describe ('StreamTile Component Test',  () => {
 
-  server.use(
-    rest.get('/api/titleDetails', (req, res, ctx) => {
-      return res(ctx.json(apiDetailData))
-    })
-  )
+
 
   test('Should be on the DOM', async function () { //check if component renders
-    {Object.keys(deetz).length > 0 ? Object.keys(deetz).map(async(item, index) => {
-        if(item === "rent" && deetz[item].quality === "4K") {
-            await act(async()=>{
-                render(<StreamTile type = {item} key = {index} details = {deetz[item]} titleName = {"Ready Player One"}/>)
-            });
 
-        }
-      }): null}
+    render(<StreamTile type = {"rent"} details = {deetz["rent"]} titleName = {"Ready Player One"}/>);
     // render (<MovieOverview />)
     expect(screen.getByText('Rent', {exact: false})).toBeInTheDocument();
   })

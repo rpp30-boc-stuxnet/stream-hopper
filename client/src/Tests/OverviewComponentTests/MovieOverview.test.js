@@ -41,6 +41,13 @@ let apiDetailData = {
   "poster_path": "https://image.tmdb.org/t/p/w500/ePyN2nX9t8SOl70eRW47Q29zUFO.jpg"
 };
 
+let currentRating = {
+  "user_id": "User3",
+  "tmdb_id": 329,
+  "user_thumb_rating": "up",
+  "overall_thumbs_ups": 50,
+  "overall_thumbs_downs": 20
+}
 
 const server = setupServer()
 
@@ -54,6 +61,11 @@ describe ('Overview Component Test',  () => {
   server.use(
     rest.get('/api/titleDetails', (req, res, ctx) => {
       return res(ctx.json(apiDetailData))
+    })
+  )
+  server.use(
+    rest.get('/api/thumbRatings', (req, res, ctx) => {
+      return res(ctx.json(currentRating))
     })
   )
 
@@ -92,7 +104,7 @@ describe ('Overview Component Test',  () => {
     await act (async () => {
       render(<MovieOverview handleLogout = {handleLogout}/>)
     });
-    expect(screen.getByText('imdb', {exact: false})).toBeInTheDocument();
+    expect(screen.getByText('imdb:', {exact: false})).toBeInTheDocument();
   })
   test('Run Time should be in DOM', async function () { //check if component renders
     // render (<MovieOverview />)
