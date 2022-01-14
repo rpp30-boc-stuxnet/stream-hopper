@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SourceBox from './SourceBox.js';
-// import './StreamTile.css';
+import './StreamTile.css';
 
 function StreamTile(props) {
 

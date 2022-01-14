@@ -34,7 +34,7 @@ const AppRouter = () => {
 
   return (
     <BrowserRouter>
-      <Navbar handleLogout={handleLogout} />
+      {loggedIn ? <Navbar handleLogout={handleLogout} /> : <></>}
       <Routes>
         <Route exact path='/' element={loggedIn ? <Navigate to='/homepage' /> : <Welcome handleLogout={handleLogout} handleSuccessfulLogin={handleSuccessfulLogin} />} />
         <Route path='/homepage' element={loggedIn ? <Dashboard className={'dashboard'} handleLogout={handleLogout} /> : <Navigate to='/' />} />
