@@ -25,5 +25,10 @@ const disconnect = async () => {
   await mongoose.connection.close()
 }
 
+const drop = async () => {
+  await mongoose.connection.db.dropDatabase();
+}
+
 exports.connect = connect;
 exports.disconnect = disconnect;
+exports.drop = drop;
