@@ -6,11 +6,13 @@ import axios from 'axios';
 import './titleReviews/titleReviews.css';
 import { useParams } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar.jsx';
-import ReviewButtons from '../ReviewButtons.jsx'
+import ReviewButtons from '../ReviewButtons.jsx';
+import AddRemoveButtons from '../AddRemoveButtons.jsx';
 
 function MovieOverview (props) {
   const [movieDetails, setMovieDetails] = useState({});
   const [titleSources, setTitleSources] = useState({});
+  const [reload, setReload] = useState(false);
 
   let params = useParams();
   let mediaId = params.id;
@@ -93,13 +95,35 @@ function MovieOverview (props) {
   }, [])
 
 
-  function handleAddMovies (e, movieId) {
-    e.preventDefault()
-    //make post request - Anna's function to add to movies
+  const removeFromMyMovies = (event) => {
+    axios.delete('/api/savedTitles', {
+      data: {
+        user_id: event.target.dataset.user,
+        tmdb_id: event.target.dataset.id
+      }
+    })
+      .then(() => {
+        console.log('removed');
+        setReload(!reload);
+
+      })
+      .catch((error) => {
+        console.log('error getting user movies: ', error);
+      })
   }
-  function handleRemoveMovies (e, movieId) {
-    e.preventDefault()
-    //make post request - Anna's function to add to movies
+
+  const addToMyMovies = (event) => {
+    axios.post('/api/savedTitles', {
+      user_id: window.localStorage.userUID,
+      type: event.target.dataset.type,
+      tmdb_id: event.target.dataset.id
+    })
+      .then(() => {
+        setReload(!reload);
+      })
+      .catch((error) => {
+        console.log('error adding title to my movies: ', error);
+      })
   }
 
   return (
@@ -130,9 +154,13 @@ function MovieOverview (props) {
          </div>
         </div>
         <div className="addRemoveButtons">
-          {Object.keys(movieDetails).length > 0 ?
-            (movieDetails.saved_by_user ? <button id ="addMovie" onClick = {handleRemoveMovies}> Remove From My Movies </button> : <button id ="addMovie" onClick = {handleAddMovies}> Add To My Movies </button>) :
-            null}
+        <AddRemoveButtons
+                    addToMyMovies={addToMyMovies}
+                    removeFromMyMovies={removeFromMyMovies}
+                    saved_by_user={movieDetails.saved_by_user}
+                    data_user={window.localStorage.userUID}
+                    data_id={mediaId}
+                    data_type={mediaType} />
         </div>
       </div>
       <div id = "streamOptions">

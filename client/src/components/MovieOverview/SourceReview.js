@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './SourceReview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import ReactStars from "react-rating-stars-component";
+import Rating from '@mui/material/Rating';
 
 function SourceReview(props){
 
@@ -10,12 +10,11 @@ function SourceReview(props){
   let mediaId = params.id;
   let mediaType = params.type;
 
+  const [audioRating, setAudioRating] = useState(0);
+  const [videoRating, setVideoRating] = useState(0);
+  const [reliabilityRating, setReliabilityRating] = useState(0);
 
-  const [sourceReviewData, setSourceReviewData] = useState({
-    user_audio_quality_rating: '',
-    user_video_quality_rating: '',
-    user_stream_reliability_rating: ''
-  });
+
   const [canSubmit, setCanSubmit] = useState ({
     fieldsFilled: false,
     errorMessage: '',
@@ -23,15 +22,29 @@ function SourceReview(props){
     showFeedback: false
   })
 
+  const handleAudioRating = (rate: number) => {
+
+    setAudioRating(rate);
+  }
+
+  const handleVideoRating = (rate: number) => {
+
+    setVideoRating(rate);
+  }
+
+  const handleReliabilityRating = (rate: number) => {
+
+    setReliabilityRating(rate);
+  }
+
   const handleSubmit = (e) =>{
     e.preventDefault();
-    // console.log(sourceReviewData);
-    console.log(sourceReviewData);
-    if(sourceReviewData.user_audio_quality_rating === '' || sourceReviewData.user_audio_quality_rating === null) {
+
+    if(audioRating === '' || audioRating === null || audioRating === 0) {
       setCanSubmit({errorMessage: 'Fill out Audio Rating'})
-    } else if(sourceReviewData.user_video_quality_rating === '' || sourceReviewData.user_video_quality_rating === null) {
+    } else if(videoRating === '' || videoRating === null || videoRating === 0) {
       setCanSubmit({errorMessage: 'Fill out Video Rating'})
-    } else if(sourceReviewData.user_stream_reliability_rating === '' || sourceReviewData.user_stream_reliability_rating === null) {
+    } else if(reliabilityRating === '' || reliabilityRating === null || reliabilityRating === 0) {
       setCanSubmit({errorMessage: 'Fill out Reliability Rating'})
     } else {
       let options = {
@@ -41,14 +54,14 @@ function SourceReview(props){
           source_company_id: props.companyId,
           stream_format: props.quality,
           stream_type: props.streamType,
-          user_audio_quality_rating: sourceReviewData.user_audio_quality_rating,
-          user_stream_reliability_rating: sourceReviewData.user_stream_reliability_rating,
-          user_video_quality_rating: sourceReviewData.user_video_quality_rating
+          user_audio_quality_rating: audioRating,
+          user_stream_reliability_rating: reliabilityRating,
+          user_video_quality_rating: videoRating
       };
 
       axios.post('/api/streamRatings', options)
         .then((response) => {
-          console.log('success saving rating: ', response);
+          console.log('success saving rating');
           setCanSubmit({errorMessage: '', showFeedback: true})
         })
         .catch((error) => {
@@ -58,28 +71,14 @@ function SourceReview(props){
 
   }
 
-  const handleFormChange = (e, m) =>{
-    console.log(e + m, ' handleformchange')
-    let newData = sourceReviewData;
-    if(m === 'audio') {
-      newData.user_audio_quality_rating = e;
-    }
-    if(m === 'video') {
-      newData.user_video_quality_rating = e;
-    }
-    if(m === 'reliability') {
-      newData.user_stream_reliability_rating = e;
-    }
-    setSourceReviewData(newData);
-  }
   return (
     <div id = "formContainer">
       <div id = "formBackground">
+      <div id = "exit" onClick = {props.handleToggle}>X</div>
         <div id = "formHeader">
           <div id = "statement">
            {canSubmit.showFeedback ? null : 'Rate your Experience Watching ' + props.titleName + ' on ' + props.companyName}
           </div>
-          <div id = "exit" onClick = {props.handleToggle}>X</div>
         </div>
         {canSubmit.showFeedback ? (
 
@@ -89,31 +88,31 @@ function SourceReview(props){
 
           ) :
           <>
-          <form onSubmit = {handleSubmit}>
+          <form onSubmit = {handleSubmit} id = "formContent">
             <label>
               Audio Quality:
               <div className ="stars">
-                <ReactStars count = {5} onChange = {(e)=>{
-                  handleFormChange(e, 'audio');
-                }} size = {25} activeColor = { '#ffd700'}/>
+                <Rating name = "audio"
+                        onChange = {(event, newValue) => {handleAudioRating(newValue)}}
+                        value = {audioRating} />
               </div>
               <br></br>
             </label>
             <label>
               Video Quality:
               <div className ="stars">
-                <ReactStars count = {5} onChange = {(e)=>{
-                  handleFormChange(e, 'video');
-                }} size = {25} activeColor = { '#ffd700'}/>
+              <Rating name = "video"
+                        onChange = {(event, newValue) => {handleVideoRating(newValue)}}
+                        value = {videoRating} />
               </div>
               <br></br>
             </label>
             <label>
               Reliability:
               <div className ="stars">
-                <ReactStars count = {5} onChange = {(e)=>{
-                  handleFormChange(e, 'reliability');
-                }} size = {25} activeColor = { '#ffd700'}/>
+              <Rating name = "reliability"
+                        onChange = {(event, newValue) => {handleReliabilityRating(newValue)}}
+                        value = {reliabilityRating} />
               </div>
               <br></br>
             </label>
@@ -128,4 +127,6 @@ function SourceReview(props){
     </div>
   )
 }
+
+
 export default SourceReview;
