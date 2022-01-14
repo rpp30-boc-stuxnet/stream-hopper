@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReviewButtons from '../ReviewButtons.jsx';
 import AddRemoveButtons from '../AddRemoveButtons.jsx';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 export default function MyTitlesList({ title, movies, getUserMovies, setMovies, removeFromMyMovies, addToMyMovies, handleUserRating, data_testid }) {
