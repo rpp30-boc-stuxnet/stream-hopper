@@ -582,6 +582,12 @@ button {
   @apply w-full z-10
 }
 
+/*
+  ____________________
+  |  Stream Options  |
+  --------------------
+*/
+
 .streamOptions {
   @apply flex flex-col items-center w-11/12 md:w-2/3 lg:w-2/3 xl:w-2/3 mt-4
 }
@@ -613,9 +619,16 @@ button {
 .sourceBoxImageContainer{
   @apply cursor-pointer my-0 mx-auto w-14 h-14 mb-2
 }
+
 .sourceBoxImage{
   @apply w-full h-full
 }
+
+/*
+  _______________________
+  |  Overview Synopsis  |
+  -----------------------
+*/
 
 .synopsisContainer {
   @apply flex flex-col self-center w-[92%] p-2 mt-4 mr-3 bg-[#F4F1BB] text-[#64113F] rounded-xl
@@ -628,3 +641,74 @@ button {
 .overviewSynopsis {
   @apply text-lg p-4 text-justify
 }
+
+/*
+  ___________________
+  |  Source Review  |
+  -------------------
+*/
+
+.formContainer{
+  position: fixed; /* Stay in place */
+  z-index: 3; /* Sit on top */
+  left: 0;
+  padding-top: 10em;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.formBackground{
+  color: black;
+  background-color: white;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.formHeader{
+  margin: 2em;
+  padding-top: 1em;
+}
+
+.statement{
+  margin-left: 2em;
+  margin-right: 2em;
+  display: inline-block;
+  font-size: 1.2em;
+}
+
+.exit{
+  float: right;
+  margin-top: 2em;
+  margin-right: 2em;
+  size: 4em;
+}
+
+.formContent{
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.reviewStars{
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+.confirmationMessage{
+  margin: 0 auto;
+  padding-bottom: 2em;
+  font-size: 1.2em;
+}
+
+.reviewSubmission{
+  width:50%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  background-color: #e7e7e7;
+  color: black;
+}
+
