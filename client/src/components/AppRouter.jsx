@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import Welcome from './LoginComponents/Welcome.jsx';
 import { auth } from './LoginComponents/firebase/firebaseConfig.js';
 import { signOut } from 'firebase/auth';
 import Dashboard from './Dashboard.jsx';
 import MovieOverview from './MovieOverview/movieoverview.js';
+import Navbar from './Navbar/Navbar.jsx';
 
 
 const AppRouter = () => {
-  const [loggedIn, setLoggedIn] = useState(window.localStorage.getItem('userUID') ? 1 : 0 );
+  const [loggedIn, setLoggedIn] = useState(window.localStorage.getItem('userUID') ? 1 : 0);
 
   const handleSuccessfulLogin = () => {
     //save userUID in localstorage. it can be accessed anywhere in the app for any axios requests that need to send it to the server to reference it in the DB
@@ -32,14 +33,15 @@ const AppRouter = () => {
   }
 
   return (
-    <Router>
+    <BrowserRouter>
+      <Navbar handleLogout={handleLogout} />
       <Routes>
         <Route exact path='/' element={loggedIn ? <Navigate to='/homepage' /> : <Welcome handleLogout={handleLogout} handleSuccessfulLogin={handleSuccessfulLogin} />} />
         <Route path='/homepage' element={loggedIn ? <Dashboard className={'dashboard'} handleLogout={handleLogout} /> : <Navigate to='/' />} />
         <Route path='/details/:id/:type' element={loggedIn ? <MovieOverview handleLogout={handleLogout} /> : <Navigate to='/' />} />
         {/* <Route path='/details/:id/:type' element={ <MovieOverview handleLogout={handleLogout} /> } /> */}
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

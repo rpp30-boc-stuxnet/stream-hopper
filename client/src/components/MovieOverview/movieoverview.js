@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import StreamTile from './StreamTile.js';
-import './movieoverview.css';
+// import './movieoverview.css';
 import TitleReviews from './titleReviews/TitleReviews.jsx';
 import axios from 'axios';
-import './titleReviews/titleReviews.css';
+// import './titleReviews/titleReviews.css';
 import { useParams } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar.jsx';
 import ReviewButtons from '../ReviewButtons.jsx'
 
-function MovieOverview (props) {
+function MovieOverview(props) {
   const [movieDetails, setMovieDetails] = useState({});
   const [titleSources, setTitleSources] = useState({});
 
@@ -16,8 +16,8 @@ function MovieOverview (props) {
   let mediaId = params.id;
   let mediaType = params.type;
 
-  const searchDetails = () =>{
-    return new Promise((resolve, reject) =>{
+  const searchDetails = () => {
+    return new Promise((resolve, reject) => {
       axios.get('/api/titleDetails', {
         params: {
           user_id: window.localStorage.userUID,
@@ -34,8 +34,8 @@ function MovieOverview (props) {
         })
     })
   }
-  const searchSources = () =>{
-    return new Promise((resolve, reject) =>{
+  const searchSources = () => {
+    return new Promise((resolve, reject) => {
       axios.get('/api/streamSources', {
         params: {
           user_id: window.localStorage.userUID,
@@ -54,8 +54,8 @@ function MovieOverview (props) {
   }
   const transformDataSources = (data) => {
     let mappedData = {};
-    for(let i = 0; i < data.length; i++) {
-      if(mappedData[data[i].type] === undefined) {
+    for (let i = 0; i < data.length; i++) {
+      if (mappedData[data[i].type] === undefined) {
         mappedData[data[i].type] = [];
       }
       mappedData[data[i].type].push({
@@ -67,93 +67,93 @@ function MovieOverview (props) {
       })
     }
     // console.log(mappedData)
-     return mappedData;
+    return mappedData;
   }
 
   useEffect(() => {
     let deetz = {};
     let sources = {};
     searchDetails()
-    .then((data)=>{
-      deetz = data;
+      .then((data) => {
+        deetz = data;
 
-      searchSources()
-      .then((requestSourcesData)=>{
-        sources = requestSourcesData;
-        setMovieDetails(deetz);
+        searchSources()
+          .then((requestSourcesData) => {
+            sources = requestSourcesData;
+            setMovieDetails(deetz);
 
-        let tranformedData = transformDataSources(sources);
-        setTitleSources(tranformedData);
+            let tranformedData = transformDataSources(sources);
+            setTitleSources(tranformedData);
+          })
       })
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+      .catch((err) => {
+        console.log(err);
+      })
 
   }, [])
 
 
-  function handleAddMovies (e, movieId) {
+  function handleAddMovies(e, movieId) {
     e.preventDefault()
     //make post request - Anna's function to add to movies
   }
-  function handleRemoveMovies (e, movieId) {
+  function handleRemoveMovies(e, movieId) {
     e.preventDefault()
     //make post request - Anna's function to add to movies
   }
 
   return (
     <>
-    <Navbar handleLogout={props.handleLogout} />
-    <div className="titleOverviewContainer">
-      <div className="detailContainer">
-        <div className="detailFader"></div>
-        <h1 className="title">{Object.keys(movieDetails).length > 0 ? movieDetails.title : 'Title Missing'}</h1>
-        <div className="titlePoster">
-          <img src = { Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : 'https://i.imgur.com/7sR45d6.png'} alt ="movie_poster"/>
-        </div>
-        <div className="reviewButtonContainer">
-          <ReviewButtons tmdb_id={mediaId} />
-        </div>
-        <div className="titleDetails">
-         <div id = "movieRatings">
-          { Object.keys(movieDetails).length > 0  && Object.keys(movieDetails.ratings).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
-         </div>
-         <div id = "moveReleaseDate">
-          { Object.keys(movieDetails).length > 0 ? ('Release: ' + movieDetails.release_date) : 'Release: N/A'}
-         </div>
-         <div id = "director">
-          { Object.keys(movieDetails).length > 0 ? ('Director: ' + movieDetails.director) : 'Director: N/A--'}
-         </div>
-         <div id = "runTime">
-          { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : 'Run Time: N/A'}
-         </div>
-        </div>
-        <div className="addRemoveButtons">
-          {Object.keys(movieDetails).length > 0 ?
-            (movieDetails.saved_by_user ? <button id ="addMovie" onClick = {handleRemoveMovies}> Remove From My Movies </button> : <button id ="addMovie" onClick = {handleAddMovies}> Add To My Movies </button>) :
-            null}
-        </div>
-      </div>
-      <div id = "streamOptions">
-        <h2 id ="streamOptionsHeading"> Where to Watch</h2>
-        <div id= "streamOptionsContainer">
-          {Object.keys(titleSources).length > 0 ? Object.keys(titleSources).map((item, index) => {
-            return <StreamTile type = {item} key = {index} details = {titleSources[item]} titleName = {movieDetails.title}/>
-          }): <StreamTile type = 'Not Available'/>}
-        </div>
-        <div>
-          <h3 id ="synopsisHeading">Film Synopsis</h3>
-          <div id ="synopsisContent">
-            {Object.keys(movieDetails).length > 0 ? movieDetails.synopsis : 'Synopsis not Available'}
+      <Navbar handleLogout={props.handleLogout} />
+      <div className="titleOverviewContainer">
+        <div className="detailContainer">
+          <div className="detailFader"></div>
+          <h1 className="title">{Object.keys(movieDetails).length > 0 ? movieDetails.title : 'Title Missing'}</h1>
+          <div className="titlePoster">
+            <img src={Object.keys(movieDetails).length > 0 ? movieDetails.poster_path : 'https://i.imgur.com/7sR45d6.png'} alt="movie_poster" />
+          </div>
+          <div className="reviewButtonContainer">
+            <ReviewButtons tmdb_id={mediaId} />
+          </div>
+          <div className="titleDetails">
+            <div id="movieRatings">
+              {Object.keys(movieDetails).length > 0 && Object.keys(movieDetails.ratings).length > 0 ? 'imdb: ' + movieDetails.ratings[0].Value : null}
+            </div>
+            <div id="moveReleaseDate">
+              {Object.keys(movieDetails).length > 0 ? ('Release: ' + movieDetails.release_date) : 'Release: N/A'}
+            </div>
+            <div id="director">
+              {Object.keys(movieDetails).length > 0 ? ('Director: ' + movieDetails.director) : 'Director: N/A--'}
+            </div>
+            <div id="runTime">
+              {Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : 'Run Time: N/A'}
+            </div>
+          </div>
+          <div className="addRemoveButtons">
+            {Object.keys(movieDetails).length > 0 ?
+              (movieDetails.saved_by_user ? <button id="addMovie" onClick={handleRemoveMovies}> Remove From My Movies </button> : <button id="addMovie" onClick={handleAddMovies}> Add To My Movies </button>) :
+              null}
           </div>
         </div>
-        <div className="titleReviewsHolder">
-          <TitleReviews title={Object.keys(movieDetails).length > 0 ? movieDetails.title : 'No title'} tmdb_id={Object.keys(movieDetails).length > 0 ? movieDetails.tmdb_id : null} type={mediaType}/>
+        <div id="streamOptions">
+          <h2 id="streamOptionsHeading"> Where to Watch</h2>
+          <div id="streamOptionsContainer">
+            {Object.keys(titleSources).length > 0 ? Object.keys(titleSources).map((item, index) => {
+              return <StreamTile type={item} key={index} details={titleSources[item]} titleName={movieDetails.title} />
+            }) : <StreamTile type='Not Available' />}
+          </div>
+          <div>
+            <h3 id="synopsisHeading">Film Synopsis</h3>
+            <div id="synopsisContent">
+              {Object.keys(movieDetails).length > 0 ? movieDetails.synopsis : 'Synopsis not Available'}
+            </div>
+          </div>
+          <div className="titleReviewsHolder">
+            <TitleReviews title={Object.keys(movieDetails).length > 0 ? movieDetails.title : 'No title'} tmdb_id={Object.keys(movieDetails).length > 0 ? movieDetails.tmdb_id : null} type={mediaType} />
+          </div>
         </div>
-      </div>
 
-    </div>
+      </div>
     </>
   )
 

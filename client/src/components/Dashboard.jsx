@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MyTitlesList from './MyTitles/MyTitlesList.jsx';
 import SuggestionsList from './Suggestions/SuggestionsList.jsx';
-// import Suggestions from './Suggestions/Suggestions.jsx';
 
-import Navbar from './Navbar/Navbar.jsx';
+
+
+
 
 export default function Dashboard(props) {
 
@@ -157,16 +158,18 @@ export default function Dashboard(props) {
 
   return (
     <>
-      <Navbar handleLogout={props.handleLogout} />
-      <main className={'dashboard'}>
-        <h1>Hello {window.localStorage.userEmail.split('@')[0]}</h1>
 
-        {userMovies ? <MyTitlesList
-          title='My Titles'
-          removeFromMyMovies={removeFromMyMovies}
-          addToMyMovies={addToMyMovies}
-          movies={userMovies}
-          getUserMovies={getUserMovies} /> : <>No Titles Yet!</>}
+      <main className={'dashboard'}>
+        <h1>Hello</h1>
+        {/* {window.localStorage.userEmail.split('@')[0]} */}
+
+        {userMovies ?
+          <MyTitlesList
+            title='My Titles'
+            removeFromMyMovies={removeFromMyMovies}
+            addToMyMovies={addToMyMovies}
+            movies={userMovies}
+            getUserMovies={getUserMovies} /> : <>No Titles Yet!</>}
 
         {userSuggestions !== null && userSuggestions[0] ? <SuggestionsList
           title='Suggestions For You'

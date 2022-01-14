@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import ReviewButtons from '../ReviewButtons.jsx';
 import AddRemoveButtons from '../AddRemoveButtons.jsx';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 
 export default function MyTitlesList({ title, movies, getUserMovies, setMovies, removeFromMyMovies, addToMyMovies, handleUserRating }) {
@@ -43,7 +44,8 @@ export default function MyTitlesList({ title, movies, getUserMovies, setMovies, 
         <div className='titleRow'>
           {movies.map((movie, index) => {
 
-            return <div className='titlePosterContainer' style={transformStyle}>
+            return <div key={index + 'MyTitlestopdiv'} className='titlePosterContainer' style={transformStyle}>
+
               <Link to={`/details/${movie.tmdb_id}/${movie.type}`}>
                 <img
                   className='titlePoster'
@@ -52,6 +54,7 @@ export default function MyTitlesList({ title, movies, getUserMovies, setMovies, 
                   alt={movie.name + " poster"}
                 ></img>
               </Link>
+
               <div className='buttonsContainer'>
                 <AddRemoveButtons
                   addToMyMovies={addToMyMovies}

@@ -16,12 +16,12 @@ const AddReview = (props) => {
       type: props.type,
       tmdb_id: props.tmdb_id
     })
-    .then((result) => {
-      props.handleNewReview();
-    })
-    .catch ((err) => {
-      console.log('[AddReview] Error while posting new review: ', err);
-    })
+      .then((result) => {
+        props.handleNewReview();
+      })
+      .catch((err) => {
+        console.log('[AddReview] Error while posting new review: ', err);
+      })
   }
 
   const handleReviewChange = (e) => {
