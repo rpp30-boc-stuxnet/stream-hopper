@@ -48,9 +48,19 @@ const TitleReviews = (props) => {
 
   return (
     <div className="reviewSection">
-      <p>Reviews of {props.title}</p>
-      <div className='reviewList'>{reviews.length > 0 ? reviews : <span className="noReviews">No reviews yet. Add one by clicking 'Add Review' below!</span>}</div>
-      {addReview ? <AddReview handleCancel={handleCancel} tmdb_id={props.tmdb_id} type={props.type} handleNewReview={handleNewReview}/> : <button className="addReviewBtn" onClick={handleAddReviewClick}>Add Review</button>  }
+      <p className="reviewsTitle">Reviews of {props.title}</p>
+      <div className='reviewList'>
+        {reviews.length > 0 ?
+          reviews
+          : <span className="noReviews">No reviews yet. Add one by clicking 'Add Review' below!</span>}
+      </div>
+      {addReview ?
+        <AddReview
+          handleCancel={handleCancel}
+          tmdb_id={props.tmdb_id}
+          type={props.type}
+          handleNewReview={handleNewReview}/>
+        : <button className="addReviewBtn" onClick={handleAddReviewClick}>Add Review</button>  }
     </div>
   )
 

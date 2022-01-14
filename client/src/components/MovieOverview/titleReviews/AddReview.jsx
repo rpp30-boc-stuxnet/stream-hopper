@@ -31,14 +31,15 @@ const AddReview = (props) => {
 
 
   return (
-    <div>
-      <form>
+    <div className="addReviewContainer">
+      <form className="addReviewForm">
         <textarea className="reviewText" name='newReview' onChange={handleReviewChange} placeholder='Type your review here (maximum of 280 characters)' rows='10' maxLength='280'></textarea>
+        <span className="characterWarning">Characters Remaining: {remainingChars}</span>
+        <div className="reviewFormBtns">
+          <button className="addReviewBtn" onClick={handleReviewSubmit}>Submit Review</button>
+          <button className="cancelReviewBtn" onClick={props.handleCancel}>Cancel</button>
+        </div>
       </form>
-      <span className="characterWarning">Characters Remaining: {remainingChars}</span>
-      <br></br>
-      <button className="addReviewBtn" onClick={handleReviewSubmit}>Submit Review</button>
-      <button className="addReviewBtn" onClick={props.handleCancel}>Cancel</button>
     </div>
   );
 }
