@@ -157,15 +157,72 @@ describe("POST /api/titleReviews", () => {
 
   describe("When all of the required body parameters are valid in the request", () => {
     test("Should respond with a 201 status code", async () => {
+      const response = await request(app)
+        .post('/api/titleReviews')
+        .send({
+          user_id: 'Test2',
+          username: 'test123',
+          tmdb_id: 330,
+          type: 'movie',
+          review_body: 'This was great!'
+        })
 
+      expect(response.statusCode).toBe(201)
     })
 
     test("Should respond with a message confirming the review was saved successfully", async () => {
+      const response = await request(app)
+        .post('/api/titleReviews')
+        .send({
+          user_id: 'Test2',
+          username: 'test123',
+          tmdb_id: 331,
+          type: 'movie',
+          review_body: 'This was great!'
+        })
 
+        expect(response.text).toBe("Review saved successfully");
     })
 
     test("Should add the review to the database", async () => {
+      await request(app)
+        .post('/api/titleReviews')
+        .send({
+          user_id: 'Test3',
+          username: 'test123',
+          tmdb_id: 332,
+          type: 'movie',
+          review_body: 'This was great!'
+        })
 
+      const firstResponse = await request(app)
+        .get('/api/titleReviews')
+        .query({
+          type: 'movie',
+          tmdb_id: 332
+        })
+
+      await request(app)
+      .post('/api/titleReviews')
+      .send({
+        user_id: 'Test3',
+        username: 'test123',
+        tmdb_id: 332,
+        type: 'movie',
+        review_body: 'This was great again!'
+      })
+
+      const secondResponse = await request(app)
+        .get('/api/titleReviews')
+        .query({
+          user_id: 'Test',
+          username: 'test123',
+          tmdb_id: 332,
+          type: 'movie',
+          review_body: 'This was great!'
+        })
+
+        expect(secondResponse.body.length - firstResponse.body.length).toBe(1);
     })
 
   })
