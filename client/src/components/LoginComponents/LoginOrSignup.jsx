@@ -117,7 +117,6 @@ const LoginOrSignup = (props) => {
             });
           })
         } else {
-          console.log(err)
           setLoginError({
             loginError: 1,
             errorCode: err.code
@@ -208,7 +207,7 @@ const LoginOrSignup = (props) => {
 
   if (loginError.loginError) {
     return (
-      <div className="loginErrorHolder">
+      <div data-testid="test-loginErrorHolder" className="loginErrorHolder">
         <p className="loginErrorInfo">There was an error while logging in to Streamhopper. Please try again or use a different method. </p>
         <p className="loginErrorInfo">Error message: {loginError.errorCode}</p>
         <button className="submitBtn" onClick={handleErrorOk}>Ok</button>

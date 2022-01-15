@@ -20,7 +20,7 @@ const AddReview = (props) => {
       props.handleNewReview();
     })
     .catch ((err) => {
-      console.log('[AddReview] Error while posting new review: ', err);
+
     })
   }
 
@@ -33,7 +33,7 @@ const AddReview = (props) => {
   return (
     <div className="addReviewContainer">
       <form className="addReviewForm">
-        <textarea className="reviewText" name='newReview' onChange={handleReviewChange} placeholder='Type your review here (maximum of 280 characters)' rows='10' maxLength='280'></textarea>
+        <textarea data-testid="test-userReviewInput" className="reviewText" name='newReview' onChange={handleReviewChange} placeholder='Type your review here (maximum of 280 characters)' rows='10' maxLength='280'></textarea>
         <span className="characterWarning">Characters Remaining: {remainingChars}</span>
         <div className="reviewFormBtns">
           <button className="addReviewBtn" onClick={handleReviewSubmit}>Submit Review</button>

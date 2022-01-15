@@ -26,7 +26,6 @@ function MovieOverview (props) {
         }
       })
         .then((response) => {
-
           resolve(response.data);
         })
         .catch((error) => {
@@ -44,7 +43,7 @@ function MovieOverview (props) {
         }
       })
         .then((response) => {
-          //console.log('success getting title Sources: ', response.data);
+          // console.log('success getting title Sources: ', response.data);
           resolve(response.data);
         })
         .catch((error) => {
@@ -66,7 +65,7 @@ function MovieOverview (props) {
         type: data[i].type
       })
     }
-    // console.log(mappedData)
+    console.log(mappedData)
      return mappedData;
   }
 
