@@ -40,6 +40,8 @@ button {
 
 .backImg {background-position: 50% 36%;
   @apply block fixed w-full h-full bg-cover bg-no-repeat z-0
+    bg-[url('https://images.unsplash.com/photo-1509281373149-e957c6296406?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1328&q=80')]
+    dark:bg-[url('https://images.unsplash.com/photo-1608737739007-f0019bc67f59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1576&q=80')]
 }
 
 .fader {
@@ -54,7 +56,7 @@ button {
 */
 
 .dashboard {
-  @apply flex flex-col text-[#F4F1BB] w-full items-center z-10
+  @apply flex flex-col text-[#F4F1BB] mt-[5.5rem] w-full items-center z-10
 }
 
 /*
@@ -143,6 +145,7 @@ button {
 
 .navbar {
   @apply
+    fixed
     flex
     flex-col
     justify-between
@@ -153,9 +156,10 @@ button {
     py-3
     px-4
     m-0
-    z-20
+    z-40
     md:flex-row
     md:h-20
+    dark:bg-[#460C2C]
 }
 
 .navLogo {
@@ -167,21 +171,25 @@ button {
     m-0
     mx-5
     align-middle
+    hover:text-[#E15554]
 }
 
 .navLogoSvg {
   @apply h-12 w-auto m-0
 }
 
+.navBtns {
+  @apply flex flex-row justify-between items-center w-1/5
+}
+
 .homeLink {
   @apply
   flex
   text-[#F4F1BB]
-  text-2xl
-  italic
-  underline
-  m-0
-  mx-5
+  text-4xl
+  hover:text-[#FFC15E]
+  dark:text-[#68A357]
+  dark:hover:text-[#E15554]
 }
 
 .logoutBtn {
@@ -194,6 +202,10 @@ button {
     rounded-xl
     hover:bg-[#E15554]
     hover:text-[#F4F1BB]
+    dark:bg-[#68A357]
+    dark:text-[#F4F1BB]
+    dark:hover:bg-[#E15554]
+    dark:hover:text-[#F4F1BB]
 }
 
 /*
@@ -291,6 +303,7 @@ button {
     rounded-2xl
     z-0
     md:h-1/3
+    dark:bg-[#460C2C]
 }
 
 .welcomeBox {
@@ -304,7 +317,7 @@ button {
     w-full
     h-screen
     text-xl
-    text-[#FCECC9]
+    text-[#F4F1BB]
     z-10
 }
 
@@ -334,7 +347,7 @@ button {
 .loginButton {
   @apply
     bg-[#FCECC9]
-    text-[#1F1300]
+    text-[#64113F]
     w-28
     m-5
     mt-4
@@ -342,7 +355,7 @@ button {
     text-xl
     rounded-xl
     hover:bg-[#FF6F59]
-    hover:text-white
+    hover:text-[#F4F1BB]
 }
 
 /*
@@ -358,14 +371,16 @@ button {
     py-0
     px-4
     mx-auto
-    my-8
+    my-10
     w-4/5
-    bg-white
-    text-black
+    bg-[#F4F1BB]
+    text-[#64113F]
     rounded-xl
     z-10
     md:w-3/5
     lg:w-2/5
+    dark:bg-[#460C2C]
+    dark:text-[#F4F1BB]
 }
 
 .loginTitle {
@@ -374,38 +389,43 @@ button {
 
 .loginExit {
   @apply flex justify-end
+  dark:bg-[#460C2C]
+  dark:text-[#F4F1BB]
 }
 
 .exitBtn {
   @apply
-    bg-white
+    bg-[#F4F1BB]
     border-none
     m-0
     text-xl
     font-bold
     hover:text-orange-500
+    dark:bg-[#460C2C]
+    dark:text-[#F4F1BB]
+    dark:hover:text-[#FF6F59]
 }
 
 .googleLogin {
   @apply
     w-4/5
     mt-8
-    bg-green-600
-    text-white
+    bg-[#68A357]
+    text-[#F4F1BB]
     font-bold
     text-2xl
-    hover:bg-orange-500
+    hover:bg-[#FF6F59]
 }
 
 .facebookLogin {
   @apply
     w-4/5
     mt-8
-    bg-blue-600
-    text-white
+    bg-[#368F8B]
+    text-[#F4F1BB]
     font-bold
     text-2xl
-    hover:bg-orange-500
+    hover:bg-[#FF6F59]
 }
 
 .loginSeparator {
@@ -431,11 +451,15 @@ button {
     border-2
     border-solid
     border-black
-    bg-neutral-200
+    bg-[#F4F1BB]
 }
 
 .manualEntryHolder {
   @apply w-10/12 p-3
+}
+
+.showPwBtn {
+  @apply bg-sky-200 text-base p-2 dark:bg-[#368F8B] dark:hover:bg-[#64113F]
 }
 
 .submitBtn {
@@ -444,17 +468,20 @@ button {
     mt-3
     mb-7
     bg-[#64113F]
-    text-white
+    text-[#F4F1BB]
     font-bold
     text-xl
-    hover:bg-orange-500
+    hover:bg-[#FF6F59]
+    dark:bg-[#68A357]
+    dark:hover:bg-[#FFC15E]
+    dark:hover:text-[#64113F]
 }
 
 .loginErrorHolder {
   @apply
   w-4/5
   p-3
-  bg-white
+  bg-[#F4F1BB]
   z-10
   rounded-b-xl
   md:w-3/5
@@ -502,7 +529,9 @@ button {
   rounded-full
   p-2
   bg-[#F4F1BB]
+  hover:bg-[#163B3A]
   dark:bg-[#368F8B]
+  dark:hover:bg-[#E15554]
 }
 
 .themeBtn {
@@ -526,6 +555,8 @@ button {
   mx-1
   rounded-lg
   hover:bg-[#368F88]
+  dark:bg-[#990033]
+  dark:hover:bg-[#E15554]
 }
 
 .addTitleBtn {
@@ -538,6 +569,8 @@ button {
   mx-1
   rounded-lg
   hover:bg-[#368F88]
+  dark:bg-[#990033]
+  dark:hover:bg-[#68A357]
 }
 
 /*
@@ -547,7 +580,7 @@ button {
 */
 
 .titleOverviewContainer {
-  @apply w-full flex flex-wrap justify-between z-10
+  @apply w-full flex flex-wrap justify-between z-10 mt-[5.5rem]
 }
 
 .detailContainer {
@@ -555,7 +588,8 @@ button {
 }
 
 .detailFader {
-  @apply absolute h-[106%] md:h-[68vw] lg:h-[54vw] xl:h-[52vw] w-[94%] -mx-5 xl:-mx-6 -mb-12 md:w-[28%] lg:w-[29%] xl:w-[30%] bg-[#990033] opacity-50 z-0 rounded-xl
+  @apply absolute h-[106%] md:h-[68vw] lg:h-[56vw] xl:h-[54vw] w-[94%] -mx-5 xl:-mx-6 -mb-12 md:w-[28%] lg:w-[29%] xl:w-[30%] bg-[#990033] opacity-50 z-0 rounded-xl
+    dark:bg-[#FFC15E] dark:opacity-20
 }
 
 .title {
@@ -605,11 +639,11 @@ button {
 }
 
 .tileContainer{
-  @apply flex flex-col w-[95%] bg-[#F4F1BB] text-[#64113F] m-4 rounded-xl
+  @apply flex flex-col w-[95%] bg-[#F4F1BB] text-[#64113F] m-4 rounded-xl dark:bg-[#163B3A] dark:text-[#F4F1BB]
 }
 
 .typeName {
-  @apply self-center border-b-2 border-solid border-[#64113F] w-11/12 mb-1
+  @apply self-center border-b-2 border-solid border-[#64113F] w-11/12 mb-1 dark:border-[#368F8B]
 }
 
 .sourceBox{
@@ -631,11 +665,11 @@ button {
 */
 
 .synopsisContainer {
-  @apply flex flex-col self-center w-[92%] p-2 mt-4 mr-3 bg-[#F4F1BB] text-[#64113F] rounded-xl
+  @apply flex flex-col self-center w-[92%] p-2 mt-4 mr-3 bg-[#F4F1BB] text-[#64113F] rounded-xl dark:bg-[#163B3A] dark:text-[#F4F1BB]
 }
 
 .synopsisHeading {
-  @apply self-center border-b-2 border-solid border-[#64113F] w-11/12 mb-1
+  @apply self-center border-b-2 border-solid border-[#64113F] w-11/12 mb-1 dark:border-[#368F8B]
 }
 
 .overviewSynopsis {
@@ -653,7 +687,7 @@ button {
 }
 
 .formBackground{
-  @apply bg-[#F4F1BB] text-[#64113F] w-1/2 mx-auto my-0 rounded-xl shadow-xl
+  @apply bg-[#F4F1BB] text-[#64113F] w-1/2 mx-auto my-0 rounded-xl shadow-xl dark:bg-[#163B3A] dark:text-[#F4F1BB]
 }
 
 .formHeader{
@@ -681,7 +715,7 @@ button {
 }
 
 .reviewSubmitBtn{
-  @apply w-2/5 mx-8 bg-[#68A357] hover:bg-[#368F8B] text-[#F4F1BB]
+  @apply w-2/5 my-8 bg-[#68A357] hover:bg-[#368F8B] text-[#F4F1BB] dark:bg-[#368F8B] dark:hover:bg-[#E15554]
 }
 
 /*
@@ -703,11 +737,11 @@ button {
 }
 
 .reviewList {
-  @apply justify-center overflow-x-hidden overflow-y-scroll pt-2 h-80 w-full bg-[rgba(54,143,139,0.5)] rounded-xl
+  @apply justify-center overflow-x-hidden overflow-y-scroll pt-2 h-80 w-full bg-[rgba(54,143,139,0.5)] rounded-xl dark:bg-[rgba(70,12,44,0.7)]
 }
 
 .reviewTile {
-  @apply flex flex-col p-2 rounded-lg w-11/12 text-left m-auto mt-5 text-lg bg-[#68A357]
+  @apply flex flex-col p-2 rounded-lg w-11/12 text-left m-auto mt-5 text-lg bg-[#68A357] dark:bg-[#E15554]
 }
 
 .reviewUserDate {
@@ -719,7 +753,7 @@ button {
 }
 
 .reviewText {
-  @apply w-11/12 mt-5 h-44 bg-[#F4F1BB] text-[#64113F] text-lg
+  @apply w-11/12 mt-5 h-44 bg-[#F4F1BB] text-[#64113F] text-lg dark:bg-[#64113F] dark:text-[#F4F1BB]
 }
 
 .characterWarning {
@@ -739,7 +773,11 @@ button {
 }
 
 .addReviewBtn, .cancelReviewBtn {
-  @apply text-base w-5/12 bg-[#F4F1BB] text-[#64113F] mt-2 mb-4 hover:bg-[#64113F] hover:text-[#F4F1BB]
+  @apply text-base w-5/12 bg-[#F4F1BB] text-[#64113F] mt-2 mb-4 hover:bg-[#64113F] hover:text-[#F4F1BB] dark:bg-[#990033] dark:hover:bg-[#68A357] dark:text-[#F4F1BB]
+}
+
+.cancelReviewBtn {
+  @apply dark:hover:bg-[#E15554] dark:text-[#F4F1BB]
 }
 
 .reviewFormBtns {
