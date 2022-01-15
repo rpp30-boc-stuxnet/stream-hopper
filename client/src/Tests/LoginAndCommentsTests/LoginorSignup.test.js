@@ -46,11 +46,24 @@ describe('Login/Signup Tests', () => {
 
   })
 
-  // test ('User should be able to login with Facebook', async () => {
-  //   var loggedIn = false;
-  //   const handleSuccessfulLogin = () => {
-  //     loggedIn = true;
-  //     console.log('handled successful login!!!');
-  //   }
-  // })
+  test ('Facebook login should throw an error when running in incorrect enviornment', async () => {
+    let loggedIn = false;
+    const handleSuccessfulLogin = () => {
+      loggedIn = true;
+      console.log('handled successful login!!!');
+    }
+
+    render(<Welcome handleSuccessfulLogin={handleSuccessfulLogin} />);
+    userEvent.click(screen.getByText('Log in'));
+
+
+    await act ( async () => {
+      userEvent.click(screen.getByText('Log in with Facebook'))
+    })
+
+    await waitFor(() => {
+      expect(screen.getByTestId('test-loginErrorHolder')).toBeInTheDocument();
+    })
+
+  })
 })
