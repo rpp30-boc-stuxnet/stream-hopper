@@ -117,7 +117,6 @@ const LoginOrSignup = (props) => {
             });
           })
         } else {
-          console.log(err)
           setLoginError({
             loginError: 1,
             errorCode: err.code
