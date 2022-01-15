@@ -21,17 +21,17 @@ function SourceReview(props){
     showFeedback: false
   })
 
-  const handleAudioRating = (rate: number) => {
+  const handleAudioRating = (rate) => {
 
     setAudioRating(rate);
   }
 
-  const handleVideoRating = (rate: number) => {
+  const handleVideoRating = (rate) => {
 
     setVideoRating(rate);
   }
 
-  const handleReliabilityRating = (rate: number) => {
+  const handleReliabilityRating = (rate) => {
 
     setReliabilityRating(rate);
   }
