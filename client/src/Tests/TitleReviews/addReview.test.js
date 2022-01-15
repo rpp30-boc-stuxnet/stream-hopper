@@ -10,8 +10,9 @@ import '@testing-library/jest-dom'
 import AddReview from '../../components/MovieOverview/titleReviews/AddReview.jsx';
 import userEvent from '@testing-library/user-event'
 import 'regenerator-runtime/runtime'
-import { rest } from 'msw'
-import { setupServer } from 'msw/node'
+import axios from 'axios';
+
+jest.mock("axios");
 
 //for Reference
 {/* <AddReview
@@ -104,6 +105,12 @@ describe('Review Tile Component', function () {
     render(<AddReview handleCancel={handleCancel} handleNewReview={handleNewReview} type={review.type} tmdb_id={review.tmdb_id}/>)
     const input = screen.getByTestId('test-userReviewInput');
     fireEvent.change(input, {target: {value: 'Entering a review :)'}});
+    const mockResponse = {
+      data: {
+        resolved: 1
+      }
+    }
+    axios.post.mockResolvedValue(mockResponse)
     userEvent.click(screen.getByText('Submit Review'));
 
 
