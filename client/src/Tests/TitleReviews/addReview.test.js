@@ -122,4 +122,32 @@ describe('Review Tile Component', function () {
 
   });
 
+  test('Should throw an error if the post is rejected', async function () {
+    let isNewReview = false;
+
+    const handleCancel = (e) => {
+
+    }
+    const handleNewReview = () => {
+      isNewReview = true;
+    }
+
+    render(<AddReview handleCancel={handleCancel} handleNewReview={handleNewReview} type={review.type} tmdb_id={review.tmdb_id}/>)
+    const input = screen.getByTestId('test-userReviewInput');
+    fireEvent.change(input, {target: {value: 'Entering a review :)'}});
+    const mockResponse = new Error ('server error posting review')
+    axios.post.mockRejectedValue(mockResponse)
+    userEvent.click(screen.getByText('Submit Review'));
+
+
+
+    await waitFor(() => {
+      expect(isNewReview).toBe(false);
+    })
+
+
+  });
+
+
+
 });

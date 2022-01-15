@@ -20,7 +20,7 @@ const AddReview = (props) => {
       props.handleNewReview();
     })
     .catch ((err) => {
-      console.log('[AddReview] Error while posting new review: ', err);
+
     })
   }
 
