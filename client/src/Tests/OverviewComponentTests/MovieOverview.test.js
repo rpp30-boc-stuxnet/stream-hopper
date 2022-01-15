@@ -49,6 +49,10 @@ let currentRating = {
   "overall_thumbs_downs": 20
 }
 
+
+
+
+
 const server = setupServer()
 
 beforeAll(() => server.listen())
@@ -61,9 +65,7 @@ describe ('Overview Component Test',  () => {
   server.use(
     rest.get('/api/titleDetails', (req, res, ctx) => {
       return res(ctx.json(apiDetailData))
-    })
-  )
-  server.use(
+    }),
     rest.get('/api/thumbRatings', (req, res, ctx) => {
       return res(ctx.json(currentRating))
     })
@@ -86,7 +88,9 @@ describe ('Overview Component Test',  () => {
   //   await act (async () => {
   //     render(<MovieOverview handleLogout = {handleLogout}/>)
   //   });
+
   //   expect(screen.getByText('Director:', {exact: false})).toBeInTheDocument();
+
   // })
 
   // test('Title Synopsis section should be in DOM', async function () { //check if component renders
@@ -95,6 +99,11 @@ describe ('Overview Component Test',  () => {
   //     render(<MovieOverview handleLogout = {handleLogout}/>)
   //   });
   //   expect(screen.getByText('Title Synopsis', {exact: false})).toBeInTheDocument();
+
+
+  //   await waitFor (() => {
+  //     expect(screen.getByText('Title Synopsis', {exact: false})).toBeInTheDocument();
+  //   })
   // })
   // test('Release Date should be in DOM', async function () { //check if component renders
   //   // render (<MovieOverview />)
