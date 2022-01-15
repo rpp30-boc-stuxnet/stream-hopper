@@ -20,14 +20,16 @@ describe('Login/Signup Tests', () => {
 
   test ('User should be able to log in with a previously established email address and password', async () => {
 
+    let loggedIn = false;
     const handleSuccessfulLogin = () => {
+      loggedIn = true;
       console.log('handled successful login!!!');
     }
 
     render(<Welcome handleSuccessfulLogin={handleSuccessfulLogin} />);
 
     userEvent.click(screen.getByText('Log in'));
-    console.log('past login');
+
     const input = screen.getByTestId('test-userEmailInput');
     fireEvent.change(input, {target: {value: 'cheez@gmail.com'}});
     const passwordInput = screen.getByTestId('test-passwordEntry');
@@ -37,8 +39,18 @@ describe('Login/Signup Tests', () => {
       userEvent.click(screen.getByText('Log in'))
     })
 
-    expect(1).toBe(1);
 
+    await waitFor(() => {
+      expect(loggedIn).toBe(true);
+    })
 
   })
+
+  // test ('User should be able to login with Facebook', async () => {
+  //   var loggedIn = false;
+  //   const handleSuccessfulLogin = () => {
+  //     loggedIn = true;
+  //     console.log('handled successful login!!!');
+  //   }
+  // })
 })
