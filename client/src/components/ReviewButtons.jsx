@@ -11,7 +11,7 @@ export default function ReviewButtons({ tmdb_id }) {
     axios.get('/api/thumbRatings', {
       params: {
         user_id: window.localStorage.userUID,
-        tmdb_id: tmdb_id
+        tmdb_id: parseInt(tmdb_id)
       }
     })
       .then((currentUserRating) => {
@@ -25,7 +25,7 @@ export default function ReviewButtons({ tmdb_id }) {
   const handleUserRating = (event) => {
     axios.post('/api/thumbRatings', {
       user_id: window.localStorage.userUID,
-      tmdb_id: tmdb_id,
+      tmdb_id: parseInt(tmdb_id),
       prev_thumb_rating: currentRating.user_thumb_rating,
       new_thumb_rating: event.target.dataset.rating
 

@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
         res.status(200).send(transformedResults);
       })
       .catch((error) => {
-        res.status(400).send('Error while fetching search results from TMDB API: ' + error)
+        res.status(400).send('Error while fetching search results from TMDB API: ' + (error.response.data.status_message || error.response.data.errors[0]))
       })
 });
 

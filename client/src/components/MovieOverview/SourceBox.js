@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './SourceBox.css';
 import SourceReview from './SourceReview.js';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+
 
 function SourceBox(props){
 
@@ -11,29 +11,46 @@ function SourceBox(props){
   let mediaType = params.type;
 
   const [showForm, setShowForm] = useState(false);
-  const [streamHopperQuality, setStreamHopperQuality] = useState(undefined);
+  const [streamHopperQuality, setStreamHopperQuality] = useState({});
 
   const handleToggle = (e) =>{
     e.preventDefault();
     setShowForm(!showForm);
   }
-  // useEffect(()=>{
-  //   let options = {
-  //     user_id: window.localStorage.userUID,
-  //       tmdb_id: mediaId,
-  //       source_company_id: props.companyId,
-  //       stream_type: mediaType,
-  //       stream_format: props.quality
-  //   }
-  //   console.log(options, 'options')
-  //   axios.get('/api/streamSources', {params: options})
-  //   .then((response)=>{
-  //     console.log(response, 'getStreamQuality')
-  //   })
-  //   .catch((error)=>{
-  //     return error
-  //   })
-  // }, [])
+  useEffect(()=>{
+    getRatings();
+  }, [])
+
+  const getRatings = () =>{
+
+    let qualityCheck = props.quality;
+    let rentBuySubFree = props.streamType;
+    if(qualityCheck === null) {
+      qualityCheck = "SD"
+    }
+    if(rentBuySubFree === "tve" || rentBuySubFree === "TVE") {
+      rentBuySubFree = "free"
+    }
+    axios.get('/api/streamRatings', {
+      params: {
+        user_id: window.localStorage.userUID,
+        tmdb_id: Number(mediaId),
+        source_company_id: props.companyId,
+        stream_type: rentBuySubFree,
+        stream_format: qualityCheck,
+        title_type: mediaType
+      }
+    })
+    .then((response)=>{
+
+      setStreamHopperQuality(  response.data  );
+    })
+    .catch((error)=>{
+
+      return error
+    })
+
+  }
 
   return (
     <div className = "sourceBox ">
@@ -42,14 +59,22 @@ function SourceBox(props){
           <img src = {props.logoURL} className = "sourceBoxImage" onClick = {handleToggle}/>
           : <img src = "https://i.imgur.com/7sR45d6.png" className = "sourceBoxImage"/>}
       </div>
-      <div className = "sourceBoxPriceAndQuality">
+      {props.streamType === "buy" ? <div className = "sourceBoxPriceAndQuality">
         {(props.price && props.quality) ? (props.price + ' | ' + props.quality) : 'Info Not Available'}
-      </div>
+      </div> : null}
       <div className = "sourceBoxInternalRating">
-      {(props.price && props.quality) ? '100%' : 'Quality Not Available'}
+        <div className = "audioRating">
+          {streamHopperQuality.audio_average_rating !== undefined  && streamHopperQuality.audio_average_rating !== null ? ('Audio: ' + streamHopperQuality.audio_average_rating + '/5') : 'Audio: Not yet rated'}
+        </div>
+        <div className = "videoRating">
+          {streamHopperQuality.video_average_rating !== undefined && streamHopperQuality.video_average_rating !== null? ('Video: ' + streamHopperQuality.video_average_rating + '/5') : 'Video: Not yet rated' }
+        </div>
+        <div className = "reliabilityRating">
+          {streamHopperQuality.reliability_average_rating !== undefined && streamHopperQuality.reliability_average_rating !== null? ('Reliability: ' + streamHopperQuality.reliability_average_rating + '/5') : 'Reliability: Not yet rated'}
+        </div>
       </div>
       {showForm ? <SourceReview handleToggle = {handleToggle} quality = {props.quality} companyId = {props.companyId}
-      titleName = {props.titleName} companyName = {props.companyName}/> : null}
+      titleName = {props.titleName} companyName = {props.companyName} streamType = {props.streamType} refreshData = {getRatings}/> : null}
     </div>
   )
 }

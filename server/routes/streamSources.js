@@ -5,12 +5,17 @@ const sourceDetailsControllers = require("../../database/controllers/sourceDetai
 
 router.get("/", async (req, res) => {
   let search_field;
-  if (req.query.type === 'tv') {
+  if (req.query.type && req.query.type === 'tv') {
     search_field = 'tmdb_tv_id'
-  } else if (req.query.type === 'movie') {
+  } else if (req.query.type && req.query.type === 'movie') {
     search_field = 'tmdb_movie_id'
   } else {
-    res.status(400).send('Invalid \'type\' input in search query.  Acceptable options are \'tv\' or \'movie\'');
+    res.status(400).send("Error: Must provide a valid 'type' (string of 'tv' or 'movie') in the query parameters");
+    return;
+  }
+
+  if (!req.query.tmdb_id || typeof parseInt(req.query.tmdb_id) !== 'number' || parseInt(req.query.tmdb_id) % 1 !== 0) {
+    res.status(400).send("Error: Must provide a valid 'tmdb_id' (integer) in the query parameters");
     return;
   }
 
@@ -23,6 +28,11 @@ router.get("/", async (req, res) => {
     }
   })
     .then(async (response) => {
+      if (response.data.title_results.length === 0) {
+        res.status(400).send("Error: Could not find a matching title in Watchmode's database");
+        return;
+      }
+
       let watchmode_id = response.data.title_results[0].id;
 
       await axios.get(`https://api.watchmode.com/v1/title/${watchmode_id}/sources`, {
