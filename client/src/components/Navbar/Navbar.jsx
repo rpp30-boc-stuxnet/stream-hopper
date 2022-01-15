@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar.jsx';
+import { FaHome } from 'react-icons/fa';
 import ThemeToggle from '../Theme/ThemeToggle.jsx';
 
 // navbar, currently assumes user is logged in
@@ -12,15 +13,17 @@ export default function Navbar(props) {
         <span className='navLogo' >streamhopper!</span>
       </Link>
       <SearchBar />
-      <Link to={'/homepage'}>
-        <span className='homeLink' >homepage</span>
-      </Link>
-      <ThemeToggle />
-      <button
-        className='logoutBtn'
-        onClick={props.handleLogout} >
-          Logout
-      </button>
+      <div className="navBtns">
+        <Link to={'/homepage'}>
+          <FaHome className='homeLink' />
+        </Link>
+        <ThemeToggle />
+        <button
+          className='logoutBtn'
+          onClick={props.handleLogout} >
+            Logout
+        </button>
+      </div>
     </nav>
   )
 }
