@@ -47,8 +47,12 @@ function SourceReview(props){
       setCanSubmit({errorMessage: 'Fill out Reliability Rating'})
     } else {
       let qualityCheck = props.quality;
+      let rentBuySubFree = props.streamType;
       if(qualityCheck === null) {
         qualityCheck = "SD";
+      }
+      if(rentBuySubFree === "tve" || rentBuySubFree === "TVE") {
+        rentBuySubFree = "free"
       }
       let options = {
         user_id: window.localStorage.userUID,
@@ -56,7 +60,7 @@ function SourceReview(props){
           title_type: mediaType,
           source_company_id: props.companyId,
           stream_format: qualityCheck,
-          stream_type: props.streamType,
+          stream_type: rentBuySubFree,
           user_audio_quality_rating: audioRating,
           user_stream_reliability_rating: reliabilityRating,
           user_video_quality_rating: videoRating
@@ -64,8 +68,8 @@ function SourceReview(props){
 
       axios.post('/api/streamRatings', options)
         .then((response) => {
-          console.log('success saving rating');
           setCanSubmit({errorMessage: '', showFeedback: true})
+          props.refreshData();
         })
         .catch((error) => {
           console.log(error);

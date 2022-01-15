@@ -10,7 +10,7 @@ import AddRemoveButtons from '../AddRemoveButtons.jsx';
 function MovieOverview (props) {
   const [movieDetails, setMovieDetails] = useState({});
   const [titleSources, setTitleSources] = useState({});
-  const [reload, setReload] = useState(false);
+  const [quickToggle, setQuickToggle] = useState(0);
 
   let params = useParams();
   let mediaId = params.id;
@@ -71,6 +71,11 @@ function MovieOverview (props) {
   }
 
   useEffect(() => {
+    loadDetails();
+
+  }, [])
+
+  const loadDetails = () =>{
     let deetz = {};
     let sources = {};
     searchDetails()
@@ -81,16 +86,15 @@ function MovieOverview (props) {
       .then((requestSourcesData)=>{
         sources = requestSourcesData;
         setMovieDetails(deetz);
-
         let tranformedData = transformDataSources(sources);
         setTitleSources(tranformedData);
+        setQuickToggle(data.saved_by_user);
       })
     })
     .catch((err)=>{
       console.log(err);
     })
-
-  }, [])
+  }
 
 
   const removeFromMyMovies = (event) => {
@@ -101,8 +105,7 @@ function MovieOverview (props) {
       }
     })
       .then(() => {
-        console.log('removed');
-        setReload(!reload);
+        setQuickToggle(-1);
 
       })
       .catch((error) => {
@@ -117,7 +120,7 @@ function MovieOverview (props) {
       tmdb_id: parseInt(event.target.dataset.id)
     })
       .then(() => {
-        setReload(!reload);
+        setQuickToggle(1);
       })
       .catch((error) => {
         console.log('error adding title to my movies: ', error);
@@ -137,12 +140,12 @@ function MovieOverview (props) {
         <div className="btnContainer">
           <div className="addRemoveButtonsOverview">
           <AddRemoveButtons
-                      addToMyMovies={addToMyMovies}
-                      removeFromMyMovies={removeFromMyMovies}
-                      saved_by_user={movieDetails.saved_by_user}
-                      data_user={window.localStorage.userUID}
-                      data_id={mediaId}
-                      data_type={mediaType} />
+                    addToMyMovies={addToMyMovies}
+                    removeFromMyMovies={removeFromMyMovies}
+                    saved_by_user={quickToggle === 1 ? true : (quickToggle === -1 ? false : movieDetails.saved_by_user)}
+                    data_user={window.localStorage.userUID}
+                    data_id={mediaId}
+                    data_type={mediaType} />
           </div>
           <ReviewButtons tmdb_id={mediaId} />
         </div>
@@ -160,7 +163,6 @@ function MovieOverview (props) {
           { Object.keys(movieDetails).length > 0 ? 'Run Time: ' + movieDetails.run_time : 'Run Time: N/A'}
          </div>
         </div>
-
       </div>
       <div className="streamOptions">
         <h2 className="streamOptionsHeading">Where to Watch</h2>
