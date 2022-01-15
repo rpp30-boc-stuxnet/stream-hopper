@@ -97,7 +97,7 @@ button {
     mt-4
     mx-3
     pt-4
-    w-11/12
+    w-[96%]
 }
 
 .titleRow::-webkit-scrollbar {
@@ -110,15 +110,20 @@ button {
     flex-col
     mx-2
     h-full
+    w-fit
+    max-w-[12rem]
+}
+
+.titlePosterContainer a {
+  @apply
+    flex
+    self-center
+    max-h-[80%]
+    z-20
 }
 
 .titlePoster {
   transition: all 0.2s;
-
-  @apply
-    mx-2
-    max-h-[80%]
-    z-20
 }
 
 .titlePoster:hover {
@@ -127,7 +132,7 @@ button {
 }
 
 .buttonsContainer {
-  @apply flex flex-row p-1 mt-2 justify-between items-center text-xl
+  @apply flex flex-row self-center w-full max-w-[14rem] mt-2 justify-between items-center text-xl
 }
 
 /*
@@ -546,11 +551,11 @@ button {
 }
 
 .detailContainer {
-  @apply flex flex-col flex-wrap ml-1 md:ml-2 lg:ml-4 xl:ml-4 h-fit w-full p-8 md:w-[30%] lg:w-[31.8%] xl:w-[30%] md:flex-nowrap
+  @apply flex flex-col flex-wrap ml-1 md:ml-2 lg:ml-4 xl:ml-4 h-fit w-full p-8 md:w-[30%] lg:w-[31.8%] xl:w-[30%] md:flex-nowrap text-[#F4F1BB]
 }
 
 .detailFader {
-  @apply absolute h-[104%] md:h-[90%] lg:h-[90%] xl:h-[90%] w-[94%] -mx-5 xl:-mx-6 -mb-12 md:w-[28%] lg:w-[29%] xl:w-[30%] bg-[#990033] opacity-50 z-0 rounded-xl
+  @apply absolute h-[106%] md:h-[68vw] lg:h-[54vw] xl:h-[52vw] w-[94%] -mx-5 xl:-mx-6 -mb-12 md:w-[28%] lg:w-[29%] xl:w-[30%] bg-[#990033] opacity-50 z-0 rounded-xl
 }
 
 .title {
@@ -558,31 +563,37 @@ button {
 }
 
 .overviewPoster{
-  @apply h-auto self-center w-4/5 md:w-full lg:max-w-[80%] z-10
+  @apply flex h-auto self-center justify-center w-4/5 md:w-full lg:max-w-[80%] z-10 shadow-lg
 }
 
 .titleDetails {
   @apply z-10 text-xl
 }
 
-.reviewButtonContainer {
-  @apply flex flex-row p-1 mt-2 items-center text-xl z-10
+.btnContainer {
+  @apply flex flex-row p-1 my-2 w-4/5 md:w-full lg:w-2/3 justify-between content-center self-center items-center text-xl z-10
 }
 
-.addRemoveButtons {
-  @apply z-10
+.addRemoveButtonsOverview button{
+  @apply bg-[#368F8B] text-[#F4F1BB] hover:bg-[#68A357]
 }
 
 .overviewPoster {
   @apply w-full z-10
 }
 
+/*
+  ____________________
+  |  Stream Options  |
+  --------------------
+*/
+
 .streamOptions {
   @apply flex flex-col items-center w-11/12 md:w-2/3 lg:w-2/3 xl:w-2/3 mt-4
 }
 
 .streamOptionsHeading {
-  @apply text-3xl mt-1 mb-0
+  @apply text-3xl mt-1 mb-0 text-[#F4F1BB]
 }
 
 .streamOptionsContainer{
@@ -608,9 +619,16 @@ button {
 .sourceBoxImageContainer{
   @apply cursor-pointer my-0 mx-auto w-14 h-14 mb-2
 }
+
 .sourceBoxImage{
   @apply w-full h-full
 }
+
+/*
+  _______________________
+  |  Overview Synopsis  |
+  -----------------------
+*/
 
 .synopsisContainer {
   @apply flex flex-col self-center w-[92%] p-2 mt-4 mr-3 bg-[#F4F1BB] text-[#64113F] rounded-xl
@@ -622,4 +640,108 @@ button {
 
 .overviewSynopsis {
   @apply text-lg p-4 text-justify
+}
+
+/*
+  ___________________
+  |  Source Review  |
+  -------------------
+*/
+
+.formContainer{
+  @apply fixed z-30 top-0 left-0 w-full h-full overflow-auto pt-40 bg-black bg-[rgba(0,0,0,0.5)]
+}
+
+.formBackground{
+  @apply bg-[#F4F1BB] text-[#64113F] w-1/2 mx-auto my-0 rounded-xl shadow-xl
+}
+
+.formHeader{
+  @apply m-8 pt-4
+}
+
+.statement{
+  @apply inline-block mx-8 text-xl
+}
+
+.reviewExit{
+  @apply cursor-pointer float-right mt-4 mr-6 text-xl font-bold hover:text-[#E15554]
+}
+
+.formContent{
+  @apply w-full text-xl
+}
+
+.reviewStars{
+  @apply inline-block h-auto w-full
+}
+
+.confirmationMessage{
+  @apply my-0 mx-auto pb-12 text-2xl
+}
+
+.reviewSubmitBtn{
+  @apply w-2/5 mx-8 bg-[#68A357] hover:bg-[#368F8B] text-[#F4F1BB]
+}
+
+/*
+  ___________________
+  |  Source Review  |
+  -------------------
+*/
+
+.titleReviewsHolder {
+  @apply flex flex-col w-11/12 items-start mt-8
+}
+
+.reviewsTitle {
+  @apply mb-1 text-[#F4F1BB]
+}
+
+.reviewSection {
+  @apply w-[96%] text-left text-3xl
+}
+
+.reviewList {
+  @apply justify-center overflow-x-hidden overflow-y-scroll pt-2 h-80 w-full bg-[rgba(54,143,139,0.5)] rounded-xl
+}
+
+.reviewTile {
+  @apply flex flex-col p-2 rounded-lg w-11/12 text-left m-auto mt-5 text-lg bg-[#68A357]
+}
+
+.reviewUserDate {
+  @apply flex items-center justify-between text-base
+}
+
+.reviewBody {
+  @apply text-xl
+}
+
+.reviewText {
+  @apply w-11/12 mt-5 h-44 bg-[#F4F1BB] text-[#64113F] text-lg
+}
+
+.characterWarning {
+  @apply text-base
+}
+
+.noReviews {
+  @apply text-[#F4F1BB] text-xl pl-4
+}
+
+.addReviewContainer {
+  @apply w-full items-center mb-4
+}
+
+.addReviewForm {
+  @apply flex flex-col justify-items-center w-11/12 mx-auto
+}
+
+.addReviewBtn, .cancelReviewBtn {
+  @apply text-base w-5/12 bg-[#F4F1BB] text-[#64113F] mt-2 mb-4 hover:bg-[#64113F] hover:text-[#F4F1BB]
+}
+
+.reviewFormBtns {
+  @apply flex flex-row w-7/12 justify-between
 }
