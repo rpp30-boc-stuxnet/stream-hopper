@@ -555,7 +555,7 @@ button {
 }
 
 .detailFader {
-  @apply absolute h-[104%] md:h-[90%] lg:h-[90%] xl:h-[90%] w-[94%] -mx-5 xl:-mx-6 -mb-12 md:w-[28%] lg:w-[29%] xl:w-[30%] bg-[#990033] opacity-50 z-0 rounded-xl
+  @apply absolute h-[106%] md:h-[68vw] lg:h-[54vw] xl:h-[52vw] w-[94%] -mx-5 xl:-mx-6 -mb-12 md:w-[28%] lg:w-[29%] xl:w-[30%] bg-[#990033] opacity-50 z-0 rounded-xl
 }
 
 .title {
@@ -563,7 +563,7 @@ button {
 }
 
 .overviewPoster{
-  @apply h-auto self-center w-4/5 md:w-full lg:max-w-[80%] z-10 shadow-lg
+  @apply flex h-auto self-center justify-center w-4/5 md:w-full lg:max-w-[80%] z-10 shadow-lg
 }
 
 .titleDetails {
@@ -571,11 +571,7 @@ button {
 }
 
 .btnContainer {
-  @apply flex flex-row p-1 my-2 w-2/3 justify-between self-center items-center text-xl z-10
-}
-
-.addRemoveButtonsOverview {
-  @apply z-10
+  @apply flex flex-row p-1 my-2 w-4/5 md:w-full lg:w-2/3 justify-between content-center self-center items-center text-xl z-10
 }
 
 .addRemoveButtonsOverview button{
@@ -673,27 +669,79 @@ button {
 }
 
 .formContent{
-  width: 100%;
-  font-size: 1.2em;
+  @apply w-full text-xl
 }
 
 .reviewStars{
-  width: 100%;
-  height: auto;
-  display: inline-block;
+  @apply inline-block h-auto w-full
 }
 
 .confirmationMessage{
-  margin: 0 auto;
-  padding-bottom: 2em;
-  font-size: 1.2em;
+  @apply my-0 mx-auto pb-12 text-2xl
 }
 
-.reviewSubmission{
-  width:50%;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  background-color: #68A357;
-  color: black;
+.reviewSubmitBtn{
+  @apply w-2/5 mx-8 bg-[#68A357] hover:bg-[#368F8B] text-[#F4F1BB]
 }
 
+/*
+  ___________________
+  |  Source Review  |
+  -------------------
+*/
+
+.titleReviewsHolder {
+  @apply flex flex-col w-11/12 items-start mt-8
+}
+
+.reviewsTitle {
+  @apply mb-1 text-[#F4F1BB]
+}
+
+.reviewSection {
+  @apply w-[96%] text-left text-3xl
+}
+
+.reviewList {
+  @apply justify-center overflow-x-hidden overflow-y-scroll pt-2 h-80 w-full bg-[rgba(54,143,139,0.5)] rounded-xl
+}
+
+.reviewTile {
+  @apply flex flex-col p-2 rounded-lg w-11/12 text-left m-auto mt-5 text-lg bg-[#68A357]
+}
+
+.reviewUserDate {
+  @apply flex items-center justify-between text-base
+}
+
+.reviewBody {
+  @apply text-xl
+}
+
+.reviewText {
+  @apply w-11/12 mt-5 h-44 bg-[#F4F1BB] text-[#64113F] text-lg
+}
+
+.characterWarning {
+  @apply text-base
+}
+
+.noReviews {
+  @apply text-[#F4F1BB] text-xl pl-4
+}
+
+.addReviewContainer {
+  @apply w-full items-center mb-4
+}
+
+.addReviewForm {
+  @apply flex flex-col justify-items-center w-11/12 mx-auto
+}
+
+.addReviewBtn, .cancelReviewBtn {
+  @apply text-base w-5/12 bg-[#F4F1BB] text-[#64113F] mt-2 mb-4 hover:bg-[#64113F] hover:text-[#F4F1BB]
+}
+
+.reviewFormBtns {
+  @apply flex flex-row w-7/12 justify-between
+}

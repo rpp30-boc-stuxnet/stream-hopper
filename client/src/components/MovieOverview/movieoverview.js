@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import StreamTile from './StreamTile.js';
 import TitleReviews from './titleReviews/TitleReviews.jsx';
 import axios from 'axios';
-import './titleReviews/titleReviews.css';
 import { useParams } from 'react-router-dom';
 
 import ReviewButtons from '../ReviewButtons.jsx';

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './SourceReview.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Rating from '@mui/material/Rating';
@@ -86,16 +85,16 @@ function SourceReview(props){
         </div>
         {canSubmit.showFeedback ? (
 
-          <div id = "confirmationMessage">
+          <div className="confirmationMessage">
             Ratings Received!
           </div>
 
           ) :
           <>
-          <form onSubmit = {handleSubmit} id = "formContent">
+          <form onSubmit = {handleSubmit} className="formContent">
             <label>
               Audio Quality:
-              <div className ="stars">
+              <div className="reviewStars">
                 <Rating name = "audio"
                         onChange = {(event, newValue) => {handleAudioRating(newValue)}}
                         value = {audioRating} />
@@ -104,7 +103,7 @@ function SourceReview(props){
             </label>
             <label>
               Video Quality:
-              <div className ="stars">
+              <div className="reviewStars">
               <Rating name = "video"
                         onChange = {(event, newValue) => {handleVideoRating(newValue)}}
                         value = {videoRating} />
@@ -113,14 +112,14 @@ function SourceReview(props){
             </label>
             <label>
               Reliability:
-              <div className ="stars">
+              <div className="reviewStars">
               <Rating name = "reliability"
                         onChange = {(event, newValue) => {handleReliabilityRating(newValue)}}
                         value = {reliabilityRating} />
               </div>
               <br></br>
             </label>
-            <button type ="submit" value="Submit" id = "reviewSubmission">Submit</button>
+            <button type ="submit" value="Submit" className="reviewSubmitBtn">Submit</button>
           </form>
           {canSubmit.errorMessage === '' ? null : canSubmit.errorMessage}
           </>
