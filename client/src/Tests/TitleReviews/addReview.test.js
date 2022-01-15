@@ -5,10 +5,11 @@
 
 //dependencies
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import AddReview from '../../components/MovieOverview/titleReviews/AddReview.jsx';
 import userEvent from '@testing-library/user-event'
+import 'regenerator-runtime/runtime'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
@@ -31,12 +32,10 @@ const review = {
     __v: 0
 }
 
-
-const server = setupServer()
-
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
+var localStorageMock = (function() {
+  return {userEmail: 'testUser@gmail.com'}
+})();
+Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
 
 describe('Review Tile Component', function () {
@@ -92,7 +91,7 @@ describe('Review Tile Component', function () {
 
   });
 
-  test('Should call handleNewReview when a new review is submitted',  function () {
+  test('Should call handleNewReview when a new review is submitted', async function () {
     let isNewReview = false;
 
     const handleCancel = (e) => {
@@ -102,18 +101,17 @@ describe('Review Tile Component', function () {
       isNewReview = true;
     }
 
-    server.use(
-      rest.post('/api/titleReviews', (req, res, ctx) => {
-        return res(ctx.status(201))
-      })
-    );
-
     render(<AddReview handleCancel={handleCancel} handleNewReview={handleNewReview} type={review.type} tmdb_id={review.tmdb_id}/>)
     const input = screen.getByTestId('test-userReviewInput');
     fireEvent.change(input, {target: {value: 'Entering a review :)'}});
     userEvent.click(screen.getByText('Submit Review'));
 
-    expect(isNewReview).toBe(true);
+
+
+    await waitFor(() => {
+      expect(isNewReview).toBe(true);
+    })
+
 
   });
 

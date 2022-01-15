@@ -1,8 +1,5 @@
 {
   "name": "stream-hopper",
-  "jest": {
-    "setupFilesAfterEnv": ["./src/Tests/mockLocal.js"]
-  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
