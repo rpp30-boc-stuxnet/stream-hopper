@@ -47,10 +47,11 @@ The app will use the device preference if available. The user also has manual co
 
 # Tech Stack
 * [ Firebase (Authentication)](https://firebase.google.com/)
-* [Atlas MongoDB (User Database)](https://www.mongodb.com/atlas)
-* [Express (backend)](https://expressjs.com/)
-* [React (frontend)](https://reactjs.org/)
-* [Jest (testing)](https://jestjs.io/)
+* [MongoDB Atlas (Database)](https://www.mongodb.com/atlas)
+* [Node.js (Backend)](https://nodejs.org/en/)
+* [Express.js (Backend)](https://expressjs.com/)
+* [React (Frontend)](https://reactjs.org/)
+* [Jest (Testing)](https://jestjs.io/)
 
 # APIs
 Streamhopper pulls information from three APIs to feed the dashboard and overview pages:
